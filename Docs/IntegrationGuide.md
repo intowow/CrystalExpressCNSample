@@ -54,7 +54,7 @@ It will look like this.
 CrystalExpress.
 - Add the following code in Podfile
 ```
-pod "CrystalExpressSDK", '~> 1.1'
+pod "CrystalExpressSDK-CN", '~> 1.1'
 ```
 - `pod update` or `pod install`
 - Open workspace that pod generate for you, you're ready to use CrystalExpress
