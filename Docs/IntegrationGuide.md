@@ -1,4 +1,4 @@
-#CrystalExpress Integration Guide (v1.1.2)
+#CrystalExpress Integration Guide (v1.1.3)
 ## Table of content
 
 - [CrystalExpress Integration Guide](#crystalexpress-integration-guide)
@@ -79,9 +79,6 @@ pod "CrystalExpressSDK-CN", '~> 1.1'
  - libicucore.dylib
 4. Add `-ObjC` in TARGETS -> Build Settings -> Linking -> Other Linker Flags
 5. Add the following files to your project -> Supporting Files
- - kinesis-2013-12-02.json
- - cognito-identity-2014-06-30.json
- - sts-2011-06-15.json
  - CrystalExpress.plist
 6. You can now start using CrystalExpress lib.
 
