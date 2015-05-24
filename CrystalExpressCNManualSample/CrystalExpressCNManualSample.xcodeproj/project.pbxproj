@@ -1,0 +1,577 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D5B4ACA01B11792B007B674C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4AC9F1B11792B007B674C /* main.m */; };
+		D5B4ACA31B11792B007B674C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACA21B11792B007B674C /* AppDelegate.m */; };
+		D5B4ACA61B11792B007B674C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACA51B11792B007B674C /* ViewController.m */; };
+		D5B4ACA91B11792B007B674C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B4ACA71B11792B007B674C /* Main.storyboard */; };
+		D5B4ACAB1B11792B007B674C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5B4ACAA1B11792B007B674C /* Images.xcassets */; };
+		D5B4ACAE1B11792B007B674C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B4ACAC1B11792B007B674C /* LaunchScreen.xib */; };
+		D5B4ACBA1B11792B007B674C /* CrystalExpressCNManualSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACB91B11792B007B674C /* CrystalExpressCNManualSampleTests.m */; };
+		D5B4ACCD1B117973007B674C /* CrystalExpress.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5B4ACC61B117973007B674C /* CrystalExpress.plist */; };
+		D5B4ACCE1B117973007B674C /* CrystalExpressSDK-1.1.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACC71B117973007B674C /* CrystalExpressSDK-1.1.3.a */; };
+		D5B4ACD01B117988007B674C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACCF1B117988007B674C /* Security.framework */; };
+		D5B4ACD21B117998007B674C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACD11B117998007B674C /* CFNetwork.framework */; };
+		D5B4ACD41B1179A0007B674C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACD31B1179A0007B674C /* MessageUI.framework */; };
+		D5B4ACD61B1179A7007B674C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACD51B1179A7007B674C /* MobileCoreServices.framework */; };
+		D5B4ACD81B1179B1007B674C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACD71B1179B1007B674C /* SystemConfiguration.framework */; };
+		D5B4ACDA1B1179BC007B674C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACD91B1179BB007B674C /* AdSupport.framework */; };
+		D5B4ACDC1B1179C4007B674C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACDB1B1179C4007B674C /* libz.dylib */; };
+		D5B4ACDE1B1179D1007B674C /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACDD1B1179D1007B674C /* libc++.dylib */; };
+		D5B4ACE01B1179D9007B674C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACDF1B1179D9007B674C /* CoreTelephony.framework */; };
+		D5B4ACE21B1179E2007B674C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACE11B1179E2007B674C /* CoreMedia.framework */; };
+		D5B4ACE41B1179EA007B674C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACE31B1179EA007B674C /* libsqlite3.dylib */; };
+		D5B4ACE61B1179F1007B674C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACE51B1179F1007B674C /* AVFoundation.framework */; };
+		D5B4ACE81B1179FB007B674C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACE71B1179FB007B674C /* libicucore.dylib */; };
+		D5B4ACF31B117AB2007B674C /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACEC1B117AB2007B674C /* ContentViewController.m */; };
+		D5B4ACF41B117AB2007B674C /* FlipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACEE1B117AB2007B674C /* FlipViewController.m */; };
+		D5B4ACF51B117AB2007B674C /* StreamSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACF01B117AB2007B674C /* StreamSectionViewController.m */; };
+		D5B4ACF61B117AB2007B674C /* StreamTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACF21B117AB2007B674C /* StreamTableViewController.m */; };
+		D5B4ACFA1B117ACB007B674C /* asset.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5B4ACF71B117ACB007B674C /* asset.bundle */; };
+		D5B4ACFB1B117ACB007B674C /* LayoutUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACF91B117ACB007B674C /* LayoutUtils.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D5B4ACB41B11792B007B674C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5B4AC921B11792B007B674C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5B4AC991B11792B007B674C;
+			remoteInfo = CrystalExpressCNManualSample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D5B4AC9A1B11792B007B674C /* CrystalExpressCNManualSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrystalExpressCNManualSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5B4AC9E1B11792B007B674C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5B4AC9F1B11792B007B674C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D5B4ACA11B11792B007B674C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D5B4ACA21B11792B007B674C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D5B4ACA41B11792B007B674C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D5B4ACA51B11792B007B674C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D5B4ACA81B11792B007B674C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D5B4ACAA1B11792B007B674C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D5B4ACAD1B11792B007B674C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D5B4ACB31B11792B007B674C /* CrystalExpressCNManualSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrystalExpressCNManualSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5B4ACB81B11792B007B674C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5B4ACB91B11792B007B674C /* CrystalExpressCNManualSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrystalExpressCNManualSampleTests.m; sourceTree = "<group>"; };
+		D5B4ACC41B117973007B674C /* BannerADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerADHelper.h; sourceTree = "<group>"; };
+		D5B4ACC51B117973007B674C /* ContentADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentADHelper.h; sourceTree = "<group>"; };
+		D5B4ACC61B117973007B674C /* CrystalExpress.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CrystalExpress.plist; sourceTree = "<group>"; };
+		D5B4ACC71B117973007B674C /* CrystalExpressSDK-1.1.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-1.1.3.a"; sourceTree = "<group>"; };
+		D5B4ACC81B117973007B674C /* FlipADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipADHelper.h; sourceTree = "<group>"; };
+		D5B4ACC91B117973007B674C /* I2WAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I2WAPI.h; sourceTree = "<group>"; };
+		D5B4ACCA1B117973007B674C /* InterstitialADViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialADViewController.h; sourceTree = "<group>"; };
+		D5B4ACCB1B117973007B674C /* SplashADInterfaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashADInterfaceViewController.h; sourceTree = "<group>"; };
+		D5B4ACCC1B117973007B674C /* StreamADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamADHelper.h; sourceTree = "<group>"; };
+		D5B4ACCF1B117988007B674C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D5B4ACD11B117998007B674C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D5B4ACD31B1179A0007B674C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		D5B4ACD51B1179A7007B674C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D5B4ACD71B1179B1007B674C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D5B4ACD91B1179BB007B674C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		D5B4ACDB1B1179C4007B674C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D5B4ACDD1B1179D1007B674C /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		D5B4ACDF1B1179D9007B674C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		D5B4ACE11B1179E2007B674C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D5B4ACE31B1179EA007B674C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D5B4ACE51B1179F1007B674C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D5B4ACE71B1179FB007B674C /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		D5B4ACEB1B117AB2007B674C /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		D5B4ACEC1B117AB2007B674C /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		D5B4ACED1B117AB2007B674C /* FlipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipViewController.h; sourceTree = "<group>"; };
+		D5B4ACEE1B117AB2007B674C /* FlipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipViewController.m; sourceTree = "<group>"; };
+		D5B4ACEF1B117AB2007B674C /* StreamSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamSectionViewController.h; sourceTree = "<group>"; };
+		D5B4ACF01B117AB2007B674C /* StreamSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamSectionViewController.m; sourceTree = "<group>"; };
+		D5B4ACF11B117AB2007B674C /* StreamTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewController.h; sourceTree = "<group>"; };
+		D5B4ACF21B117AB2007B674C /* StreamTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewController.m; sourceTree = "<group>"; };
+		D5B4ACF71B117ACB007B674C /* asset.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = asset.bundle; sourceTree = "<group>"; };
+		D5B4ACF81B117ACB007B674C /* LayoutUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutUtils.h; sourceTree = "<group>"; };
+		D5B4ACF91B117ACB007B674C /* LayoutUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutUtils.m; sourceTree = "<group>"; };
+		D5B4ACFD1B117B56007B674C /* SplashADHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplashADHelper.h; sourceTree = "<group>"; };
+		D5B4AD021B117C24007B674C /* FlipDynamicADHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlipDynamicADHelper.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D5B4AC971B11792B007B674C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5B4ACE81B1179FB007B674C /* libicucore.dylib in Frameworks */,
+				D5B4ACE61B1179F1007B674C /* AVFoundation.framework in Frameworks */,
+				D5B4ACE41B1179EA007B674C /* libsqlite3.dylib in Frameworks */,
+				D5B4ACE21B1179E2007B674C /* CoreMedia.framework in Frameworks */,
+				D5B4ACE01B1179D9007B674C /* CoreTelephony.framework in Frameworks */,
+				D5B4ACDE1B1179D1007B674C /* libc++.dylib in Frameworks */,
+				D5B4ACDC1B1179C4007B674C /* libz.dylib in Frameworks */,
+				D5B4ACDA1B1179BC007B674C /* AdSupport.framework in Frameworks */,
+				D5B4ACD81B1179B1007B674C /* SystemConfiguration.framework in Frameworks */,
+				D5B4ACD61B1179A7007B674C /* MobileCoreServices.framework in Frameworks */,
+				D5B4ACD41B1179A0007B674C /* MessageUI.framework in Frameworks */,
+				D5B4ACD21B117998007B674C /* CFNetwork.framework in Frameworks */,
+				D5B4ACD01B117988007B674C /* Security.framework in Frameworks */,
+				D5B4ACCE1B117973007B674C /* CrystalExpressSDK-1.1.3.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5B4ACB01B11792B007B674C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D5B4AC911B11792B007B674C = {
+			isa = PBXGroup;
+			children = (
+				D5B4ACE91B117A57007B674C /* Frameworks */,
+				D5B4AC9C1B11792B007B674C /* CrystalExpressCNManualSample */,
+				D5B4ACB61B11792B007B674C /* CrystalExpressCNManualSampleTests */,
+				D5B4AC9B1B11792B007B674C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D5B4AC9B1B11792B007B674C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5B4AC9A1B11792B007B674C /* CrystalExpressCNManualSample.app */,
+				D5B4ACB31B11792B007B674C /* CrystalExpressCNManualSampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D5B4AC9C1B11792B007B674C /* CrystalExpressCNManualSample */ = {
+			isa = PBXGroup;
+			children = (
+				D5B4ACF71B117ACB007B674C /* asset.bundle */,
+				D5B4ACF81B117ACB007B674C /* LayoutUtils.h */,
+				D5B4ACF91B117ACB007B674C /* LayoutUtils.m */,
+				D5B4ACEA1B117AB2007B674C /* ADViewControllers */,
+				D5B4ACC31B11794F007B674C /* CrystalExpressLib */,
+				D5B4ACA11B11792B007B674C /* AppDelegate.h */,
+				D5B4ACA21B11792B007B674C /* AppDelegate.m */,
+				D5B4ACA41B11792B007B674C /* ViewController.h */,
+				D5B4ACA51B11792B007B674C /* ViewController.m */,
+				D5B4ACA71B11792B007B674C /* Main.storyboard */,
+				D5B4ACAA1B11792B007B674C /* Images.xcassets */,
+				D5B4ACAC1B11792B007B674C /* LaunchScreen.xib */,
+				D5B4AC9D1B11792B007B674C /* Supporting Files */,
+			);
+			path = CrystalExpressCNManualSample;
+			sourceTree = "<group>";
+		};
+		D5B4AC9D1B11792B007B674C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5B4AC9E1B11792B007B674C /* Info.plist */,
+				D5B4AC9F1B11792B007B674C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D5B4ACB61B11792B007B674C /* CrystalExpressCNManualSampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				D5B4ACB91B11792B007B674C /* CrystalExpressCNManualSampleTests.m */,
+				D5B4ACB71B11792B007B674C /* Supporting Files */,
+			);
+			path = CrystalExpressCNManualSampleTests;
+			sourceTree = "<group>";
+		};
+		D5B4ACB71B11792B007B674C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5B4ACB81B11792B007B674C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D5B4ACC31B11794F007B674C /* CrystalExpressLib */ = {
+			isa = PBXGroup;
+			children = (
+				D5B4ACFD1B117B56007B674C /* SplashADHelper.h */,
+				D5B4ACC41B117973007B674C /* BannerADHelper.h */,
+				D5B4ACC51B117973007B674C /* ContentADHelper.h */,
+				D5B4ACC61B117973007B674C /* CrystalExpress.plist */,
+				D5B4ACC71B117973007B674C /* CrystalExpressSDK-1.1.3.a */,
+				D5B4ACC81B117973007B674C /* FlipADHelper.h */,
+				D5B4AD021B117C24007B674C /* FlipDynamicADHelper.h */,
+				D5B4ACC91B117973007B674C /* I2WAPI.h */,
+				D5B4ACCA1B117973007B674C /* InterstitialADViewController.h */,
+				D5B4ACCB1B117973007B674C /* SplashADInterfaceViewController.h */,
+				D5B4ACCC1B117973007B674C /* StreamADHelper.h */,
+			);
+			name = CrystalExpressLib;
+			sourceTree = "<group>";
+		};
+		D5B4ACE91B117A57007B674C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5B4ACE71B1179FB007B674C /* libicucore.dylib */,
+				D5B4ACE51B1179F1007B674C /* AVFoundation.framework */,
+				D5B4ACE31B1179EA007B674C /* libsqlite3.dylib */,
+				D5B4ACE11B1179E2007B674C /* CoreMedia.framework */,
+				D5B4ACDF1B1179D9007B674C /* CoreTelephony.framework */,
+				D5B4ACDD1B1179D1007B674C /* libc++.dylib */,
+				D5B4ACDB1B1179C4007B674C /* libz.dylib */,
+				D5B4ACD91B1179BB007B674C /* AdSupport.framework */,
+				D5B4ACD71B1179B1007B674C /* SystemConfiguration.framework */,
+				D5B4ACD51B1179A7007B674C /* MobileCoreServices.framework */,
+				D5B4ACD31B1179A0007B674C /* MessageUI.framework */,
+				D5B4ACD11B117998007B674C /* CFNetwork.framework */,
+				D5B4ACCF1B117988007B674C /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D5B4ACEA1B117AB2007B674C /* ADViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D5B4ACEB1B117AB2007B674C /* ContentViewController.h */,
+				D5B4ACEC1B117AB2007B674C /* ContentViewController.m */,
+				D5B4ACED1B117AB2007B674C /* FlipViewController.h */,
+				D5B4ACEE1B117AB2007B674C /* FlipViewController.m */,
+				D5B4ACEF1B117AB2007B674C /* StreamSectionViewController.h */,
+				D5B4ACF01B117AB2007B674C /* StreamSectionViewController.m */,
+				D5B4ACF11B117AB2007B674C /* StreamTableViewController.h */,
+				D5B4ACF21B117AB2007B674C /* StreamTableViewController.m */,
+			);
+			path = ADViewControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D5B4AC991B11792B007B674C /* CrystalExpressCNManualSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5B4ACBD1B11792B007B674C /* Build configuration list for PBXNativeTarget "CrystalExpressCNManualSample" */;
+			buildPhases = (
+				D5B4AC961B11792B007B674C /* Sources */,
+				D5B4AC971B11792B007B674C /* Frameworks */,
+				D5B4AC981B11792B007B674C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CrystalExpressCNManualSample;
+			productName = CrystalExpressCNManualSample;
+			productReference = D5B4AC9A1B11792B007B674C /* CrystalExpressCNManualSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D5B4ACB21B11792B007B674C /* CrystalExpressCNManualSampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5B4ACC01B11792B007B674C /* Build configuration list for PBXNativeTarget "CrystalExpressCNManualSampleTests" */;
+			buildPhases = (
+				D5B4ACAF1B11792B007B674C /* Sources */,
+				D5B4ACB01B11792B007B674C /* Frameworks */,
+				D5B4ACB11B11792B007B674C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5B4ACB51B11792B007B674C /* PBXTargetDependency */,
+			);
+			name = CrystalExpressCNManualSampleTests;
+			productName = CrystalExpressCNManualSampleTests;
+			productReference = D5B4ACB31B11792B007B674C /* CrystalExpressCNManualSampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D5B4AC921B11792B007B674C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = intowow;
+				TargetAttributes = {
+					D5B4AC991B11792B007B674C = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					D5B4ACB21B11792B007B674C = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = D5B4AC991B11792B007B674C;
+					};
+				};
+			};
+			buildConfigurationList = D5B4AC951B11792B007B674C /* Build configuration list for PBXProject "CrystalExpressCNManualSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D5B4AC911B11792B007B674C;
+			productRefGroup = D5B4AC9B1B11792B007B674C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D5B4AC991B11792B007B674C /* CrystalExpressCNManualSample */,
+				D5B4ACB21B11792B007B674C /* CrystalExpressCNManualSampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D5B4AC981B11792B007B674C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5B4ACA91B11792B007B674C /* Main.storyboard in Resources */,
+				D5B4ACAE1B11792B007B674C /* LaunchScreen.xib in Resources */,
+				D5B4ACCD1B117973007B674C /* CrystalExpress.plist in Resources */,
+				D5B4ACAB1B11792B007B674C /* Images.xcassets in Resources */,
+				D5B4ACFA1B117ACB007B674C /* asset.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5B4ACB11B11792B007B674C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D5B4AC961B11792B007B674C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5B4ACF31B117AB2007B674C /* ContentViewController.m in Sources */,
+				D5B4ACA61B11792B007B674C /* ViewController.m in Sources */,
+				D5B4ACF51B117AB2007B674C /* StreamSectionViewController.m in Sources */,
+				D5B4ACA31B11792B007B674C /* AppDelegate.m in Sources */,
+				D5B4ACA01B11792B007B674C /* main.m in Sources */,
+				D5B4ACF61B117AB2007B674C /* StreamTableViewController.m in Sources */,
+				D5B4ACF41B117AB2007B674C /* FlipViewController.m in Sources */,
+				D5B4ACFB1B117ACB007B674C /* LayoutUtils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5B4ACAF1B11792B007B674C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5B4ACBA1B11792B007B674C /* CrystalExpressCNManualSampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5B4ACB51B11792B007B674C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5B4AC991B11792B007B674C /* CrystalExpressCNManualSample */;
+			targetProxy = D5B4ACB41B11792B007B674C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D5B4ACA71B11792B007B674C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5B4ACA81B11792B007B674C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D5B4ACAC1B11792B007B674C /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5B4ACAD1B11792B007B674C /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D5B4ACBB1B11792B007B674C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D5B4ACBC1B11792B007B674C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D5B4ACBE1B11792B007B674C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrystalExpressCNManualSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CrystalExpressCNManualSample",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D5B4ACBF1B11792B007B674C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrystalExpressCNManualSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CrystalExpressCNManualSample",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D5B4ACC11B11792B007B674C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CrystalExpressCNManualSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrystalExpressCNManualSample.app/CrystalExpressCNManualSample";
+			};
+			name = Debug;
+		};
+		D5B4ACC21B11792B007B674C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CrystalExpressCNManualSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrystalExpressCNManualSample.app/CrystalExpressCNManualSample";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D5B4AC951B11792B007B674C /* Build configuration list for PBXProject "CrystalExpressCNManualSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5B4ACBB1B11792B007B674C /* Debug */,
+				D5B4ACBC1B11792B007B674C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5B4ACBD1B11792B007B674C /* Build configuration list for PBXNativeTarget "CrystalExpressCNManualSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5B4ACBE1B11792B007B674C /* Debug */,
+				D5B4ACBF1B11792B007B674C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D5B4ACC01B11792B007B674C /* Build configuration list for PBXNativeTarget "CrystalExpressCNManualSampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5B4ACC11B11792B007B674C /* Debug */,
+				D5B4ACC21B11792B007B674C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D5B4AC921B11792B007B674C /* Project object */;
+}
