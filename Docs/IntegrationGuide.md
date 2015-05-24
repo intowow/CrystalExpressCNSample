@@ -131,7 +131,7 @@ pod "CrystalExpressSDK-CN", '~> 1.1'
                        helperKey:(NSString *)helperKey
                            place:(int)place
                          adWidth:(CGFloat)adWidth
-                         onReady:(void (^)(ADView *adView)                         )ready
+                         onReady:(void (^)(ADView *adView))ready
                        onFailure:(void (^)(NSError *error))failure
              onPullDownAnimation:(void (^)(UIView *))animation;
 
