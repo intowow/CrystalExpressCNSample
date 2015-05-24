@@ -133,7 +133,8 @@ pod "CrystalExpressSDK-CN", '~> 1.1'
 + (void)getStreamADWithPlacement:(NSString *)placement
                        helperKey:(NSString *)helperKey
                            place:(int)place
-                         onReady:(void (^)(ADView *adView))ready
+                         adWidth:(CGFloat)adWidth
+                         onReady:(void (^)(ADView *adView)                         )ready
                        onFailure:(void (^)(NSError *error))failure
              onPullDownAnimation:(void (^)(UIView *))animation;
 
@@ -275,6 +276,11 @@ __weak typeof(self) weakSelf = self;
 	.....
 
     [self prepareDataSource];
+    if (_streamHelper) {
+        [_streamHelper setDelegate:self];
+        [_streamHelper setPreferAdWidth:320.0f];
+        [_streamHelper preroll];
+    }
     [self.tableView reloadData];
     [_streamHelper updateVisiblePosition:[self tableView]];
 
@@ -432,6 +438,13 @@ __weak typeof(self) weakSelf = self;
 
 // check whether the position is an AD
 - (BOOL)isAdAtPos:(int)pos;
+
+// set prefer AD width
+- (void)setPreferAdWidth:(CGFloat)width;
+
+// get previous setting of AD width, return -1 if user didn't set adWidth before
+- (CGFloat)getCurrentAdWidthSetting;
+
 
 #pragma mark - event listener
 // scroll view did scroll event hook
