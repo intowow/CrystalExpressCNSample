@@ -392,6 +392,17 @@ __weak typeof(self) weakSelf = self;
 }
 ```
 
+- Call `clearADs` when you refresh data source, for example, on pull down refresh.
+
+```objc
+- (void)onPullDownRefresh
+{	
+	... refresh your data source
+	[_streamHelper clearADs];
+	...
+}
+```
+
 #### Complete API
 ```objc
 #pragma mark - StreamADHelper.h
@@ -442,6 +453,8 @@ __weak typeof(self) weakSelf = self;
 // get previous setting of AD width, return -1 if user didn't set adWidth before
 - (CGFloat)getCurrentAdWidthSetting;
 
+// remove all loaded ADs
+- (void)cleanADs;
 
 #pragma mark - event listener
 // scroll view did scroll event hook
