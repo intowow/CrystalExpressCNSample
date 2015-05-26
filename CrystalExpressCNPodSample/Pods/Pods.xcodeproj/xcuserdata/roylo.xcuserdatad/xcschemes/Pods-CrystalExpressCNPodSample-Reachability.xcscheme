@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8BF35DFA6DD1D6735AF867C9"
+               BlueprintIdentifier = "F68525981BF994267F8095F3"
                BuildableName = "libPods-CrystalExpressCNPodSample-Reachability.a"
                BlueprintName = "Pods-CrystalExpressCNPodSample-Reachability"
                ReferencedContainer = "container:Pods.xcodeproj">

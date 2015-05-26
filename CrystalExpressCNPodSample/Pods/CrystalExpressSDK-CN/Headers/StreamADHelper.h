@@ -28,6 +28,9 @@
 - (void)stopADs;
 - (void)setActive:(BOOL)isActive;
 - (BOOL)isAdAtPos:(int)pos;
+- (void)setPreferAdWidth:(CGFloat)width;
+- (CGFloat)getCurrentAdWidthSetting;
+- (void)cleanADs;
 
 #pragma mark - event listener
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView tableView:(UITableView *)tableView;

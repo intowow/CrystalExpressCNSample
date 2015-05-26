@@ -44,6 +44,7 @@
     
     if (_streamHelper) {
         [_streamHelper setDelegate:self];
+        [_streamHelper setPreferAdWidth:self.view.bounds.size.width];
         [_streamHelper preroll];
     }
     [[self tableView] reloadData];

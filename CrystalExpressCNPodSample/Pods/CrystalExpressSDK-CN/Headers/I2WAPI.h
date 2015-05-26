@@ -62,6 +62,7 @@ typedef NS_ENUM(NSUInteger, CESplashType) {
 + (void)getStreamADWithPlacement:(NSString *)placement
                        helperKey:(NSString *)helperKey
                            place:(int)place
+                         adWidth:(CGFloat)adWidth
                          onReady:(void (^)(ADView *adView))ready
                        onFailure:(void (^)(NSError *error))failure
              onPullDownAnimation:(void (^)(UIView *))animation;
