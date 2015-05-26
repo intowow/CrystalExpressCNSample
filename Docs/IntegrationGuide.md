@@ -392,13 +392,13 @@ __weak typeof(self) weakSelf = self;
 }
 ```
 
-- Call `clearADs` when you refresh data source, for example, on pull down refresh.
+- Call `cleanADs` when you refresh data source, for example, on pull down refresh.
 
 ```objc
 - (void)onPullDownRefresh
-{	
+{
 	... refresh your data source
-	[_streamHelper clearADs];
+	[_streamHelper cleanADs];
 	...
 }
 ```
