@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FBC16089-896D-4993-8488-18B88455C0F0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FC48B91C47254096E41B3C9D2D71F7D7BCF1F146</key>
+		<string>github.com:roylo/CrystalExpressCNSample.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CrystalExpressAppCN/CrystalExpressAppCN.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FC48B91C47254096E41B3C9D2D71F7D7BCF1F146</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:roylo/CrystalExpressCNSample.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FC48B91C47254096E41B3C9D2D71F7D7BCF1F146</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FC48B91C47254096E41B3C9D2D71F7D7BCF1F146</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CrystalExpressCNSample</string>
+		</dict>
+	</array>
+</dict>
+</plist>

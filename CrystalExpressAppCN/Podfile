@@ -1,0 +1,6 @@
+# Uncomment this line to define a global platform for your project
+ platform :ios, '7.0'
+
+target 'CrystalExpressAppCN' do
+  pod "CrystalExpressSDK-CN", '1.2.0a'
+end
