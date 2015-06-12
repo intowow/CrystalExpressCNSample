@@ -11,6 +11,8 @@
 #import "StreamADHelper.h"
 
 #define ROWS_IN_SECTION 300
+#define AD_VERTICAL_MARGIN 5
+#define AD_HORIZONTAL_MARGIN 5
 
 @interface StreamTableViewController ()
 @property (nonatomic, strong) NSMutableArray *contentImages;
@@ -44,10 +46,11 @@
     
     if (_streamHelper) {
         [_streamHelper setDelegate:self];
-        [_streamHelper setPreferAdWidth:self.view.bounds.size.width];
+        [_streamHelper setPreferAdWidth:self.view.bounds.size.width - 2*AD_HORIZONTAL_MARGIN];
         [_streamHelper preroll];
     }
     [[self tableView] reloadData];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_streamHelper updateVisiblePosition:self.tableView];
 }
 
@@ -97,9 +100,15 @@
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        } else {
         }
+        
         [[cell contentView] addSubview:adView];
+        [cell.contentView setBounds:CGRectMake(0, 0, CGRectGetWidth(cell.contentView.bounds), adView.bounds.size.height + 2*AD_VERTICAL_MARGIN)];
+        [[cell contentView] setBackgroundColor:[UIColor colorWithWhite:0.905 alpha:1.0]];
+        CGRect frame = adView.frame;
+        frame.origin.x = AD_HORIZONTAL_MARGIN;
+        frame.origin.y = AD_VERTICAL_MARGIN;
+        [adView setFrame:frame];
         
         return cell;
     } else {
@@ -202,7 +211,7 @@
     if ([_dataSource count] >= position) {
         if (isPreroll) {
             NSMutableDictionary *adDict = [[NSMutableDictionary alloc] init];
-            [adDict setObject:[NSNumber numberWithInt:adView.bounds.size.height] forKey:@"height"];
+            [adDict setObject:[NSNumber numberWithInt:adView.bounds.size.height + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
             
             NSArray *indexPathsToAdd = @[[NSIndexPath indexPathForRow:position inSection:0]];
             [[self tableView] beginUpdates];
@@ -213,7 +222,7 @@
         } else {
             dispatch_async(dispatch_get_main_queue(), ^(){
                 NSMutableDictionary *adDict = [[NSMutableDictionary alloc] init];
-                [adDict setObject:[NSNumber numberWithInt:adView.bounds.size.height] forKey:@"height"];
+                [adDict setObject:[NSNumber numberWithInt:adView.bounds.size.height + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
                 
                 NSArray *indexPathsToAdd = @[[NSIndexPath indexPathForRow:position inSection:0]];
                 [[self tableView] beginUpdates];
@@ -233,7 +242,7 @@
 {
     [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         [[self tableView] beginUpdates];
-        [[_dataSource objectAtIndex:position] setObject:[NSNumber numberWithInt:adView.bounds.size.height] forKey:@"height"];
+        [[_dataSource objectAtIndex:position] setObject:[NSNumber numberWithInt:adView.bounds.size.height + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
         [[self tableView] endUpdates];
     } completion:^(BOOL finished) {
         

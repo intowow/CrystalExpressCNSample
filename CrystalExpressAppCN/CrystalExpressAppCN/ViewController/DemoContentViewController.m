@@ -11,6 +11,7 @@
 #import "ContentADHelper.h"
 
 #define ARTICLES_CNT 3
+#define ADMARGIN     10.0f
 
 @interface DemoContentViewController () <UIScrollViewDelegate>
 @property (nonatomic, strong) NSString *articleId;
@@ -103,8 +104,8 @@
     _articleADView = (UIView *)[_articleADHelper requestADWithContentId:articleId];
     [_articleADHelper setScrollOffsetWithKey:articleId offset:scrollHeight];
     if (_articleADView) {
-        [_adWrapperView setFrame:CGRectMake(0, scrollHeight, _articleADView.bounds.size.width + 2*10, _articleADView.bounds.size.height + 2*10)];
-        [_articleADView setFrame:CGRectMake(10, 10, _articleADView.bounds.size.width, _articleADView.bounds.size.height)];
+        [_adWrapperView setFrame:CGRectMake(0, scrollHeight, _articleADView.bounds.size.width + 2*ADMARGIN, _articleADView.bounds.size.height + 2*ADMARGIN)];
+        [_articleADView setFrame:CGRectMake(ADMARGIN, ADMARGIN, _articleADView.bounds.size.width, _articleADView.bounds.size.height)];
         [_adWrapperView addSubview:_articleADView];
         _adOffset = scrollHeight;
         scrollHeight += _adWrapperView.bounds.size.height;
@@ -131,7 +132,7 @@
 {
     if (adView == _articleADView) {
         CGRect frame = [_adWrapperView frame];
-        frame.size.height = adView.bounds.size.height + 10*2;
+        frame.size.height = adView.bounds.size.height + ADMARGIN*2;
         [_adWrapperView setFrame:frame];
         
         frame = [_relatedImgView frame];
