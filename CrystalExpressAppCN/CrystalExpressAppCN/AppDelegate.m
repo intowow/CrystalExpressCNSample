@@ -35,7 +35,7 @@
     _openSplashHelper = [[SplashADHelper alloc] init];
     [_openSplashHelper setDelegate:self];
     _resetViews = YES;
-   
+  
     [I2WAPI initWithVerboseLog:NO];
     _shouldRequestOpenSplash = YES;
     

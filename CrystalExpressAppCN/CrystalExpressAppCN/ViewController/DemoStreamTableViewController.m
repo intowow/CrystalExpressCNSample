@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSMutableArray *contentImages;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, assign) CGFloat adVerticalMargin;
+@property (nonatomic, assign) CGFloat adHorizontalMargin;
 @property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
 @end
 
@@ -29,6 +30,7 @@
         _contentImages = [[NSMutableArray alloc] init];
         _dataSource = [[NSMutableArray alloc] init];
         _adVerticalMargin = 5.0f;
+        _adHorizontalMargin = 5.0f;
         _pullToRefreshView = nil;
     }
     return self;
@@ -49,7 +51,7 @@
    
     if (_streamHelper) {
         [_streamHelper setDelegate:self];
-//        [_streamHelper setPreferAdWidth:320.0f];
+        [_streamHelper setPreferAdWidth:[UIScreen mainScreen].bounds.size.width - 2*_adHorizontalMargin];
         [_streamHelper preroll];
     }
     [[self tableView] reloadData];
@@ -104,11 +106,14 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
-        
+       
         [[cell contentView] addSubview:adView];
         [cell.contentView setBounds:CGRectMake(0, 0, CGRectGetWidth(cell.contentView.bounds), adView.bounds.size.height + 2*_adVerticalMargin)];
         [[cell contentView] setBackgroundColor:[UIColor colorWithWhite:0.905 alpha:1.0]];
-        [adView setCenter:CGPointMake(cell.contentView.bounds.size.width/2.0f, cell.contentView.bounds.size.height/2.0f)];
+        CGRect frame = [adView frame];
+        frame.origin.x = _adHorizontalMargin;
+        frame.origin.y = _adVerticalMargin;
+        [adView setFrame:frame];
         
         return cell;
     } else {

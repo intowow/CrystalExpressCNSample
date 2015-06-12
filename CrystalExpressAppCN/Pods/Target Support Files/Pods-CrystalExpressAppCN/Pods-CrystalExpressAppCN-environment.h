@@ -56,10 +56,9 @@
 
 // CrystalExpressSDK-CN
 #define COCOAPODS_POD_AVAILABLE_CrystalExpressSDK_CN
-// This library does not follow semantic-versioning,
-// so we were not able to define version macros.
-// Please contact the author.
-// Version: 1.2.0a.
+#define COCOAPODS_VERSION_MAJOR_CrystalExpressSDK_CN 1
+#define COCOAPODS_VERSION_MINOR_CrystalExpressSDK_CN 2
+#define COCOAPODS_VERSION_PATCH_CrystalExpressSDK_CN 0
 
 // JSONKit-NoWarning
 #define COCOAPODS_POD_AVAILABLE_JSONKit_NoWarning

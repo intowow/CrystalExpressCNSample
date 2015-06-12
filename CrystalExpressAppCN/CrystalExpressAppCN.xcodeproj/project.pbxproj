@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		903A2DB1E1FB9BC00A37E6CA /* libPods-CrystalExpressAppCN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E344CC40C17A4FE73EE67 /* libPods-CrystalExpressAppCN.a */; };
 		D550D5141B2A7453002214F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D550D5131B2A7453002214F7 /* main.m */; };
 		D550D5171B2A7453002214F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D550D5161B2A7453002214F7 /* AppDelegate.m */; };
 		D550D51A1B2A7453002214F7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D550D5191B2A7453002214F7 /* ViewController.m */; };
@@ -24,7 +25,6 @@
 		D550D5541B2A7746002214F7 /* AppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D550D5531B2A7746002214F7 /* AppUtils.m */; };
 		D550D5571B2A7780002214F7 /* LayoutUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D550D5561B2A7780002214F7 /* LayoutUtils.m */; };
 		D550D55A1B2A781B002214F7 /* asset.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D550D5591B2A781B002214F7 /* asset.bundle */; };
-		FAA867D4B4127814F682A2F2 /* libPods-CrystalExpressAppCN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E344CC40C17A4FE73EE67 /* libPods-CrystalExpressAppCN.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAA867D4B4127814F682A2F2 /* libPods-CrystalExpressAppCN.a in Frameworks */,
+				903A2DB1E1FB9BC00A37E6CA /* libPods-CrystalExpressAppCN.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
