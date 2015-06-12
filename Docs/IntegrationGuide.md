@@ -1,4 +1,4 @@
-#CrystalExpress Integration Guide (v1.1.3)
+#CrystalExpress Integration Guide (v1.2.0)
 ## Table of content
 
 - [CrystalExpress Integration Guide](#crystalexpress-integration-guide)
@@ -54,7 +54,7 @@ It will look like this.
 CrystalExpress.
 - Add the following code in Podfile
 ```
-pod "CrystalExpressSDK-CN", '~> 1.1'
+pod "CrystalExpressSDK-CN", '~> 1.2'
 ```
 - `pod update` or `pod install`
 - Open workspace that pod generate for you, you're ready to use CrystalExpress
@@ -136,10 +136,11 @@ pod "CrystalExpressSDK-CN", '~> 1.1'
              onPullDownAnimation:(void (^)(UIView *))animation;
 
 + (void)getContentADWithPlacement:(NSString *)placement
-                             isPreroll:(BOOL)isPreroll
-                               onReady:(void (^)(ADView *))ready
-                             onFailure:(void (^)(NSError *))failure
-                   onPullDownAnimation:(void (^)(UIView *))animation;
+                        isPreroll:(BOOL)isPreroll
+                          adWidth:(CGFloat)adWidth
+                          onReady:(void (^)(ADView *))ready
+                        onFailure:(void (^)(NSError *))failure
+              onPullDownAnimation:(void (^)(UIView *))animation;
 ```
 ### 3.2 Splash AD
 - We provided a helper class to make integration more easier, via SplashADHelper, you can request different format of Splash ADs
@@ -157,12 +158,10 @@ pod "CrystalExpressSDK-CN", '~> 1.1'
 @end
 
 // We have predefined different modes for Splash AD viewcontroller
-// CE_SPLASH_MODE_HYBRID       --> You might get a multi/single offer Splash AD
 // CE_SPLASH_MODE_MULTI_OFFER  --> You will get a multioffer Splash AD
 // CE_SPLASH_MODE_SINGLE_OFFER --> You will get a singleoffer Splash AD
 typedef NS_ENUM(NSUInteger, CESplashMode) {
     CE_SPLASH_MODE_UNKNOWN,
-    CE_SPLASH_MODE_HYBRID,
     CE_SPLASH_MODE_MULTI_OFFER,
     CE_SPLASH_MODE_SINGLE_OFFER,
 };
@@ -237,11 +236,21 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 
 ```objc
 // set animation for pulldown card, need to update the module offset below the AD
-__weak typeof(self) weakSelf = self;
-[_contentADHelper setOnPullDownAnimation:^(UIView *view) {
-   float offset = weakSelf.AdOffset + view.frame.size.height;
-   [weakSelf updateBottomContentFromOffset:offset];
-}];
+- (void)onPullDownAnimationWithAD:(UIView *)adView
+{
+    if (adView == _articleADView) {
+        CGRect frame = [_adWrapperView frame];
+        frame.size.height = adView.bounds.size.height + ADMARGIN*2;
+        [_adWrapperView setFrame:frame];
+        
+        frame = [_relatedImgView frame];
+        frame.origin.y = _adOffset + _adWrapperView.bounds.size.height;
+        [_relatedImgView setFrame:frame];
+        
+        CGFloat finalContentOffset = _adOffset + adView.bounds.size.height + _relatedImgView.bounds.size.height;
+        [_scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, finalContentOffset)];
+    }
+}
 ```
 #### Complete API
 
@@ -275,7 +284,8 @@ __weak typeof(self) weakSelf = self;
     [self prepareDataSource];
     if (_streamHelper) {
         [_streamHelper setDelegate:self];
-        [_streamHelper setPreferAdWidth:320.0f];
+        // if you need customized ad width, add this line
+        //[_streamHelper setPreferAdWidth:320.0f];
         [_streamHelper preroll];
     }
     [self.tableView reloadData];
@@ -392,14 +402,16 @@ __weak typeof(self) weakSelf = self;
 }
 ```
 
-- Call `cleanADs` when you refresh data source, for example, on pull down refresh.
+- Call `cleanADs` when you refresh data source, for example, on pull to refresh.
 
 ```objc
-- (void)onPullDownRefresh
+- (void)pullToRefresh
 {
-	... refresh your data source
-	[_streamHelper cleanADs];
-	...
+    [self.pullToRefreshView startLoading];
+    [_streamHelper cleanADs];
+    [self prepareDataSource];
+    [self.tableView reloadData];
+    [self.pullToRefreshView finishLoading];
 }
 ```
 
