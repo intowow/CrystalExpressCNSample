@@ -38,10 +38,12 @@ PODS:
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
   - Reachability (3.2)
+  - SSPullToRefresh (1.2.4)
   - SSZipArchive (0.3.2)
 
 DEPENDENCIES:
   - CrystalExpressSDK-CN (= 1.2.0a)
+  - SSPullToRefresh
 
 SPEC CHECKSUMS:
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
@@ -51,6 +53,7 @@ SPEC CHECKSUMS:
   MTStatusBarOverlay: 258a1ee369f4dc4b94107d02cfd7f6b1317c421b
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SSPullToRefresh: 369e862c1d6528c7a354fc85cd4763d4e670e9af
   SSZipArchive: 11801759495fa4efb7512ef652eb0042d68305d7
 
 COCOAPODS: 0.35.0

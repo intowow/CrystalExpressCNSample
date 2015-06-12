@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-CrystalExpressAppCN-SSPullToRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CrystalExpressAppCN-SSZipArchive.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>017993569DACD3E653410BF5</key>
+		<key>07314034CB8B56E7E1EB853F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>04BC23B7F96B34E9EEEAAE7C</key>
+		<key>076C9BE0D3F2E1884A10335C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0836929F05643CBF3C9649B7</key>
+		<key>6390E1FF6E3AB9EB330D9704</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2128AD871177E727A308D7F5</key>
+		<key>63E83E0E5FFEF42428DBAB68</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3E1B38820294654092F53B48</key>
+		<key>6979088504001773C11BCA92</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B027934998D1063BB2686F50</key>
+		<key>69C0EDEAD706996FEF0BFF47</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7592AF498491A1409D4F153</key>
+		<key>6B1F70BE6D6C4F7E901AB6AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7B7F64C9344A47976378295</key>
+		<key>891FCEB042A7276F8AA76A99</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D3F68F5C8F6A64E7DEF2AC3E</key>
+		<key>DF02EF5C1F86B96CB67E7F1D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E459DFED41CEB2D16AFF98FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

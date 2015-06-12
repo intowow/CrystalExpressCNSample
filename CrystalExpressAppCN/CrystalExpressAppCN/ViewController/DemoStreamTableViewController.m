@@ -9,13 +9,15 @@
 #import "DemoStreamTableViewController.h"
 #import "LayoutUtils.h"
 #import "DemoDetailContentViewController.h"
+#import <SSPullToRefresh.h>
 
 #define ROWS_IN_SECTION 300
 
-@interface DemoStreamTableViewController ()
+@interface DemoStreamTableViewController () <SSPullToRefreshViewDelegate>
 @property (nonatomic, strong) NSMutableArray *contentImages;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, assign) CGFloat adVerticalMargin;
+@property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
 @end
 
 @implementation DemoStreamTableViewController
@@ -27,6 +29,7 @@
         _contentImages = [[NSMutableArray alloc] init];
         _dataSource = [[NSMutableArray alloc] init];
         _adVerticalMargin = 5.0f;
+        _pullToRefreshView = nil;
     }
     return self;
 }
@@ -52,6 +55,8 @@
     [[self tableView] reloadData];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_streamHelper updateVisiblePosition:self.tableView];
+    
+    self.pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:self.tableView delegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -185,6 +190,7 @@
 
 - (void)prepareDataSource
 {
+    [_dataSource removeAllObjects];
     for (int i=0; i<ROWS_IN_SECTION; i++) {
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         float topPadding = 0;
@@ -274,6 +280,21 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [_streamHelper scrollViewStateChanged];
+}
+
+#pragma mark - pull to refresh delegate
+- (void)refresh
+{
+    [self.pullToRefreshView startLoading];
+    [_streamHelper cleanADs];
+    [self prepareDataSource];
+    [self.tableView reloadData];
+    [self.pullToRefreshView finishLoading];
+}
+
+- (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view
+{
+    [self refresh];
 }
 
 @end

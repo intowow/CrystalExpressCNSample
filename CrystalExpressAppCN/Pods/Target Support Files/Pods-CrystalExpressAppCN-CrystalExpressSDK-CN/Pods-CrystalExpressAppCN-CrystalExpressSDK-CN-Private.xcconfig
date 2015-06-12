@@ -1,6 +1,6 @@
 #include "Pods-CrystalExpressAppCN-CrystalExpressSDK-CN.xcconfig"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/CrystalExpressSDK-CN" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFDownloadRequestOperation" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/CrystalExpressSDK-CN" "${PODS_ROOT}/Headers/Public/JSONKit-NoWarning" "${PODS_ROOT}/Headers/Public/MTStatusBarOverlay" "${PODS_ROOT}/Headers/Public/NJKWebViewProgress" "${PODS_ROOT}/Headers/Public/Reachability" "${PODS_ROOT}/Headers/Public/SSZipArchive"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/CrystalExpressSDK-CN" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFDownloadRequestOperation" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/CrystalExpressSDK-CN" "${PODS_ROOT}/Headers/Public/JSONKit-NoWarning" "${PODS_ROOT}/Headers/Public/MTStatusBarOverlay" "${PODS_ROOT}/Headers/Public/NJKWebViewProgress" "${PODS_ROOT}/Headers/Public/Reachability" "${PODS_ROOT}/Headers/Public/SSPullToRefresh" "${PODS_ROOT}/Headers/Public/SSZipArchive"
 LIBRARY_SEARCH_PATHS = ${PODS_CRYSTALEXPRESSAPPCN_CRYSTALEXPRESSSDK_CN_LIBRARY_SEARCH_PATHS}
 OTHER_LDFLAGS = ${PODS_CRYSTALEXPRESSAPPCN_CRYSTALEXPRESSSDK_CN_OTHER_LDFLAGS} -ObjC
 PODS_ROOT = ${SRCROOT}

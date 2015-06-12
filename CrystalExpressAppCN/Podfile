@@ -3,4 +3,5 @@
 
 target 'CrystalExpressAppCN' do
   pod "CrystalExpressSDK-CN", '1.2.0a'
+  pod 'SSPullToRefresh'
 end
