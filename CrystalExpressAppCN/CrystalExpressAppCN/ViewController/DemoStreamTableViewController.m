@@ -51,7 +51,7 @@
    
     if (_streamHelper) {
         [_streamHelper setDelegate:self];
-        [_streamHelper setPreferAdWidth:[UIScreen mainScreen].bounds.size.width - 2*_adHorizontalMargin];
+        [_streamHelper setPreferAdWidth:320 - 2*_adHorizontalMargin];
         [_streamHelper preroll];
     }
     [[self tableView] reloadData];

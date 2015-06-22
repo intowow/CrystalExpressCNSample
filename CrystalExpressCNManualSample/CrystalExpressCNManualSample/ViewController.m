@@ -66,13 +66,13 @@
             [_splashADHelper requestSplashADWithPlacement:@"OPEN_SPLASH" mode:CE_SPLASH_MODE_HYBRID];
             break;
         case 2:
-            [_splashADHelper requestSplashADWithPlacement:@"SPLASH" mode:CE_SPLASH_MODE_SINGLE_OFFER];
+            [_splashADHelper requestSplashADWithPlacement:@"INTERSTITIAL_SPLASH" mode:CE_SPLASH_MODE_SINGLE_OFFER];
             break;
         case 3:
-            [self.navigationController pushViewController:[[ContentViewController alloc] initWithPlacementName:@"CONTENT"] animated:YES];
+            [self.navigationController pushViewController:[[ContentViewController alloc] initWithPlacementName:@"CONTENT_118"] animated:YES];
             break;
         case 4:
-            [self.navigationController pushViewController:[[StreamSectionViewController alloc] initWithPlacementName:@"STREAM"] animated:YES];
+            [self.navigationController pushViewController:[[StreamSectionViewController alloc] initWithPlacementName:@"STREAM_118"] animated:YES];
             break;
         case 5:
             [self.navigationController pushViewController:[[FlipViewController alloc] initWithPlacementName:@"FLIP"] animated:YES];
