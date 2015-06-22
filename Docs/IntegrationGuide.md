@@ -10,7 +10,7 @@
 	- [3. CrystalExpress APIs](#3-crystalexpress-apis)
 		- [3.1 General AD serving APIs](#31-general-ad-serving-apis)
 			- [I2WAPI.h](#i2wapih)
-		- [3.2 ADEventDelegate](#32-ADEventDelegate)
+		- [3.2 ADEventDelegate](#32-adeventdelegate)
 		- [3.3 Splash AD](#33-splash-ad)
 			- [SplashADHelper.h](#splashadhelperh)
 			- [SplashADInterfaceViewController](#splashadinterfaceviewcontroller)
