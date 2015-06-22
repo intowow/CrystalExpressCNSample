@@ -1,4 +1,4 @@
-#CrystalExpress Integration Guide (v1.2.0)
+#CrystalExpress Integration Guide (v1.2.1)
 ## Table of content
 
 - [CrystalExpress Integration Guide](#crystalexpress-integration-guide)
@@ -10,16 +10,17 @@
 	- [3. CrystalExpress APIs](#3-crystalexpress-apis)
 		- [3.1 General AD serving APIs](#31-general-ad-serving-apis)
 			- [I2WAPI.h](#i2wapih)
-		- [3.2 Splash AD](#32-splash-ad)
+		- [3.2 ADEventDelegate](#32ADEventDelegate)
+		- [3.3 Splash AD](#33-splash-ad)
 			- [SplashADHelper.h](#splashadhelperh)
 			- [SplashADInterfaceViewController](#splashadinterfaceviewcontroller)
-		- [3.3 Content AD](#33-content-ad)
+		- [3.4 Content AD](#34-content-ad)
 			- [Complete API](#complete-api)
-		- [3.4 Stream AD](#34-stream-ad)
+		- [3.5 Stream AD](#35-stream-ad)
 			- [Complete API](#complete-api)
-		- [3.5 Flip AD](#35-flip-ad)
+		- [3.6 Flip AD](#36-flip-ad)
 			- [Complete API](#complete-api)
-		- [3.6 Banner AD](#36-banner-ad)
+		- [3.7 Banner AD](#37-banner-ad)
 			- [Complete API](#complete-api)
 	- [4. Register background task](#4-register-background-task)
 	- [5. Register background fetch](#5-register-background-fetch)
@@ -88,8 +89,8 @@ pod "CrystalExpressSDK-CN", '~> 1.2'
 ### 3.1 General AD serving APIs
 #### I2WAPI.h
 ```objc
-// initialize I2WAPI with whether to enable verbose log
-+ (void)initWithVerboseLog:(BOOL)enableVerbose;
+// initialize I2WAPI with whether to enable verbose log, and use test mode
++ (void)initWithVerboseLog:(BOOL)enableVerbose isTestMode:(BOOL)testMode;
 
 // return whether CrystalExpress is ready for AD serving
 + (BOOL)isAdServing;
@@ -111,6 +112,10 @@ pod "CrystalExpressSDK-CN", '~> 1.2'
 
 // update geolocation infomation
 + (void)updateUserLastLocation:(NSDictionary *)location;
+
+#pragma mark - callback method
+// set AD event delegate to get ad impression/click event
++ (void)setAdEventDelegate:(id<I2WADEventDelegate>)delegate;
 
 #pragma mark - deep link
 // handle CrystalExpress related deeplink url
@@ -142,7 +147,19 @@ pod "CrystalExpressSDK-CN", '~> 1.2'
                         onFailure:(void (^)(NSError *))failure
               onPullDownAnimation:(void (^)(UIView *))animation;
 ```
-### 3.2 Splash AD
+### 3.2 ADEventDelegate
+- We provide a delegate for user to get AD related events, such as AD impression/click.
+- The delegate object must implement `onAdClick:(NSString *)adId` and `onAdImperssion:(NSString *)adId` to customized the event handling.
+- Be aware of that this delegate is **NOT** callback on main thread.
+
+```objc
+@protocol I2WADEventDelegate <NSObject>
+- (void)onAdClick:(NSString *)adId;
+- (void)onAdImpression:(NSString *)adId;
+@end
+```
+
+### 3.3 Splash AD
 - We provided a helper class to make integration more easier, via SplashADHelper, you can request different format of Splash ADs
 - SplashADHelper will call delegate function and return a ready `SplashADInterfaceViewController` for you to present.
 
@@ -189,7 +206,7 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 - (void)SplashAdDidPresentScreen:(SplashADInterfaceViewController *)vc;
 @end
 ```
-### 3.3 Content AD
+### 3.4 Content AD
 - Utilize ContentADHelper class to request content AD and manage AD
 - Init helper by giving a AD placement name.
 - `preroll` can prepare 1 Article AD in advance. Use this function in `ViewDidLoad` or other pre-stage, giving helper more time to prepare a AD.
@@ -270,7 +287,7 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 @end
 ```
 
-### 3.4 Stream AD
+### 3.5 Stream AD
 - Utilize StreamADHelper class to request stream AD and manage AD.
 - Init helper by giving a AD placement name.
 - Set delegate for the helper instance.
@@ -477,7 +494,7 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 @end
 ```
 -
-### 3.5 Flip AD
+### 3.6 Flip AD
 - Flip AD is one of the splash series AD.
 - Utilize FlipDynamicADHelper class to request flip AD and manage AD.
 - Init helper by giving a AD placement name.
@@ -535,7 +552,7 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 }
 ```
 -
-### 3.6 Banner AD
+### 3.7 Banner AD
 - Utilize BannerADHelper class to request banner AD and manage AD.
 - Init helper by giving a AD placement name.
 - Get banner AD view by calling `- (void)requestADonReady:(void (^)(ADView *))ready onFailure:(void (^)(NSError *))failure`
