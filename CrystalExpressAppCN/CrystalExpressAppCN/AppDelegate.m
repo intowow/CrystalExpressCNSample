@@ -15,7 +15,7 @@
 #import "AppUtils.h"
 
 
-@interface AppDelegate() <UIAlertViewDelegate, SplashADHelperDelegate, SplashADViewControllerDelegate>
+@interface AppDelegate() <UIAlertViewDelegate, SplashADHelperDelegate, SplashADViewControllerDelegate, I2WADEventDelegate>
 @property (nonatomic, strong) UIViewController *openSplashVC;
 @property (nonatomic, strong) DemoNavigationViewController *nav;
 @property (nonatomic, assign) BOOL resetViews;
@@ -36,7 +36,7 @@
     [_openSplashHelper setDelegate:self];
     _resetViews = YES;
   
-    [I2WAPI initWithVerboseLog:NO];
+    [I2WAPI initWithVerboseLog:YES isTestMode:NO];
     _shouldRequestOpenSplash = YES;
     
     return YES;
@@ -175,6 +175,21 @@
 - (void)SplashAdDidPresentScreen:(SplashADInterfaceViewController *)vc
 {
     
+}
+
+#pragma mark - adEvent delegate
+- (void)onAdClick:(NSString *)adId
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"ad[%@] click!", adId);
+    });
+}
+
+- (void)onAdImpression:(NSString *)adId
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"ad[%@] impression!", adId);
+    });
 }
 
 #pragma mark - private method

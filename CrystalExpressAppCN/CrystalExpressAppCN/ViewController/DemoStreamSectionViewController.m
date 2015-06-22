@@ -138,7 +138,7 @@
     
     DemoStreamTableViewController *vc = [_streamVCs objectAtIndex:index];
     if ((NSNull *)vc == [NSNull null]) {
-        StreamADHelper *newStreamHelper = [[StreamADHelper alloc] initWithPlacement:[AppUtils decidePlacementName:@"STREAM"]];
+        StreamADHelper *newStreamHelper = [[StreamADHelper alloc] initWithPlacement:[AppUtils decidePlacementName:@"STREAM_118"]];
         vc = [[DemoStreamTableViewController alloc] init];
         [vc setDelegate:self];
         

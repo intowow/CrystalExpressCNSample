@@ -11,10 +11,10 @@
 
 @class InterstitialADViewController, ADView;
 
-//@protocol I2WAPIDelegate <NSObject>
-//- (void)adInAnimation:(UIView *)adView;
-//- (void)adViewDidReceiveAd:(UIView *)adView;
-//@end
+@protocol I2WADEventDelegate <NSObject>
+- (void)onAdClick:(NSString *)adId;
+- (void)onAdImpression:(NSString *)adId;
+@end
 
 typedef NS_ENUM(NSUInteger, CESplashType) {
     SPLASH_TYPE_DEFAULT,        // default to get any kind of splash ad
@@ -24,9 +24,10 @@ typedef NS_ENUM(NSUInteger, CESplashType) {
 
 @interface I2WAPI : NSObject
 // initializer
-+ (void)initWithVerboseLog:(BOOL)enableVerbose;
++ (void)initWithVerboseLog:(BOOL)enableVerbose isTestMode:(BOOL)testMode;
 + (BOOL)VERBOSE_LOG;
 
++ (BOOL)isTestMode;
 + (BOOL)isAdServing;
 + (void)refreshI2WAds;
 + (void)setOpenSplashLastViewTime:(long long)time;
@@ -68,19 +69,24 @@ typedef NS_ENUM(NSUInteger, CESplashType) {
              onPullDownAnimation:(void (^)(UIView *))animation;
 
 + (void)getContentADWithPlacement:(NSString *)placement
-                             isPreroll:(BOOL)isPreroll
-                               onReady:(void (^)(ADView *))ready
-                             onFailure:(void (^)(NSError *))failure
-                   onPullDownAnimation:(void (^)(UIView *))animation;
+                        isPreroll:(BOOL)isPreroll
+                          adWidth:(CGFloat)adWidth
+                          onReady:(void (^)(ADView *))ready
+                        onFailure:(void (^)(NSError *))failure
+              onPullDownAnimation:(void (^)(UIView *))animation;
 
 
 + (void)setActivePlacement:(NSString *)placement;
 + (int)getStreamADServingFreqWithPlacement:(NSString *)placement;
 + (int)getStreamADServingMinPositionWithPlacement:(NSString *)placement;
++ (int)getStreamADServingMaxPositionWithPlacement:(NSString *)placement;
 
 #pragma mark - track API
 + (void)trackCustomEventWithType:(NSString *)type props:(NSDictionary *)props;
 + (void)updateUserLastLocation:(NSDictionary *)location;
+
+#pragma mark - callback method
++ (void)setAdEventDelegate:(id<I2WADEventDelegate>)delegate;
 
 #pragma mark - deep link
 + (void)handleDeepLinkWithUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication;
