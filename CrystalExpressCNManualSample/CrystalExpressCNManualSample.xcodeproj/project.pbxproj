@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D51C192B1B38227C00ECFF79 /* CrystalExpressSDK-1.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D51C192A1B38227C00ECFF79 /* CrystalExpressSDK-1.2.1.a */; };
+		D51C192D1B3904E300ECFF79 /* CrystalExpressSDK-1.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D51C192C1B3904E300ECFF79 /* CrystalExpressSDK-1.2.1.a */; };
 		D5B4ACA01B11792B007B674C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4AC9F1B11792B007B674C /* main.m */; };
 		D5B4ACA31B11792B007B674C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACA21B11792B007B674C /* AppDelegate.m */; };
 		D5B4ACA61B11792B007B674C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACA51B11792B007B674C /* ViewController.m */; };
@@ -49,7 +49,7 @@
 
 /* Begin PBXFileReference section */
 		D51C19281B38171C00ECFF79 /* I2WAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I2WAPI.h; sourceTree = "<group>"; };
-		D51C192A1B38227C00ECFF79 /* CrystalExpressSDK-1.2.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-1.2.1.a"; sourceTree = "<group>"; };
+		D51C192C1B3904E300ECFF79 /* CrystalExpressSDK-1.2.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-1.2.1.a"; sourceTree = "<group>"; };
 		D5B4AC9A1B11792B007B674C /* CrystalExpressCNManualSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrystalExpressCNManualSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B4AC9E1B11792B007B674C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5B4AC9F1B11792B007B674C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 				D5B4ACD81B1179B1007B674C /* SystemConfiguration.framework in Frameworks */,
 				D5B4ACD61B1179A7007B674C /* MobileCoreServices.framework in Frameworks */,
 				D5B4ACD41B1179A0007B674C /* MessageUI.framework in Frameworks */,
-				D51C192B1B38227C00ECFF79 /* CrystalExpressSDK-1.2.1.a in Frameworks */,
+				D51C192D1B3904E300ECFF79 /* CrystalExpressSDK-1.2.1.a in Frameworks */,
 				D5B4ACD21B117998007B674C /* CFNetwork.framework in Frameworks */,
 				D5B4ACD01B117988007B674C /* Security.framework in Frameworks */,
 			);
@@ -201,8 +201,8 @@
 				D5B4ACFD1B117B56007B674C /* SplashADHelper.h */,
 				D5B4ACC41B117973007B674C /* BannerADHelper.h */,
 				D51C19281B38171C00ECFF79 /* I2WAPI.h */,
-				D51C192A1B38227C00ECFF79 /* CrystalExpressSDK-1.2.1.a */,
 				D5B4ACC51B117973007B674C /* ContentADHelper.h */,
+				D51C192C1B3904E300ECFF79 /* CrystalExpressSDK-1.2.1.a */,
 				D5B4ACC61B117973007B674C /* CrystalExpress.plist */,
 				D5B4AD041B140B7B007B674C /* StreamADHelper.h */,
 				D5B4ACC81B117973007B674C /* FlipADHelper.h */,
