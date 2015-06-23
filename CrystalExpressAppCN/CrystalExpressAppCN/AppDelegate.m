@@ -180,6 +180,7 @@
 #pragma mark - adEvent delegate
 - (void)onAdClick:(NSString *)adId
 {
+    // the callback is on background thread, if you need to do UI things, please do it on main thread
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"ad[%@] click!", adId);
     });
@@ -187,6 +188,7 @@
 
 - (void)onAdImpression:(NSString *)adId
 {
+    // the callback is on background thread, if you need to do UI things, please do it on main thread
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"ad[%@] impression!", adId);
     });
