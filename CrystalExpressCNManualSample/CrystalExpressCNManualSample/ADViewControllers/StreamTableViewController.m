@@ -10,13 +10,14 @@
 #import "LayoutUtils.h"
 #import "StreamADHelper.h"
 
-#define ROWS_IN_SECTION 300
+#define NUM_OF_SECTIONS 3
+#define ROWS_IN_SECTION 100
 #define AD_VERTICAL_MARGIN 5
 #define AD_HORIZONTAL_MARGIN 5
 
 @interface StreamTableViewController ()
 @property (nonatomic, strong) NSMutableArray *contentImages;
-@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSMutableArray *dataSources;
 @property (nonatomic, strong) StreamADHelper *streamHelper;
 @property (nonatomic, strong) NSString *sectionName;
 @end
@@ -28,7 +29,7 @@
     self = [super init];
     if (self) {
         _contentImages = [[NSMutableArray alloc] init];
-        _dataSource = [[NSMutableArray alloc] init];
+        _dataSources = [[NSMutableArray alloc] init];
         _sectionName = @"business";
         _streamHelper = [[StreamADHelper alloc] initWithPlacement:placementName];
     }
@@ -42,7 +43,7 @@
     [[self view] setBackgroundColor:[UIColor colorWithWhite:0.906 alpha:1.0]];
     
     [self loadContentImages];
-    [self prepareDataSource];
+    [self prepareDataSources];
     
     if (_streamHelper) {
         [_streamHelper setDelegate:self];
@@ -82,20 +83,19 @@
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return NUM_OF_SECTIONS;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_dataSource count];
+    return [[_dataSources objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int index = (int)[indexPath row];
-    UIView *adView = [_streamHelper requestADAtPosition:index];
+    UIView *adView = [_streamHelper requestADAtPosition:indexPath];
     if (adView != nil) {
-        NSString *identifier = [NSString stringWithFormat:@"ADCell_%@_%d", _sectionName, (int)[indexPath row]];
+        NSString *identifier = [NSString stringWithFormat:@"ADCell_%@_%d_%d", _sectionName, (int)[indexPath section], (int)[indexPath row]];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
@@ -103,19 +103,19 @@
         }
         
         [[cell contentView] addSubview:adView];
-        [cell.contentView setBounds:CGRectMake(0, 0, CGRectGetWidth(cell.contentView.bounds), adView.bounds.size.height + 2*AD_VERTICAL_MARGIN)];
+        
+        [adView setFrame:CGRectMake(AD_HORIZONTAL_MARGIN, AD_VERTICAL_MARGIN, adView.bounds.size.width, adView.bounds.size.height)];
+        //
         [[cell contentView] setBackgroundColor:[UIColor colorWithWhite:0.905 alpha:1.0]];
-        CGRect frame = adView.frame;
-        frame.origin.x = AD_HORIZONTAL_MARGIN;
-        frame.origin.y = AD_VERTICAL_MARGIN;
-        [adView setFrame:frame];
         
         return cell;
     } else {
-        NSDictionary *dict = [_dataSource objectAtIndex:index];
+        NSUInteger section = [indexPath section];
+        NSUInteger row = [indexPath row];
+        NSDictionary *dict = [[_dataSources objectAtIndex:section] objectAtIndex:row];
         int imgId = [[dict objectForKey:@"imgId"] intValue];
         NSString *identifier = [NSString stringWithFormat:@"DemoTableViewCell_%d", imgId];
-        if (index == 0) {
+        if (section == 0 && row == 0) {
             identifier = [NSString stringWithFormat:@"DemoTableViewCell_hasTopMargin"];
         }
         
@@ -126,7 +126,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             
-            if ((index % 5) < [_contentImages count]) {
+            if ((row % 5) < [_contentImages count]) {
                 UIImage *dataImg = [_contentImages objectAtIndex:imgId];
                 UIImageView *dataImgView = [[UIImageView alloc] initWithImage:dataImg];
                 CGFloat dataHeight = [LayoutUtils getRelatedHeightWithOriWidth:dataImg.size.width OriHeight:dataImg.size.height] + [LayoutUtils getScaleWidth:20];
@@ -134,7 +134,7 @@
                 [dataImgView setFrame:CGRectMake([LayoutUtils getScaleWidth:18], [LayoutUtils getScaleWidth:10], [LayoutUtils getScaleWidth:684], [LayoutUtils getRelatedHeightWithOriWidth:684 OriHeight:dataImg.size.height])];
                 
                 float topPadding = 0;
-                if (index == 0) {
+                if (row == 0 && section == 0) {
                     topPadding = [LayoutUtils getScaleWidth:10];
                 }
                 
@@ -152,21 +152,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSUInteger sectionIndex = indexPath.section;
     NSUInteger rowIndex = indexPath.row;
-    if (rowIndex < [_dataSource count]) {
-        NSDictionary *dict = [_dataSource objectAtIndex:rowIndex];
-        return [[dict objectForKey:@"height"] floatValue];
+    if (sectionIndex < [_dataSources count]) {
+        NSArray *dataSource = [_dataSources objectAtIndex:sectionIndex];
+        if (rowIndex < [dataSource count]) {
+            NSDictionary *dict = [dataSource objectAtIndex:rowIndex];
+            return [[dict objectForKey:@"height"] floatValue];
+        }
     }
     return 10;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int index = (int)[indexPath row];
-    if ([_streamHelper isAdAtPos:index]) {
+    if ([_streamHelper isAdAtIndexPath:indexPath]) {
         return;
     }
-    
 }
 
 #pragma mark - private method
@@ -181,68 +183,83 @@
     }
 }
 
-- (void)prepareDataSource
+- (void)prepareDataSources
 {
-    for (int i=0; i<ROWS_IN_SECTION; i++) {
-        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-        float topPadding = 0;
-        if (i == 0) {
-            topPadding = [LayoutUtils getScaleWidth:10];
+    [_dataSources removeAllObjects];
+    int articleIndex = 0;
+    
+    for (int i=0; i<NUM_OF_SECTIONS; i++) {
+        NSMutableArray *dataSource = [[NSMutableArray alloc] init];
+        for (int j=0; j<ROWS_IN_SECTION; j++) {
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+            float topPadding = 0;
+            if (i == 0 && j == 0) {
+                topPadding = [LayoutUtils getScaleWidth:10];
+            }
+            
+            int imgId = (j%5);
+            if (imgId < [_contentImages count]) {
+                [dict setObject:[NSNumber numberWithInt:imgId] forKey:@"imgId"];
+                UIImage *img = [_contentImages objectAtIndex:imgId];
+                [dict setObject:[NSNumber numberWithFloat:topPadding + [LayoutUtils getScaleWidth:20] + [LayoutUtils getRelatedHeightWithOriWidth:684 OriHeight:img.size.height]] forKey: @"height"];
+                [dict setObject:[NSNumber numberWithInt:articleIndex] forKey:@"articleId"];
+                articleIndex++;
+            } else {
+                [dict setObject:[NSNumber numberWithFloat:50] forKey: @"height"];
+            }
+            [dataSource addObject:dict];
         }
-        
-        int imgId = (i%5);
-        if (imgId < [_contentImages count]) {
-            [dict setObject:[NSNumber numberWithInt:imgId] forKey:@"imgId"];
-            UIImage *img = [_contentImages objectAtIndex:imgId];
-            [dict setObject:[NSNumber numberWithFloat:topPadding + [LayoutUtils getScaleWidth:20] + [LayoutUtils getRelatedHeightWithOriWidth:684 OriHeight:img.size.height]] forKey: @"height"];
-            [dict setObject:[NSNumber numberWithInt:i] forKey:@"articleId"];
-        } else {
-            [dict setObject:[NSNumber numberWithFloat:50] forKey: @"height"];
-        }
-        [_dataSource addObject:dict];
+        [_dataSources addObject:dataSource];
     }
 }
 
 #pragma mark - StreamADHelperDelegate
-- (int)onADLoaded:(UIView *)adView atPosition:(int)position isPreroll:(BOOL)isPreroll
+- (NSIndexPath *)onADLoaded:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath isPreroll:(BOOL)isPreroll
 {
     // Don't place ad at the first place!!
-    position = MAX(1, position);
-    if ([_dataSource count] >= position) {
+    NSUInteger position = MAX(1, [indexPath row]);
+    NSMutableArray *dataSource = [_dataSources objectAtIndex:[indexPath section]];
+    NSIndexPath *finalIndexPath = [NSIndexPath indexPathForRow:position inSection:[indexPath section]];
+    
+    if ([dataSource count] >= position) {
         if (isPreroll) {
             NSMutableDictionary *adDict = [[NSMutableDictionary alloc] init];
-            [adDict setObject:[NSNumber numberWithInt:adView.bounds.size.height + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
+            CGFloat adHeight = adView.bounds.size.height;
+            [adDict setObject:[NSNumber numberWithFloat:adHeight + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
             
-            NSArray *indexPathsToAdd = @[[NSIndexPath indexPathForRow:position inSection:0]];
+            NSArray *indexPathsToAdd = @[finalIndexPath];
             [[self tableView] beginUpdates];
-            [_dataSource insertObject:adDict atIndex:position];
+            [dataSource insertObject:adDict atIndex:position];
             [[self tableView] insertRowsAtIndexPaths:indexPathsToAdd
                                     withRowAnimation:UITableViewRowAnimationNone];
             [[self tableView] endUpdates];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^(){
                 NSMutableDictionary *adDict = [[NSMutableDictionary alloc] init];
-                [adDict setObject:[NSNumber numberWithInt:adView.bounds.size.height + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
+                CGFloat adHeight = adView.bounds.size.height;
+                [adDict setObject:[NSNumber numberWithFloat:adHeight + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
                 
-                NSArray *indexPathsToAdd = @[[NSIndexPath indexPathForRow:position inSection:0]];
+                NSArray *indexPathsToAdd = @[finalIndexPath];
                 [[self tableView] beginUpdates];
-                [_dataSource insertObject:adDict atIndex:position];
+                [dataSource insertObject:adDict atIndex:position];
                 [[self tableView] insertRowsAtIndexPaths:indexPathsToAdd
                                         withRowAnimation:UITableViewRowAnimationNone];
                 [[self tableView] endUpdates];
             });
         }
-        return position;
+        
+        return finalIndexPath;
     } else {
-        return -1;
+        return nil;
     }
 }
 
-- (void)onADAnimation:(UIView *)adView atPosition:(int)position
+- (void)onADAnimation:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath
 {
+    NSMutableArray *dataSource = [_dataSources objectAtIndex:[indexPath section]];
     [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         [[self tableView] beginUpdates];
-        [[_dataSource objectAtIndex:position] setObject:[NSNumber numberWithInt:adView.bounds.size.height + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
+        [[dataSource objectAtIndex:[indexPath row]] setObject:[NSNumber numberWithInt:adView.bounds.size.height + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
         [[self tableView] endUpdates];
     } completion:^(BOOL finished) {
         

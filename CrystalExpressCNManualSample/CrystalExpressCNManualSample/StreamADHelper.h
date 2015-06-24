@@ -11,8 +11,8 @@
 
 @class ADView;
 @protocol StreamADHelperDelegate <NSObject>
-- (int)onADLoaded:(UIView *)adView atPosition:(int)position isPreroll:(BOOL)isPreroll;
-- (void)onADAnimation:(UIView *)adView atPosition:(int)position;
+- (NSIndexPath *)onADLoaded:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath isPreroll:(BOOL)isPreroll;
+- (void)onADAnimation:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath;
 - (BOOL)checkIdle;
 @end
 
@@ -22,12 +22,12 @@
 
 - (instancetype)initWithPlacement:(NSString *)placement;
 - (void)preroll;
-- (UIView *)requestADAtPosition:(int)position;
+- (UIView *)requestADAtPosition:(NSIndexPath *)indexPath;
 - (void)updateVisiblePosition:(UITableView *)tableView;
 - (NSOrderedSet *)getLoadedAds;
 - (void)stopADs;
 - (void)setActive:(BOOL)isActive;
-- (BOOL)isAdAtPos:(int)pos;
+- (BOOL)isAdAtIndexPath:(NSIndexPath *)indexPath;
 - (void)setPreferAdWidth:(CGFloat)width;
 - (CGFloat)getCurrentAdWidthSetting;
 - (void)cleanADs;
