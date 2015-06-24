@@ -636,7 +636,7 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 
 ## 6. AD Preview
 - By utilizing ios deeplink, we can to do AD preview in real app, sample url link like follows:
-`urlScheme://adpreview?adid={number}`
+`{urlScheme}://adpreview?adid={number}`
 - First you need to register a URL scheme in you app
  - in Project > Info > URL Types, register a url scheme for your app to enable the deeplink.
 - Add the following code in `AppDelegate.m` to enable the crystalexpress adPreview function.
