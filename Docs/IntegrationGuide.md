@@ -1,4 +1,4 @@
-#CrystalExpress Integration Guide (v1.2.1)
+#CrystalExpress Integration Guide (v1.2.2)
 ## Table of content
 
 - [CrystalExpress Integration Guide](#crystalexpress-integration-guide)
@@ -322,7 +322,7 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 [_streamHelper setActive:YES];
 ```
 
-- Call `requestADAtPosition:(int)position` cell position to get a AD UIView.
+- Call `(UIView *)requestADAtPosition:(NSIndexPath *)indexPath` with cell indexPath to get a AD UIView.
 - Sync helper while `scrollViewDidScroll:(UIScrollView *)scrollView` event happened.
 
 ```objc
@@ -361,56 +361,63 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 }
 ```
 - Implement `StreamADHelperDelegate` functions
-- `- (int)onADLoaded:(UIView *)adView atPosition:(int)position` need to update table view to insert AD cell. Return the real position inserted in table view, or -1 if fail.
-- While in preroll, there's no need to insert AD in another main loop
+- `- (NSIndexPath *)onADLoaded:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath isPreroll:(BOOL)isPreroll` need to update table view to insert AD cell. Return the real indexPath inserted in table view, or nil if fail.
+- While in preroll, there's no need to insert AD in another main loop.
 
 ```objc
-- (int)onADLoaded:(UIView *)adView atPosition:(int)position isPreroll:(BOOL)isPreroll
+- (NSIndexPath *)onADLoaded:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath isPreroll:(BOOL)isPreroll
 {
     // Don't place ad at the first place!!
-    position = MAX(1, position);
-    if ([_dataSource count] >= position) {
+    int position = MAX(1, [indexPath row]);
+    NSMutableArray *dataSource = [_dataSources objectAtIndex:[indexPath section]];
+    NSIndexPath *finalIndexPath = [NSIndexPath indexPathForRow:position inSection:[indexPath section]];
+    
+    if ([dataSource count] >= position) {
         if (isPreroll) {
             NSMutableDictionary *adDict = [[NSMutableDictionary alloc] init];
-            [adDict setObject:[NSNumber numberWithInt:adView.bounds.size.height] forKey:@"height"];
-
-            NSArray *indexPathsToAdd = @[[NSIndexPath indexPathForRow:position inSection:0]];
+            CGFloat adHeight = adView.bounds.size.height;
+            [adDict setObject:[NSNumber numberWithFloat:adHeight + 2*_adVerticalMargin] forKey:@"height"];
+            
+            NSArray *indexPathsToAdd = @[finalIndexPath];
             [[self tableView] beginUpdates];
-            [_dataSource insertObject:adDict atIndex:position];
+            [dataSource insertObject:adDict atIndex:position];
             [[self tableView] insertRowsAtIndexPaths:indexPathsToAdd
                                     withRowAnimation:UITableViewRowAnimationNone];
             [[self tableView] endUpdates];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^(){
                 NSMutableDictionary *adDict = [[NSMutableDictionary alloc] init];
-                [adDict setObject:[NSNumber numberWithInt:adView.bounds.size.height] forKey:@"height"];
-
-                NSArray *indexPathsToAdd = @[[NSIndexPath indexPathForRow:position inSection:0]];
+                CGFloat adHeight = adView.bounds.size.height;
+                [adDict setObject:[NSNumber numberWithFloat:adHeight + 2*_adVerticalMargin] forKey:@"height"];
+                
+                NSArray *indexPathsToAdd = @[finalIndexPath];
                 [[self tableView] beginUpdates];
-                [_dataSource insertObject:adDict atIndex:position];
+                [dataSource insertObject:adDict atIndex:position];
                 [[self tableView] insertRowsAtIndexPaths:indexPathsToAdd
                                         withRowAnimation:UITableViewRowAnimationNone];
                 [[self tableView] endUpdates];
             });
         }
-        return position;
+        
+        return finalIndexPath;
     } else {
-        return -1;
+        return nil;
     }
 }
 ```
 
-- If stream AD formats including pulldown card, set `onADAnimation:(UIView *)adView atPosition:(int)position` block to update scroll view while pulldown animating is happened.
+- If stream AD formats including pulldown card, set `- (void)onADAnimation:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath` block to update scroll view while pulldown animating is happened.
 
 ```objc
-- (void)onADAnimation:(UIView *)adView atPosition:(int)position
+- (void)onADAnimation:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath
 {
+    NSMutableArray *dataSource = [_dataSources objectAtIndex:[indexPath section]];
     [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         [[self tableView] beginUpdates];
-        [[_dataSource objectAtIndex:position] setObject:[NSNumber numberWithInt:adView.bounds.size.height] forKey:@"height"];
+        [[dataSource objectAtIndex:[indexPath row]] setObject:[NSNumber numberWithInt:adView.bounds.size.height + 2*_adVerticalMargin] forKey:@"height"];
         [[self tableView] endUpdates];
     } completion:^(BOOL finished) {
-
+        
     }];
 }
 ```
@@ -433,6 +440,7 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
     [_streamHelper cleanADs];
     [self prepareDataSource];
     [self.tableView reloadData];
+    [_streamHelper updateVisiblePosition:self.tableView];
     [self.pullToRefreshView finishLoading];
 }
 ```
@@ -443,11 +451,12 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 
 @class ADView;
 @protocol StreamADHelperDelegate <NSObject>
-// callback function while the stream ad is ready at the request position
-- (int)onADLoaded:(UIView *)adView atPosition:(int)position;
 
-// callback on pull down animation happen
-- (void)onADAnimation:(UIView *)adView atPosition:(int)position;
+// callback delegate while the stream ad is ready at the target indexPath, and indicate whether it is a preroll call
+- (NSIndexPath *)onADLoaded:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath isPreroll:(BOOL)isPreroll;
+
+// callback on pull down animation happen at indexPath
+- (void)onADAnimation:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath;
 
 // callback to check whether the view is in idle state
 - (BOOL)checkIdle;
@@ -463,8 +472,8 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 // preroll will request a stream ad for future use
 - (void)preroll;
 
-// request stream ad at stream position
-- (UIView *)requestADAtPosition:(int)position;
+// request stream ad at stream indexPath
+- (UIView *)requestADAtPosition:(NSIndexPath *)indexPath;
 
 // update current table view visible cell
 - (void)updateVisiblePosition:(UITableView *)tableView;
@@ -472,14 +481,14 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 // get all loaded ads
 - (NSOrderedSet *)getLoadedAds;
 
-// force all loaded ad stop
+// force all loaded ad stop (ex. stop video playing)
 - (void)stopADs;
 
 // set helper active state, ad will only play in active helper
 - (void)setActive:(BOOL)isActive;
 
-// check whether the position is an AD
-- (BOOL)isAdAtPos:(int)pos;
+// check whether the indexPath is an AD
+- (BOOL)isAdAtIndexPath:(NSIndexPath *)indexPath;
 
 // set prefer AD width
 - (void)setPreferAdWidth:(CGFloat)width;
@@ -487,7 +496,7 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 // get previous setting of AD width, return -1 if user didn't set adWidth before
 - (CGFloat)getCurrentAdWidthSetting;
 
-// remove all loaded ADs
+// remove all loaded ADs, please call this while stream data source reloaded (ex. pull to refresh)
 - (void)cleanADs;
 
 #pragma mark - event listener
@@ -626,8 +635,11 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
 ```
 
 ## 6. AD Preview
-In Demo App, you can utilize deeplink to do AD preview, sample url link like follows:
-`crystalexpress://adpreview?adid={number}`
+- By utilizing ios deeplink, we can to do AD preview in real app, sample url link like follows:
+`urlScheme://adpreview?adid={number}`
+- First you need to register a URL scheme in you app
+ - in Project > Info > URL Types, register a url scheme for your app to enable the deeplink.
+- Add the following code in `AppDelegate.m` to enable the crystalexpress adPreview function.
 
 ```objc
 #pragma mark - deeplinking
