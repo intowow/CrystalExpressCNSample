@@ -238,7 +238,7 @@
 #pragma mark - private method - splash 
 - (void)requestInterstitialSplashAD
 {
-    [_interstitialSplashHelper requestSplashADWithPlacement:[AppUtils decidePlacementName:@"SPLASH"] mode:CE_SPLASH_MODE_SINGLE_OFFER];
+    [_interstitialSplashHelper requestSplashADWithPlacement:[AppUtils decidePlacementName:@"INTERSTITIAL_SPLASH"] mode:CE_SPLASH_MODE_SINGLE_OFFER];
 }
 
 //- (void)requestSplashAD

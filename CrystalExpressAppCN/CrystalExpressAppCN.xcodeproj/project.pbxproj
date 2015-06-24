@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		903A2DB1E1FB9BC00A37E6CA /* libPods-CrystalExpressAppCN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E344CC40C17A4FE73EE67 /* libPods-CrystalExpressAppCN.a */; };
-		D51C19371B3A610800ECFF79 /* DemoStreamTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51C19361B3A610800ECFF79 /* DemoStreamTableViewController.m */; };
 		D550D5141B2A7453002214F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D550D5131B2A7453002214F7 /* main.m */; };
 		D550D5171B2A7453002214F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D550D5161B2A7453002214F7 /* AppDelegate.m */; };
 		D550D51A1B2A7453002214F7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D550D5191B2A7453002214F7 /* ViewController.m */; };
@@ -25,6 +24,7 @@
 		D550D5541B2A7746002214F7 /* AppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D550D5531B2A7746002214F7 /* AppUtils.m */; };
 		D550D5571B2A7780002214F7 /* LayoutUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D550D5561B2A7780002214F7 /* LayoutUtils.m */; };
 		D550D55A1B2A781B002214F7 /* asset.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D550D5591B2A781B002214F7 /* asset.bundle */; };
+		D58320B81B3AA42E00E61B8C /* DemoStreamTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58320B71B3AA42E00E61B8C /* DemoStreamTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,6 @@
 		0A3E344CC40C17A4FE73EE67 /* libPods-CrystalExpressAppCN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CrystalExpressAppCN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D34E027BDA4F5F30E797BF /* Pods-CrystalExpressAppCN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrystalExpressAppCN.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrystalExpressAppCN/Pods-CrystalExpressAppCN.release.xcconfig"; sourceTree = "<group>"; };
 		730BE7DDCA95D4B33EC70B1D /* Pods-CrystalExpressAppCN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrystalExpressAppCN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrystalExpressAppCN/Pods-CrystalExpressAppCN.debug.xcconfig"; sourceTree = "<group>"; };
-		D51C19361B3A610800ECFF79 /* DemoStreamTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoStreamTableViewController.m; sourceTree = "<group>"; };
 		D550D50E1B2A7453002214F7 /* CrystalExpressAppCN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrystalExpressAppCN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D550D5121B2A7453002214F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D550D5131B2A7453002214F7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		D550D5551B2A7780002214F7 /* LayoutUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayoutUtils.h; path = "../../../CrystalExpressSDK-CN/CrystalExpressSDK-CN/ios/CrystalExpressPodDemo/demo/crystalexpress/LayoutUtils.h"; sourceTree = "<group>"; };
 		D550D5561B2A7780002214F7 /* LayoutUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LayoutUtils.m; path = "../../../CrystalExpressSDK-CN/CrystalExpressSDK-CN/ios/CrystalExpressPodDemo/demo/crystalexpress/LayoutUtils.m"; sourceTree = "<group>"; };
 		D550D5591B2A781B002214F7 /* asset.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = asset.bundle; path = Resources/asset.bundle; sourceTree = SOURCE_ROOT; };
+		D58320B71B3AA42E00E61B8C /* DemoStreamTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoStreamTableViewController.m; path = ViewController/DemoStreamTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,7 +191,7 @@
 				D550D5441B2A765C002214F7 /* DemoStreamSectionViewController.h */,
 				D550D5451B2A765C002214F7 /* DemoStreamSectionViewController.m */,
 				D550D5461B2A765C002214F7 /* DemoStreamTableViewController.h */,
-				D51C19361B3A610800ECFF79 /* DemoStreamTableViewController.m */,
+				D58320B71B3AA42E00E61B8C /* DemoStreamTableViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -358,7 +358,7 @@
 			files = (
 				D550D5491B2A765C002214F7 /* DemoContentViewController.m in Sources */,
 				D550D5571B2A7780002214F7 /* LayoutUtils.m in Sources */,
-				D51C19371B3A610800ECFF79 /* DemoStreamTableViewController.m in Sources */,
+				D58320B81B3AA42E00E61B8C /* DemoStreamTableViewController.m in Sources */,
 				D550D54E1B2A765C002214F7 /* DemoStreamSectionViewController.m in Sources */,
 				D550D51A1B2A7453002214F7 /* ViewController.m in Sources */,
 				D550D54A1B2A765C002214F7 /* DemoDetailContentViewController.m in Sources */,
