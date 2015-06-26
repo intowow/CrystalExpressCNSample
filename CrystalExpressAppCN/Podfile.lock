@@ -22,7 +22,7 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CrystalExpressSDK-CN (1.2.2):
+  - CrystalExpressSDK-CN (1.2.3):
     - AFDownloadRequestOperation
     - AFNetworking (~> 2.3)
     - JSONKit-NoWarning
@@ -48,7 +48,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  CrystalExpressSDK-CN: 6e8d605a644b0789c0c60c1c517b3d3e4c8fb834
+  CrystalExpressSDK-CN: e0f6dfe03803740357cdb8881dddb624a1ee2d1c
   JSONKit-NoWarning: 3d27e6f9e6846ecf741e8c64dcadd7d5aa7193cb
   MTStatusBarOverlay: 258a1ee369f4dc4b94107d02cfd7f6b1317c421b
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
