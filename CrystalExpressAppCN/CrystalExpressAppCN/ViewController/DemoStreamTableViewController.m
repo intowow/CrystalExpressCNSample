@@ -46,7 +46,7 @@
    
     if (_streamHelper) {
         [_streamHelper setDelegate:self];
-        [_streamHelper setPreferAdWidth:[LayoutUtils getScaleWidth:680]];
+        [_streamHelper setPreferAdWidth:[LayoutUtils getScaleWidth:680.0f]];
         [_streamHelper preroll];
     }
     [[self tableView] reloadData];
@@ -103,7 +103,7 @@
         
         [[cell contentView] addSubview:adView];
 
-        [adView setFrame:CGRectMake((cell.contentView.bounds.size.width - adView.bounds.size.width)/2.0f, _adVerticalMargin, adView.bounds.size.width, adView.bounds.size.height)];
+        [adView setFrame:CGRectMake((SCREEN_WIDTH - adView.bounds.size.width)/2.0f, _adVerticalMargin, adView.bounds.size.width, adView.bounds.size.height)];
 //
         [[cell contentView] setBackgroundColor:[UIColor colorWithWhite:0.905 alpha:1.0]];
         

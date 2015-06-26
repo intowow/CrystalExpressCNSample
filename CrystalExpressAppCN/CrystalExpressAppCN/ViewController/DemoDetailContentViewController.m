@@ -36,7 +36,7 @@
         _curIndex = index;
         _articleVCPool = [[NSMutableArray alloc] init];
         _contentVCs = [[NSMutableArray alloc] init];
-        _articleADHelper = [[ContentADHelper alloc] initWithPlacement:[AppUtils decidePlacementName:@"CONTENT_118"]];
+        _articleADHelper = [[ContentADHelper alloc] initWithPlacement:[AppUtils decidePlacementName:@"CONTENT"]];
         _flipADHelper = [[FlipDynamicADHelper alloc] initWithPlacement:[AppUtils decidePlacementName:@"FLIP"] pageIndex:_curIndex];
         
         // set animation for pulldown card, need to update the module offset below the AD

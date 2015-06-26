@@ -138,7 +138,7 @@
     
     DemoStreamTableViewController *vc = [_streamVCs objectAtIndex:index];
     if ((NSNull *)vc == [NSNull null]) {
-        StreamADHelper *newStreamHelper = [[StreamADHelper alloc] initWithPlacement:[AppUtils decidePlacementName:@"STREAM_118"]];
+        StreamADHelper *newStreamHelper = [[StreamADHelper alloc] initWithPlacement:[AppUtils decidePlacementName:@"STREAM"]];
         vc = [[DemoStreamTableViewController alloc] init];
         [vc setDelegate:self];
         
@@ -241,16 +241,6 @@
     [_interstitialSplashHelper requestSplashADWithPlacement:[AppUtils decidePlacementName:@"INTERSTITIAL_SPLASH"] mode:CE_SPLASH_MODE_SINGLE_OFFER];
 }
 
-//- (void)requestSplashAD
-//{
-//    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//    long long now = [[NSDate date] timeIntervalSince1970] * 1000L;
-//    long long splashDuration = now - _splashLastViewTime;
-//    long long openSplashDuration = now - [appDelegate getOpenSplashLastViewTime];
-//    if ([appDelegate shouldRequestOpenSplash] == NO && splashDuration > [appDelegate getSectionSplashGuardTime] && openSplashDuration > [appDelegate getSectionSplashGuardTime]) {
-//        [_sectionSplashHelper requestSplashADWithPlacement:[AppUtils decidePlacementName:@"SPLASH"] mode:CE_SPLASH_MODE_SINGLE_OFFER];
-//    }
-//}
 
 #pragma mark - SplashADHelperDelegate
 - (void)SplashADDidReceiveAd:(NSArray *)ad viewController:(SplashADInterfaceViewController *)vc
