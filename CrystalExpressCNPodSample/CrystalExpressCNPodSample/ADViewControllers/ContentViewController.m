@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) ContentADHelper *contentADHelper;
 @property (nonatomic, strong) UIView *contentADView;
+@property (nonatomic, strong) UIView *adWrapperView;
 @property (nonatomic, assign) float adOffset;
 @property (nonatomic, strong) UIImageView *relatedImgView;
 @property (nonatomic, strong) UIView *titleView;
@@ -28,6 +29,7 @@
     self = [super init];
     if (self) {
         _contentADView = nil;
+        _adWrapperView = nil;
         _adOffset = -1;
         _relatedImgView = nil;
         _contentADHelper = [[ContentADHelper alloc] initWithPlacement:placementName];
@@ -109,17 +111,23 @@
     [_scrollView addSubview:textContainer];
     scrollHeight += textContainer.bounds.size.height;
     
-    // content AD
-    [_contentADHelper setScrollOffsetWithKey:articleId offset:scrollHeight];
+    // article AD
+    _adWrapperView = [[UIView alloc] init];
     _contentADView = (UIView *)[_contentADHelper requestADWithContentId:articleId];
+    [_contentADHelper setScrollOffsetWithKey:articleId offset:scrollHeight];
     if (_contentADView) {
-        [_contentADView setFrame:CGRectMake(0, scrollHeight, _contentADView.bounds.size.width, _contentADView.bounds.size.height)];
+        CGFloat horMargin = (self.view.bounds.size.width - (_contentADView.bounds.size.width + 2*10))/2.0f;
+        [_adWrapperView setFrame:CGRectMake(horMargin, scrollHeight, _contentADView.bounds.size.width + 2*10, _contentADView.bounds.size.height + 2*10)];
+        horMargin = (_adWrapperView.bounds.size.width - _contentADView.bounds.size.width)/2.0f;
+        [_contentADView setFrame:CGRectMake(horMargin, 10, _contentADView.bounds.size.width, _contentADView.bounds.size.height)];
+        [_adWrapperView addSubview:_contentADView];
         _adOffset = scrollHeight;
-        scrollHeight += _contentADView.bounds.size.height;
-        [_scrollView addSubview:_contentADView];
+        scrollHeight += _adWrapperView.bounds.size.height;
+        [_scrollView addSubview:_adWrapperView];
     } else {
         scrollHeight += [LayoutUtils getRelatedHeightWithOriWidth:720 OriHeight:60];
     }
+    
     
     
     // related article
@@ -137,15 +145,17 @@
 - (void)onPullDownAnimationWithAD:(UIView *)adView
 {
     if (adView == _contentADView) {
+        CGRect frame = [_adWrapperView frame];
+        frame.size.height = adView.bounds.size.height + 10*2;
+        [_adWrapperView setFrame:frame];
         
-        CGRect frame = [_relatedImgView frame];
-        frame.origin.y = _adOffset + adView.bounds.size.height;
+        frame = [_relatedImgView frame];
+        frame.origin.y = _adOffset + _adWrapperView.bounds.size.height;
         [_relatedImgView setFrame:frame];
         
         CGFloat finalContentOffset = _adOffset + adView.bounds.size.height + _relatedImgView.bounds.size.height;
         [_scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, finalContentOffset)];
-    }
-}
+    }}
 
 #pragma mark - scrollview delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

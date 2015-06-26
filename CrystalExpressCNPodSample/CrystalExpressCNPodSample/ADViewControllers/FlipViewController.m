@@ -8,7 +8,7 @@
 
 #import "FlipViewController.h"
 #import "LayoutUtils.h"
-#import <CrystalExpressSDK-CN/FlipDynamicADHelper.h>
+#import "FlipDynamicADHelper.h"
 
 #define NUM_OF_PAGES 100
 

@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
-#import <CrystalExpressSDK-CN/I2WAPI.h>
-#import <CrystalExpressSDK-CN/SplashADInterfaceViewController.h>
-#import <CrystalExpressSDK-CN/SplashADHelper.h>
+#import "I2WAPI.h"
+#import "SplashADInterfaceViewController.h"
+#import "SplashADHelper.h"
 #import "ContentViewController.h"
 #import "StreamSectionViewController.h"
 #import "FlipViewController.h"
@@ -66,7 +66,7 @@
             [_splashADHelper requestSplashADWithPlacement:@"OPEN_SPLASH" mode:CE_SPLASH_MODE_HYBRID];
             break;
         case 2:
-            [_splashADHelper requestSplashADWithPlacement:@"SPLASH" mode:CE_SPLASH_MODE_SINGLE_OFFER];
+            [_splashADHelper requestSplashADWithPlacement:@"INTERSTITIAL_SPLASH" mode:CE_SPLASH_MODE_SINGLE_OFFER];
             break;
         case 3:
             [self.navigationController pushViewController:[[ContentViewController alloc] initWithPlacementName:@"CONTENT"] animated:YES];

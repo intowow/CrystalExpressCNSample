@@ -57,8 +57,8 @@
 // CrystalExpressSDK-CN
 #define COCOAPODS_POD_AVAILABLE_CrystalExpressSDK_CN
 #define COCOAPODS_VERSION_MAJOR_CrystalExpressSDK_CN 1
-#define COCOAPODS_VERSION_MINOR_CrystalExpressSDK_CN 1
-#define COCOAPODS_VERSION_PATCH_CrystalExpressSDK_CN 5
+#define COCOAPODS_VERSION_MINOR_CrystalExpressSDK_CN 2
+#define COCOAPODS_VERSION_PATCH_CrystalExpressSDK_CN 3
 
 // JSONKit-NoWarning
 #define COCOAPODS_POD_AVAILABLE_JSONKit_NoWarning
