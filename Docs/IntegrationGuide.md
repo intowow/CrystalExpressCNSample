@@ -1,4 +1,4 @@
-#CrystalExpress Integration Guide (v1.2.2)
+#CrystalExpress Integration Guide (v1.2.3)
 ## Table of content
 
 - [CrystalExpress Integration Guide](#crystalexpress-integration-guide)
@@ -55,14 +55,15 @@ It will look like this.
 CrystalExpress.
 - Add the following code in Podfile
 ```
-pod "CrystalExpressSDK-CN", '~> 1.2'
+pod "CrystalExpressSDK", '~> 1.2'
 ```
 - `pod update` or `pod install`
 - Open workspace that pod generate for you, you're ready to use CrystalExpress
 - Here's a [sample project](https://github.com/roylo/CrystalExpressSample)
 
 ### 2.2 Manual integration
-1. In project build phases "Link Binary With Libraries", add libCrystalSDK-release-x.x.x.a static library
+1. In project build phases "Link Binary With Libraries", add CrystalExpressSDK-x.x.x.a static library
+ - [CrystalExpressSDK-1.2.3](http://intowow-demo.oss-cn-beijing.aliyuncs.com/ios_manual_sdk%2FCrystalExpressSDK-CN-1.2.3.zip)
 2. Add header file to your project
 3. Make sure you have the following frameworks added in Build phases
  - Securty.framework
@@ -79,7 +80,7 @@ pod "CrystalExpressSDK-CN", '~> 1.2'
  - AVFoundation.framework
  - libicucore.dylib
 4. Add `-ObjC` in TARGETS -> Build Settings -> Linking -> Other Linker Flags
-5. Add the following files to your project -> Supporting Files
+5. Add the following files to your project
  - CrystalExpress.plist
 6. You can now start using CrystalExpress lib.
 
@@ -167,6 +168,7 @@ pod "CrystalExpressSDK-CN", '~> 1.2'
 ### 3.3 Splash AD
 - We provided a helper class to make integration more easier, via SplashADHelper, you can request different format of Splash ADs
 - SplashADHelper will call delegate function and return a ready `SplashADInterfaceViewController` for you to present.
+- [Notice] There are both portrait and landscape Splash AD support in our SDK, make sure your app support that kind of rotation before you serving ADs.
 
 #### SplashADHelper.h
 ```objc
@@ -264,11 +266,11 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
         CGRect frame = [_adWrapperView frame];
         frame.size.height = adView.bounds.size.height + ADMARGIN*2;
         [_adWrapperView setFrame:frame];
-        
+
         frame = [_relatedImgView frame];
         frame.origin.y = _adOffset + _adWrapperView.bounds.size.height;
         [_relatedImgView setFrame:frame];
-        
+
         CGFloat finalContentOffset = _adOffset + adView.bounds.size.height + _relatedImgView.bounds.size.height;
         [_scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, finalContentOffset)];
     }
@@ -371,13 +373,13 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
     int position = MAX(1, [indexPath row]);
     NSMutableArray *dataSource = [_dataSources objectAtIndex:[indexPath section]];
     NSIndexPath *finalIndexPath = [NSIndexPath indexPathForRow:position inSection:[indexPath section]];
-    
+
     if ([dataSource count] >= position) {
         if (isPreroll) {
             NSMutableDictionary *adDict = [[NSMutableDictionary alloc] init];
             CGFloat adHeight = adView.bounds.size.height;
             [adDict setObject:[NSNumber numberWithFloat:adHeight + 2*_adVerticalMargin] forKey:@"height"];
-            
+
             NSArray *indexPathsToAdd = @[finalIndexPath];
             [[self tableView] beginUpdates];
             [dataSource insertObject:adDict atIndex:position];
@@ -389,7 +391,7 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
                 NSMutableDictionary *adDict = [[NSMutableDictionary alloc] init];
                 CGFloat adHeight = adView.bounds.size.height;
                 [adDict setObject:[NSNumber numberWithFloat:adHeight + 2*_adVerticalMargin] forKey:@"height"];
-                
+
                 NSArray *indexPathsToAdd = @[finalIndexPath];
                 [[self tableView] beginUpdates];
                 [dataSource insertObject:adDict atIndex:position];
@@ -398,7 +400,7 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
                 [[self tableView] endUpdates];
             });
         }
-        
+
         return finalIndexPath;
     } else {
         return nil;
@@ -417,7 +419,7 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
         [[dataSource objectAtIndex:[indexPath row]] setObject:[NSNumber numberWithInt:adView.bounds.size.height + 2*_adVerticalMargin] forKey:@"height"];
         [[self tableView] endUpdates];
     } completion:^(BOOL finished) {
-        
+
     }];
 }
 ```
@@ -768,11 +770,20 @@ typedef NS_ENUM(NSUInteger, CESplashMode) {
  - open the verbose log while initialize I2WAPI
  - check the log while request AD
 
+```
+// this means your crystal_id is not correct, change it in CrystalExpress.plist
+error:[Request failed: not found (404)], please reverify your crystal_id is set correct
+```
+
 - `[__NSArrayI enumFromString:]: unrecognized selector sent to instance 0x78e37970`
  - If you crash on log like this, add `-ObjC` in TARGETS -> Build Settings -> Linking -> Other Linker Flags
 
 
+
+- UIApplicationInvalidInterfaceOrientation exception?
+ - If you encounter the following exception, it means your app doesn't support the rotation which Splash AD need to display.
+ - Please reverify the app supported orientation in your project setting.
+
 ```
-// this means your crystal_id is not correct, change it in CrystalExpress.plist
-error:[Request failed: not found (404)], please reverify your crystal_id is set correct
+ *** Terminating app due to uncaught exception 'UIApplicationInvalidInterfaceOrientation', reason: 'Supported orientations has  no common orientation with the application, and [SOSplashADViewController shouldAutorotate] is returning YES'
 ```
