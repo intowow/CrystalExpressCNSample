@@ -8,14 +8,14 @@
 
 #import "ViewController.h"
 #import "I2WAPI.h"
-#import "SplashADInterfaceViewController.h"
-#import "SplashADHelper.h"
 #import "ContentViewController.h"
 #import "StreamSectionViewController.h"
 #import "FlipViewController.h"
+#import "CESplashAD.h"
 
-@interface ViewController () <SplashADHelperDelegate, SplashADViewControllerDelegate>
-@property (nonatomic, strong) SplashADHelper *splashADHelper;
+@interface ViewController () <CESplashADDelegate>
+@property (nonatomic, strong) CESplashAD *openSplashADHelper;
+@property (nonatomic, strong) CESplashAD *interstitialSplashADHelper;
 @property (nonatomic, strong) UIButton *testMultiofferBtn;
 @property (nonatomic, strong) UIButton *testSplashBtn;
 @property (nonatomic, strong) UIButton *testContentBtn;
@@ -31,8 +31,8 @@
     
     int screenHeight = [[UIScreen mainScreen] bounds].size.height;
     
-    _splashADHelper = [[SplashADHelper alloc] init];
-    [_splashADHelper setDelegate:self];
+    _openSplashADHelper = [[CESplashAD alloc] initWithPlacement:@"OPEN_SPLASH" delegate:self];
+    _interstitialSplashADHelper = [[CESplashAD alloc] initWithPlacement:@"INTERSTITIAL_SPLASH" delegate:self];
     
     CGFloat spaceHeight = screenHeight / 25;
     CGFloat btnHeight = spaceHeight * 1.8;
@@ -63,10 +63,10 @@
     [sender setBackgroundColor:[UIColor blueColor]];
     switch ([sender tag]) {
         case 1:
-            [_splashADHelper requestSplashADWithPlacement:@"OPEN_SPLASH" mode:CE_SPLASH_MODE_HYBRID];
+            [_openSplashADHelper loadAd];
             break;
         case 2:
-            [_splashADHelper requestSplashADWithPlacement:@"INTERSTITIAL_SPLASH" mode:CE_SPLASH_MODE_SINGLE_OFFER];
+            [_interstitialSplashADHelper loadAd];
             break;
         case 3:
             [self.navigationController pushViewController:[[ContentViewController alloc] initWithPlacementName:@"CONTENT"] animated:YES];
@@ -83,31 +83,29 @@
     
 }
 
-#pragma mark - SplashADHelperDelegate method
-- (void)SplashADDidReceiveAd:(NSArray *)ad viewController:(SplashADInterfaceViewController *)vc
+#pragma mark - CESplashADDelegate method
+- (void)CESplashADDidReceiveAd:(NSArray *)ad viewController:(SplashADInterfaceViewController *)vc
 {
-    [vc setDelegate:self];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-- (void)SplashADDidFailToReceiveAdWithError:(NSError *)error viewController:(SplashADInterfaceViewController *)vc
+- (void)CESplashADDidFailToReceiveAdWithError:(NSError *)error viewController:(SplashADInterfaceViewController *)vc
 {
 }
 
-#pragma mark - SplashADViewControllerDelegate method
-- (void)SplashAdWillPresentScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdWillPresentScreen:(SplashADInterfaceViewController *)vc
 {
 }
 
-- (void)SplashAdDidPresentScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdDidPresentScreen:(SplashADInterfaceViewController *)vc
 {
 }
 
-- (void)SplashAdWillDismissScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdWillDismissScreen:(SplashADInterfaceViewController *)vc
 {
 }
 
-- (void)SplashAdDidDismissScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdDidDismissScreen:(SplashADInterfaceViewController *)vc
 {
 }
 

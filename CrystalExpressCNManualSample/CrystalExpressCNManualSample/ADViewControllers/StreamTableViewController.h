@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StreamADHelper.h"
 
-@interface StreamTableViewController : UITableViewController <UITableViewDelegate, StreamADHelperDelegate>
+@interface StreamTableViewController : UITableViewController <UITableViewDelegate>
 - (instancetype)initWithPlacementName:(NSString *)placementName;
 @end

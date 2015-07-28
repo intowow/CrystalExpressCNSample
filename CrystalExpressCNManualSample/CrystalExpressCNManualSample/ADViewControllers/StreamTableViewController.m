@@ -8,7 +8,7 @@
 
 #import "StreamTableViewController.h"
 #import "LayoutUtils.h"
-#import "StreamADHelper.h"
+#import "CETableViewADHelper.h"
 
 #define NUM_OF_SECTIONS 3
 #define ROWS_IN_SECTION 100
@@ -18,7 +18,7 @@
 @interface StreamTableViewController ()
 @property (nonatomic, strong) NSMutableArray *contentImages;
 @property (nonatomic, strong) NSMutableArray *dataSources;
-@property (nonatomic, strong) StreamADHelper *streamHelper;
+@property (nonatomic, strong) CETableViewADHelper *adHelper;
 @property (nonatomic, strong) NSString *sectionName;
 @end
 
@@ -31,7 +31,6 @@
         _contentImages = [[NSMutableArray alloc] init];
         _dataSources = [[NSMutableArray alloc] init];
         _sectionName = @"business";
-        _streamHelper = [[StreamADHelper alloc] initWithPlacement:placementName];
     }
     return self;
 }
@@ -44,30 +43,21 @@
     
     [self loadContentImages];
     [self prepareDataSources];
+    [self setupStreamADHelper];
     
-    if (_streamHelper) {
-        [_streamHelper setDelegate:self];
-        [_streamHelper setPreferAdWidth:self.view.bounds.size.width - 2*AD_HORIZONTAL_MARGIN];
-        [_streamHelper preroll];
-    }
-    [[self tableView] reloadData];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [_streamHelper updateVisiblePosition:self.tableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [_streamHelper setActive:YES];
-    [_streamHelper scrollViewStateChanged];
-    
+    [_adHelper onShow];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [_streamHelper setActive:NO];
-    [_streamHelper scrollViewStateChanged];
+    [_adHelper onHide];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,6 +68,13 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
+}
+
+- (void)setupStreamADHelper
+{
+    _adHelper = [CETableViewADHelper helperWithTableView:self.tableView viewController:self placement:@"STREAM"];
+    [_adHelper setAdWidth:310];
+    [_adHelper loadAd];
 }
 
 #pragma mark - Table view data source
@@ -93,61 +90,44 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIView *adView = [_streamHelper requestADAtPosition:indexPath];
-    if (adView != nil) {
-        NSString *identifier = [NSString stringWithFormat:@"ADCell_%@_%d_%d", _sectionName, (int)[indexPath section], (int)[indexPath row]];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        }
-        
-        [[cell contentView] addSubview:adView];
-        
-        [adView setFrame:CGRectMake(AD_HORIZONTAL_MARGIN, AD_VERTICAL_MARGIN, adView.bounds.size.width, adView.bounds.size.height)];
-        //
-        [[cell contentView] setBackgroundColor:[UIColor colorWithWhite:0.905 alpha:1.0]];
-        
-        return cell;
-    } else {
-        NSUInteger section = [indexPath section];
-        NSUInteger row = [indexPath row];
-        NSDictionary *dict = [[_dataSources objectAtIndex:section] objectAtIndex:row];
-        int imgId = [[dict objectForKey:@"imgId"] intValue];
-        NSString *identifier = [NSString stringWithFormat:@"DemoTableViewCell_%d", imgId];
-        if (section == 0 && row == 0) {
-            identifier = [NSString stringWithFormat:@"DemoTableViewCell_hasTopMargin"];
-        }
-        
-        UITableViewCell *cell = nil;
-        cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            
-            if ((row % 5) < [_contentImages count]) {
-                UIImage *dataImg = [_contentImages objectAtIndex:imgId];
-                UIImageView *dataImgView = [[UIImageView alloc] initWithImage:dataImg];
-                CGFloat dataHeight = [LayoutUtils getRelatedHeightWithOriWidth:dataImg.size.width OriHeight:dataImg.size.height] + [LayoutUtils getScaleWidth:20];
-                
-                [dataImgView setFrame:CGRectMake([LayoutUtils getScaleWidth:18], [LayoutUtils getScaleWidth:10], [LayoutUtils getScaleWidth:684], [LayoutUtils getRelatedHeightWithOriWidth:684 OriHeight:dataImg.size.height])];
-                
-                float topPadding = 0;
-                if (row == 0 && section == 0) {
-                    topPadding = [LayoutUtils getScaleWidth:10];
-                }
-                
-                UIView *dataContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, topPadding, self.view.bounds.size.width, dataHeight)];
-                
-                [dataContainerView addSubview:dataImgView];
-                [dataContainerView setBackgroundColor:[UIColor colorWithWhite:0.906 alpha:1.0]];
-                [[cell contentView] setBackgroundColor:[UIColor colorWithWhite:0.906 alpha:1.0]];
-                [[cell contentView] addSubview:dataContainerView];
-            }
-        }
-        return cell;
+    
+    NSUInteger section = [indexPath section];
+    NSUInteger row = [indexPath row];
+    NSDictionary *dict = [[_dataSources objectAtIndex:section] objectAtIndex:row];
+    int imgId = [[dict objectForKey:@"imgId"] intValue];
+    NSString *identifier = [NSString stringWithFormat:@"DemoTableViewCell_%d", imgId];
+    if (section == 0 && row == 0) {
+        identifier = [NSString stringWithFormat:@"DemoTableViewCell_hasTopMargin"];
     }
+    
+    UITableViewCell *cell = nil;
+    cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        if ((row % 5) < [_contentImages count]) {
+            UIImage *dataImg = [_contentImages objectAtIndex:imgId];
+            UIImageView *dataImgView = [[UIImageView alloc] initWithImage:dataImg];
+            CGFloat dataHeight = [LayoutUtils getRelatedHeightWithOriWidth:dataImg.size.width OriHeight:dataImg.size.height] + [LayoutUtils getScaleWidth:20];
+            
+            [dataImgView setFrame:CGRectMake([LayoutUtils getScaleWidth:18], [LayoutUtils getScaleWidth:10], [LayoutUtils getScaleWidth:684], [LayoutUtils getRelatedHeightWithOriWidth:684 OriHeight:dataImg.size.height])];
+            
+            float topPadding = 0;
+            if (row == 0 && section == 0) {
+                topPadding = [LayoutUtils getScaleWidth:10];
+            }
+            
+            UIView *dataContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, topPadding, self.view.bounds.size.width, dataHeight)];
+            
+            [dataContainerView addSubview:dataImgView];
+            [dataContainerView setBackgroundColor:[UIColor colorWithWhite:0.906 alpha:1.0]];
+            [[cell contentView] setBackgroundColor:[UIColor colorWithWhite:0.906 alpha:1.0]];
+            [[cell contentView] addSubview:dataContainerView];
+        }
+    }
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -162,13 +142,6 @@
         }
     }
     return 10;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([_streamHelper isAdAtIndexPath:indexPath]) {
-        return;
-    }
 }
 
 #pragma mark - private method
@@ -213,79 +186,4 @@
     }
 }
 
-#pragma mark - StreamADHelperDelegate
-- (NSIndexPath *)onADLoaded:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath isPreroll:(BOOL)isPreroll
-{
-    // Don't place ad at the first place!!
-    NSUInteger position = MAX(1, [indexPath row]);
-    NSMutableArray *dataSource = [_dataSources objectAtIndex:[indexPath section]];
-    NSIndexPath *finalIndexPath = [NSIndexPath indexPathForRow:position inSection:[indexPath section]];
-    
-    if ([dataSource count] >= position) {
-        if (isPreroll) {
-            NSMutableDictionary *adDict = [[NSMutableDictionary alloc] init];
-            CGFloat adHeight = adView.bounds.size.height;
-            [adDict setObject:[NSNumber numberWithFloat:adHeight + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
-            
-            NSArray *indexPathsToAdd = @[finalIndexPath];
-            [[self tableView] beginUpdates];
-            [dataSource insertObject:adDict atIndex:position];
-            [[self tableView] insertRowsAtIndexPaths:indexPathsToAdd
-                                    withRowAnimation:UITableViewRowAnimationNone];
-            [[self tableView] endUpdates];
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^(){
-                NSMutableDictionary *adDict = [[NSMutableDictionary alloc] init];
-                CGFloat adHeight = adView.bounds.size.height;
-                [adDict setObject:[NSNumber numberWithFloat:adHeight + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
-                
-                NSArray *indexPathsToAdd = @[finalIndexPath];
-                [[self tableView] beginUpdates];
-                [dataSource insertObject:adDict atIndex:position];
-                [[self tableView] insertRowsAtIndexPaths:indexPathsToAdd
-                                        withRowAnimation:UITableViewRowAnimationNone];
-                [[self tableView] endUpdates];
-            });
-        }
-        
-        return finalIndexPath;
-    } else {
-        return nil;
-    }
-}
-
-- (void)onADAnimation:(UIView *)adView atIndexPath:(NSIndexPath *)indexPath
-{
-    NSMutableArray *dataSource = [_dataSources objectAtIndex:[indexPath section]];
-    [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-        [[self tableView] beginUpdates];
-        [[dataSource objectAtIndex:[indexPath row]] setObject:[NSNumber numberWithInt:adView.bounds.size.height + 2*AD_VERTICAL_MARGIN] forKey:@"height"];
-        [[self tableView] endUpdates];
-    } completion:^(BOOL finished) {
-        
-    }];
-}
-
-- (BOOL)checkIdle
-{
-    return (![[self tableView] isDecelerating] && ![[self tableView] isDragging]);
-}
-
-#pragma mark - scroll view delegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [_streamHelper scrollViewDidScroll:scrollView tableView:[self tableView]];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (decelerate == NO) {
-        [_streamHelper scrollViewStateChanged];
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    [_streamHelper scrollViewStateChanged];
-}
 @end
