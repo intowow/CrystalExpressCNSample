@@ -9,20 +9,18 @@
 #import "DemoStreamSectionViewController.h"
 #import "LayoutUtils.h"
 #import "DemoStreamTableViewController.h"
-#import "StreamADHelper.h"
-#import "SplashADHelper.h"
-#import "SplashADInterfaceViewController.h"
+#import "CESplashAD.h"
 #import "I2WAPI.h"
 #import "AppDelegate.h"
 #import "AppUtils.h"
 
-@interface DemoStreamSectionViewController () <UIScrollViewDelegate, SplashADHelperDelegate, SplashADViewControllerDelegate>
+@interface DemoStreamSectionViewController () <UIScrollViewDelegate, CESplashADDelegate>
 @property (nonatomic, strong) NSArray *menuTitles;
 @property (nonatomic, strong) DemoSectionMenuScrollView *menuView;
 @property (nonatomic, strong) UIScrollView *contentView;
 @property (nonatomic, strong) NSMutableArray *streamVCs;
 @property (nonatomic, strong) NSMutableArray *streamADHelpers;
-@property (nonatomic, strong) SplashADHelper *interstitialSplashHelper;
+@property (nonatomic, strong) CESplashAD *interstitialSplashHelper;
 @property (nonatomic, assign) NSUInteger curIndex;
 
 // splash ad view controller
@@ -37,12 +35,8 @@
     self = [super init];
     if (self) {
         _streamVCs = [[NSMutableArray alloc] init];
-        _streamADHelpers = [[NSMutableArray alloc] init];
         _curIndex = 0;
-        _splashLastViewTime = [[NSDate date] timeIntervalSince1970] * 1000L;
-        _splashVC = nil;
-        _interstitialSplashHelper = [[SplashADHelper alloc] init];
-        [_interstitialSplashHelper setDelegate:self];
+        _interstitialSplashHelper = [[CESplashAD alloc] initWithPlacement:@"INTERSTITIAL_SPLASH" delegate:self];
     }
     return self;
 }
@@ -103,14 +97,16 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [[[_streamVCs objectAtIndex:_curIndex] streamHelper] setActive:NO];
-    [[[_streamVCs objectAtIndex:_curIndex] streamHelper] scrollViewStateChanged];
+    [super viewDidDisappear:animated];
+    [[_streamVCs objectAtIndex:_curIndex] setIsVisible:NO];
+    [[_streamVCs objectAtIndex:_curIndex] viewDidDisappear:NO];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [[[_streamVCs objectAtIndex:_curIndex] streamHelper] setActive:YES];
-    [[[_streamVCs objectAtIndex:_curIndex] streamHelper] scrollViewStateChanged];
+    [super viewDidAppear:animated];
+    [[_streamVCs objectAtIndex:_curIndex] setIsVisible:YES];
+    [[_streamVCs objectAtIndex:_curIndex] viewDidAppear:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,15 +134,13 @@
     
     DemoStreamTableViewController *vc = [_streamVCs objectAtIndex:index];
     if ((NSNull *)vc == [NSNull null]) {
-        StreamADHelper *newStreamHelper = [[StreamADHelper alloc] initWithPlacement:[AppUtils decidePlacementName:@"STREAM"]];
         vc = [[DemoStreamTableViewController alloc] init];
         [vc setDelegate:self];
         
         NSString *menuTitle = [_menuTitles objectAtIndex:index];
         [vc setSectionName:[menuTitle lowercaseString]];
-        [vc setStreamHelper:newStreamHelper];
         if (index == _curIndex) {
-            [newStreamHelper setActive:YES];
+            vc.isVisible = YES;
         }
         
         CGRect frame = [_contentView frame];
@@ -192,16 +186,15 @@
         if (_curIndex == page) {
             return;
         } else {
-            [[[_streamVCs objectAtIndex:_curIndex] streamHelper] setActive:NO];
-            [[[_streamVCs objectAtIndex:_curIndex] streamHelper] scrollViewStateChanged];
-
+            [[_streamVCs objectAtIndex:_curIndex] setIsVisible:NO];
+            [[_streamVCs objectAtIndex:_curIndex] viewDidDisappear:NO];
+            
             _curIndex = (NSUInteger)page;
-//            [self requestSplashAD];
 
-            [[[_streamVCs objectAtIndex:_curIndex] streamHelper] setActive:YES];
-            [[[_streamVCs objectAtIndex:_curIndex] streamHelper] scrollViewStateChanged];
+            [[_streamVCs objectAtIndex:_curIndex] setIsVisible:YES];
+            [[_streamVCs objectAtIndex:_curIndex] viewDidAppear:NO];
         }
-//
+        
         [self loadScrollViewWithIndex:_curIndex - 1];
         [self loadScrollViewWithIndex:_curIndex];
         [self loadScrollViewWithIndex:_curIndex + 1];
@@ -219,7 +212,6 @@
 {
     NSUInteger previousIndex = _curIndex;
     _curIndex = index;
-//    [self requestSplashAD];
     
     [self loadScrollViewWithIndex:_curIndex - 1];
     [self loadScrollViewWithIndex:_curIndex];
@@ -227,51 +219,43 @@
     [_contentView setContentOffset:CGPointMake(index * SCREEN_WIDTH, 0)];
     
     if (previousIndex != _curIndex) {
-        [[[_streamVCs objectAtIndex:previousIndex] streamHelper] setActive:NO];
-        [[[_streamVCs objectAtIndex:previousIndex] streamHelper] scrollViewStateChanged];
+        [[_streamVCs objectAtIndex:previousIndex] setIsVisible:NO];
+        [[_streamVCs objectAtIndex:_curIndex] viewDidDisappear:NO];
         
-        [[[_streamVCs objectAtIndex:_curIndex] streamHelper] setActive:YES];
-        [[[_streamVCs objectAtIndex:_curIndex] streamHelper] scrollViewStateChanged];
+        [[_streamVCs objectAtIndex:previousIndex] setIsVisible:YES];
+        [[_streamVCs objectAtIndex:_curIndex] viewDidAppear:NO];
     }
 }
 
 #pragma mark - private method - splash 
 - (void)requestInterstitialSplashAD
 {
-    [_interstitialSplashHelper requestSplashADWithPlacement:[AppUtils decidePlacementName:@"INTERSTITIAL_SPLASH"] mode:CE_SPLASH_MODE_SINGLE_OFFER];
+    [_interstitialSplashHelper loadAd];
 }
 
-
-#pragma mark - SplashADHelperDelegate
-- (void)SplashADDidReceiveAd:(NSArray *)ad viewController:(SplashADInterfaceViewController *)vc
+#pragma mark - CESplashADDelegate 
+- (void)CESplashADDidReceiveAd:(NSArray *)ad viewController:(SplashADInterfaceViewController *)vc
 {
-    _splashVC = vc;
-    [vc setDelegate:self];
-    [self presentViewController:vc animated:YES completion:nil];
+    [_interstitialSplashHelper showFromViewController:self animated:YES];
 }
 
-- (void)SplashADDidFailToReceiveAdWithError:(NSError *)error viewController:(SplashADInterfaceViewController *)vc
+- (void)CESplashADDidFailToReceiveAdWithError:(NSError *)error viewController:(SplashADInterfaceViewController *)vc
 {
 }
 
-#pragma mark - SplashADViewControllerDelegate
-- (void)SplashAdWillDismissScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdWillDismissScreen:(SplashADInterfaceViewController *)vc
 {
-    _splashLastViewTime = [[NSDate date] timeIntervalSince1970] * 1000L;
 }
 
-- (void)SplashAdWillPresentScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdWillPresentScreen:(SplashADInterfaceViewController *)vc
 {
-    
 }
 
-- (void)SplashAdDidDismissScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdDidDismissScreen:(SplashADInterfaceViewController *)vc
 {
-    _splashVC = nil;
 }
 
-- (void)SplashAdDidPresentScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdDidPresentScreen:(SplashADInterfaceViewController *)vc
 {
-    
 }
 @end

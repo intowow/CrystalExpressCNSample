@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StreamADHelper.h"
 #import "DemoStreamSectionViewController.h"
 
-@interface DemoStreamTableViewController : UITableViewController <StreamADHelperDelegate>
+@interface DemoStreamTableViewController : UITableViewController
 @property (nonatomic, strong) NSString *sectionName;
-@property (nonatomic, strong) StreamADHelper *streamHelper;
 @property (nonatomic, weak) id<DemoStreamSectionViewControllderDelegate> delegate;
+@property (nonatomic, assign) BOOL isVisible;
 @end

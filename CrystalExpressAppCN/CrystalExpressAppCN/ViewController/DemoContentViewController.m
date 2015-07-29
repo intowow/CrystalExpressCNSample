@@ -8,30 +8,28 @@
 
 #import "DemoContentViewController.h"
 #import "LayoutUtils.h"
-#import "ContentADHelper.h"
+#import "CEContentADHelper.h"
 
 #define ARTICLES_CNT 3
 #define ADMARGIN     10.0f
 
 @interface DemoContentViewController () <UIScrollViewDelegate>
-@property (nonatomic, strong) NSString *articleId;
+@property (nonatomic, strong) NSString *contentId;
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, weak) ContentADHelper *articleADHelper;
 @property (nonatomic, strong) UIView *articleADView;
 @property (nonatomic, strong) UIView *adWrapperView;
 @property (nonatomic, strong) UIImageView *relatedImgView;
 @property (nonatomic, assign) CGFloat adOffset;
-
+@property (nonatomic, strong) CEContentADHelper *contentAdHelper;
 @end
 
 @implementation DemoContentViewController
 
-- (instancetype)initWithADHelper:(ContentADHelper *)helper
+- (instancetype)init
 {
     self = [super init];
     if (self) {
-        _articleId = @"";
-        _articleADHelper = helper;
+        _contentId = @"";
         _adOffset = -1;
 
     }
@@ -46,13 +44,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [_articleADHelper checkAdStartWithKey:_articleId ScrollViewBounds:[_scrollView bounds]];
+    [_contentAdHelper onShow];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [_articleADHelper checkAdStartWithKey:_articleId ScrollViewBounds:CGRectZero];
+    [_contentAdHelper onHide];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,9 +59,9 @@
 }
 
 #pragma mark - public method
-- (void)loadContentWithId:(NSString *)articleId
+- (void)loadContentWithId:(NSString *)contentId
 {
-    _articleId = articleId;
+    _contentId = contentId;
     _scrollView = [[UIScrollView alloc] init];
     [_scrollView setDelegate:self];
     [[self view] addSubview:_scrollView];
@@ -73,7 +71,7 @@
     [_scrollView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
 
     // article top
-    UIImage *articleTop = [UIImage imageNamed:[NSString stringWithFormat:@"asset.bundle/article_%d.jpg", [articleId intValue]%ARTICLES_CNT+1]];
+    UIImage *articleTop = [UIImage imageNamed:[NSString stringWithFormat:@"asset.bundle/article_%d.jpg", [contentId intValue]%ARTICLES_CNT+1]];
     
     UIImageView *articleTopView = [[UIImageView alloc] initWithImage:articleTop];
     [articleTopView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, [LayoutUtils getRelatedHeightWithOriWidth:articleTop.size.width OriHeight:articleTop.size.height])];
@@ -81,7 +79,7 @@
     scrollHeight += articleTopView.bounds.size.height;
     
     // text
-    NSString *articleTextFilePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"asset.bundle/article_%d", [articleId intValue]%ARTICLES_CNT+1] ofType:@"txt"];
+    NSString *articleTextFilePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"asset.bundle/article_%d", [contentId intValue]%ARTICLES_CNT+1] ofType:@"txt"];
     NSString *articleText = [NSString stringWithContentsOfFile:articleTextFilePath encoding:NSUTF8StringEncoding error:nil];
 
     
@@ -100,24 +98,10 @@
     scrollHeight += textContainer.bounds.size.height;
 
     // article AD
-    _adWrapperView = [[UIView alloc] init];
-    _articleADView = (UIView *)[_articleADHelper requestADWithContentId:articleId];
-    [_articleADHelper setScrollOffsetWithKey:articleId offset:scrollHeight];
-    if (_articleADView) {
-        [_adWrapperView setFrame:CGRectMake(0, scrollHeight, _articleADView.bounds.size.width + 2*ADMARGIN, _articleADView.bounds.size.height + 2*ADMARGIN)];
-        [_articleADView setFrame:CGRectMake(ADMARGIN, ADMARGIN, _articleADView.bounds.size.width, _articleADView.bounds.size.height)];
-        [_adWrapperView addSubview:_articleADView];
-        _adOffset = scrollHeight;
-        scrollHeight += _adWrapperView.bounds.size.height;
-        [_scrollView addSubview:_adWrapperView];
-    } else {
-        scrollHeight += [LayoutUtils getRelatedHeightWithOriWidth:720 OriHeight:60];
-    }
-    
-    
+    _adWrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, scrollHeight, self.view.bounds.size.width, 0)];
     
     // related article
-    UIImage *relatedImg = [UIImage imageNamed:[NSString stringWithFormat:@"asset.bundle/news_related_%d.jpg", [articleId intValue]%2+1]];
+    UIImage *relatedImg = [UIImage imageNamed:[NSString stringWithFormat:@"asset.bundle/news_related_%d.jpg", [contentId intValue]%2+1]];
     _relatedImgView = [[UIImageView alloc] initWithImage:relatedImg];
     [_relatedImgView setFrame:CGRectMake(0, scrollHeight, self.view.bounds.size.width, [LayoutUtils getRelatedHeightWithOriWidth:relatedImg.size.width OriHeight:relatedImg.size.height])];
     [_scrollView addSubview:_relatedImgView];
@@ -125,41 +109,13 @@
 
     
     [_scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, scrollHeight)];
+    
+    [self setupContentAdWithAdView:_adWrapperView contentId:contentId];
 }
 
-#pragma mark - pull down
-- (void)onPullDownAnimationWithAD:(UIView *)adView
+- (void)setupContentAdWithAdView:(UIView *)adView contentId:(NSString *)contentId
 {
-    if (adView == _articleADView) {
-        CGRect frame = [_adWrapperView frame];
-        frame.size.height = adView.bounds.size.height + ADMARGIN*2;
-        [_adWrapperView setFrame:frame];
-        
-        frame = [_relatedImgView frame];
-        frame.origin.y = _adOffset + _adWrapperView.bounds.size.height;
-        [_relatedImgView setFrame:frame];
-        
-        CGFloat finalContentOffset = _adOffset + adView.bounds.size.height + _relatedImgView.bounds.size.height;
-        [_scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, finalContentOffset)];
-    }
+    _contentAdHelper = [CEContentADHelper helperWithPlacement:@"CONTENT" scrollView:_scrollView contentId:contentId];
+    [_contentAdHelper loadAdInView:adView];
 }
-
-#pragma mark - scrollview delegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [_articleADHelper updateScrollViewBounds:[scrollView bounds] withKey:_articleId];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (decelerate == NO) {
-        [_articleADHelper checkAdStartWithKey:_articleId ScrollViewBounds:[scrollView bounds]];
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    [_articleADHelper checkAdStartWithKey:_articleId ScrollViewBounds:[scrollView bounds]];
-}
-
 @end

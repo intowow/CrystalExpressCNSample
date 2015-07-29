@@ -4,47 +4,27 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-CrystalExpressAppCN-AFDownloadRequestOperation.xcscheme</key>
+		<key>AFDownloadRequestOperation.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-CrystalExpressAppCN-AFNetworking.xcscheme</key>
+		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-CrystalExpressAppCN-CrystalExpressSDK-CN.xcscheme</key>
+		<key>JSONKit-NoWarning.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-CrystalExpressAppCN-JSONKit-NoWarning.xcscheme</key>
+		<key>MTStatusBarOverlay.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-CrystalExpressAppCN-MTStatusBarOverlay.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-CrystalExpressAppCN-NJKWebViewProgress.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-CrystalExpressAppCN-Reachability.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-CrystalExpressAppCN-SSPullToRefresh.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-CrystalExpressAppCN-SSZipArchive.xcscheme</key>
+		<key>NJKWebViewProgress.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -54,55 +34,65 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Reachability.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SSPullToRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SSZipArchive.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>06FB20EF5CE6EEA38D9EBE0E</key>
+		<key>1893DE70459B9C5430E1E53597BF9817</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>13E2E642D66DF81B8290EFFE</key>
+		<key>4196BF42F14401ACAC0F93538E3AF237</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>28E8DD0B881FB688CD635259</key>
+		<key>4CCF300EE3BD90CC951B4774563ED7C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4CBE527C3DB750FD983552D2</key>
+		<key>6502F07A4B8FD706681010ED9EBD057A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>53579B69AFF9D135315EBA4A</key>
+		<key>6A460A6245CCE7A153744BF116F4C357</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5D72621E51C59B821E1777E7</key>
+		<key>8AB9074FD54A625F8BF16F02BF9865E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6007C3A0F81E92605C434B46</key>
+		<key>E0D262065F18E682204E7050E61272D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9E2E1BEA1B445B5356250D6D</key>
+		<key>F0CAE19E202AAE673B1AF2A5675137E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A24AF8EFB0036D2D50096303</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FB6913979929D72FC066A0FE</key>
+		<key>FD22B9C67104B5202C51C79AAEFFE9F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

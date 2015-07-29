@@ -8,18 +8,16 @@
 
 #import "AppDelegate.h"
 #import "I2WAPI.h"
-#import "SplashADHelper.h"
-#import "SplashADInterfaceViewController.h"
+#import "CESplashAD.h"
 #import "DemoStreamSectionViewController.h"
 #import "DemoNavigationViewController.h"
 #import "AppUtils.h"
 
 
-@interface AppDelegate() <UIAlertViewDelegate, SplashADHelperDelegate, SplashADViewControllerDelegate, I2WADEventDelegate>
-@property (nonatomic, strong) UIViewController *openSplashVC;
+@interface AppDelegate() <UIAlertViewDelegate, CESplashADDelegate, I2WADEventDelegate>
 @property (nonatomic, strong) DemoNavigationViewController *nav;
 @property (nonatomic, assign) BOOL resetViews;
-@property (nonatomic, strong) SplashADHelper *openSplashHelper;
+@property (nonatomic, strong) CESplashAD *openSplashHelper;
 @end
 
 @implementation AppDelegate
@@ -32,11 +30,11 @@
     [_nav setNavigationBarHidden:YES];
     self.window.rootViewController = _nav;
     [self.window makeKeyAndVisible];
-    _openSplashHelper = [[SplashADHelper alloc] init];
-    [_openSplashHelper setDelegate:self];
+    _openSplashHelper = [[CESplashAD alloc] initWithPlacement:@"OPEN_SPLASH" delegate:self];
     _resetViews = YES;
   
     [I2WAPI initWithVerboseLog:YES isTestMode:NO];
+    [I2WAPI setAdEventDelegate:self];
     _shouldRequestOpenSplash = YES;
     
     return YES;
@@ -130,51 +128,45 @@
         }
     }
     
-    [_openSplashHelper requestSplashADWithPlacement:[AppUtils decidePlacementName:@"OPEN_SPLASH"] mode:CE_SPLASH_MODE_SINGLE_OFFER];
+    [_openSplashHelper loadAd];
     return YES;
 }
 
 
-#pragma mark - SplashADHelperDelegate
-- (void)SplashADDidReceiveAd:(NSArray *)ad viewController:(SplashADInterfaceViewController *)vc
+#pragma mark - CESplashADDelegate
+- (void)CESplashADDidReceiveAd:(NSArray *)ad viewController:(SplashADInterfaceViewController *)vc
 {
-    _openSplashVC = vc;
-    [vc setDelegate:self];
-    
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
     while (topController.presentedViewController) {
         topController = topController.presentedViewController;
     }
     
-    [topController presentViewController:vc animated:YES completion:^{
-        [self prepareContentViewController];
-    }];
+    [_openSplashHelper showFromViewController:topController animated:YES];
 }
 
-- (void)SplashADDidFailToReceiveAdWithError:(NSError *)error viewController:(SplashADInterfaceViewController *)vc
+- (void)CESplashADDidFailToReceiveAdWithError:(NSError *)error viewController:(SplashADInterfaceViewController *)vc
 {
     NSLog(@"fail to request OPEN_SPLASH, reason:%@", error);
     [self prepareContentViewController];
 }
 
-#pragma mark - SplashADViewControllerDelegate
-- (void)SplashAdWillDismissScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdWillDismissScreen:(SplashADInterfaceViewController *)vc
 {
 }
 
-- (void)SplashAdWillPresentScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdWillPresentScreen:(SplashADInterfaceViewController *)vc
 {
     
 }
 
-- (void)SplashAdDidDismissScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdDidDismissScreen:(SplashADInterfaceViewController *)vc
 {
-    _openSplashVC = nil;
+
 }
 
-- (void)SplashAdDidPresentScreen:(SplashADInterfaceViewController *)vc
+- (void)CESplashAdDidPresentScreen:(SplashADInterfaceViewController *)vc
 {
-    
+    [self prepareContentViewController];
 }
 
 #pragma mark - adEvent delegate
