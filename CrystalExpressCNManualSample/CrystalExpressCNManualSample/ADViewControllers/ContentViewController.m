@@ -124,22 +124,6 @@
     [_contentADHelper loadAdInView:adView];
 }
 
-#pragma mark - pull down
-- (void)onPullDownAnimationWithAD:(UIView *)adView
-{
-    if (adView == _contentADView) {
-        CGRect frame = [_adWrapperView frame];
-        frame.size.height = adView.bounds.size.height + 10*2;
-        [_adWrapperView setFrame:frame];
-        
-        frame = [_relatedImgView frame];
-        frame.origin.y = _adOffset + _adWrapperView.bounds.size.height;
-        [_relatedImgView setFrame:frame];
-        
-        CGFloat finalContentOffset = _adOffset + adView.bounds.size.height + _relatedImgView.bounds.size.height;
-        [_scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, finalContentOffset)];
-    }}
-
 #pragma mark - orientation
 - (NSUInteger)supportedInterfaceOrientations
 {
