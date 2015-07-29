@@ -33,8 +33,8 @@
 		D5B4ACF61B117AB2007B674C /* StreamTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACF21B117AB2007B674C /* StreamTableViewController.m */; };
 		D5B4ACFA1B117ACB007B674C /* asset.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5B4ACF71B117ACB007B674C /* asset.bundle */; };
 		D5B4ACFB1B117ACB007B674C /* LayoutUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACF91B117ACB007B674C /* LayoutUtils.m */; };
-		D5B75EFC1B6775CC00E4C25D /* CrystalExpress.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5B75EF51B6775CC00E4C25D /* CrystalExpress.plist */; };
-		D5B75EFD1B6775CC00E4C25D /* CrystalExpressSDK-1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B75EF61B6775CC00E4C25D /* CrystalExpressSDK-1.3.0.a */; };
+		D5B75F0B1B686D1900E4C25D /* CrystalExpress.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5B75F031B686D1900E4C25D /* CrystalExpress.plist */; };
+		D5B75F0F1B68721E00E4C25D /* CrystalExpressSDK-1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B75F0E1B68721E00E4C25D /* CrystalExpressSDK-1.3.0.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,18 +85,18 @@
 		D5B4ACF71B117ACB007B674C /* asset.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = asset.bundle; sourceTree = "<group>"; };
 		D5B4ACF81B117ACB007B674C /* LayoutUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutUtils.h; sourceTree = "<group>"; };
 		D5B4ACF91B117ACB007B674C /* LayoutUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutUtils.m; sourceTree = "<group>"; };
-		D5B75EF01B6775CC00E4C25D /* BannerADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerADHelper.h; sourceTree = "<group>"; };
-		D5B75EF11B6775CC00E4C25D /* CEContentADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEContentADHelper.h; sourceTree = "<group>"; };
-		D5B75EF21B6775CC00E4C25D /* CESplashAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESplashAD.h; sourceTree = "<group>"; };
-		D5B75EF31B6775CC00E4C25D /* CETableViewADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETableViewADHelper.h; sourceTree = "<group>"; };
-		D5B75EF41B6775CC00E4C25D /* ContentADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentADHelper.h; sourceTree = "<group>"; };
-		D5B75EF51B6775CC00E4C25D /* CrystalExpress.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CrystalExpress.plist; sourceTree = "<group>"; };
-		D5B75EF61B6775CC00E4C25D /* CrystalExpressSDK-1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-1.3.0.a"; sourceTree = "<group>"; };
-		D5B75EF71B6775CC00E4C25D /* FlipDynamicADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipDynamicADHelper.h; sourceTree = "<group>"; };
-		D5B75EF81B6775CC00E4C25D /* I2WAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I2WAPI.h; sourceTree = "<group>"; };
-		D5B75EF91B6775CC00E4C25D /* SplashADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashADHelper.h; sourceTree = "<group>"; };
-		D5B75EFA1B6775CC00E4C25D /* SplashADInterfaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashADInterfaceViewController.h; sourceTree = "<group>"; };
-		D5B75EFB1B6775CC00E4C25D /* StreamADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamADHelper.h; sourceTree = "<group>"; };
+		D5B75EFE1B686D1900E4C25D /* BannerADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerADHelper.h; sourceTree = "<group>"; };
+		D5B75EFF1B686D1900E4C25D /* CEContentADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEContentADHelper.h; sourceTree = "<group>"; };
+		D5B75F001B686D1900E4C25D /* CESplashAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESplashAD.h; sourceTree = "<group>"; };
+		D5B75F011B686D1900E4C25D /* CETableViewADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETableViewADHelper.h; sourceTree = "<group>"; };
+		D5B75F021B686D1900E4C25D /* ContentADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentADHelper.h; sourceTree = "<group>"; };
+		D5B75F031B686D1900E4C25D /* CrystalExpress.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CrystalExpress.plist; sourceTree = "<group>"; };
+		D5B75F061B686D1900E4C25D /* FlipDynamicADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipDynamicADHelper.h; sourceTree = "<group>"; };
+		D5B75F071B686D1900E4C25D /* I2WAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I2WAPI.h; sourceTree = "<group>"; };
+		D5B75F081B686D1900E4C25D /* SplashADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashADHelper.h; sourceTree = "<group>"; };
+		D5B75F091B686D1900E4C25D /* SplashADInterfaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashADInterfaceViewController.h; sourceTree = "<group>"; };
+		D5B75F0A1B686D1900E4C25D /* StreamADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamADHelper.h; sourceTree = "<group>"; };
+		D5B75F0E1B68721E00E4C25D /* CrystalExpressSDK-1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-1.3.0.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +109,7 @@
 				D5B4ACE41B1179EA007B674C /* libsqlite3.dylib in Frameworks */,
 				D5B4ACE21B1179E2007B674C /* CoreMedia.framework in Frameworks */,
 				D5B4ACE01B1179D9007B674C /* CoreTelephony.framework in Frameworks */,
-				D5B75EFD1B6775CC00E4C25D /* CrystalExpressSDK-1.3.0.a in Frameworks */,
+				D5B75F0F1B68721E00E4C25D /* CrystalExpressSDK-1.3.0.a in Frameworks */,
 				D5B4ACDE1B1179D1007B674C /* libc++.dylib in Frameworks */,
 				D5B4ACDC1B1179C4007B674C /* libz.dylib in Frameworks */,
 				D5B4ACDA1B1179BC007B674C /* AdSupport.framework in Frameworks */,
@@ -199,18 +199,18 @@
 		D5B4ACC31B11794F007B674C /* CrystalExpressLib */ = {
 			isa = PBXGroup;
 			children = (
-				D5B75EF01B6775CC00E4C25D /* BannerADHelper.h */,
-				D5B75EF11B6775CC00E4C25D /* CEContentADHelper.h */,
-				D5B75EF21B6775CC00E4C25D /* CESplashAD.h */,
-				D5B75EF31B6775CC00E4C25D /* CETableViewADHelper.h */,
-				D5B75EF41B6775CC00E4C25D /* ContentADHelper.h */,
-				D5B75EF51B6775CC00E4C25D /* CrystalExpress.plist */,
-				D5B75EF61B6775CC00E4C25D /* CrystalExpressSDK-1.3.0.a */,
-				D5B75EF71B6775CC00E4C25D /* FlipDynamicADHelper.h */,
-				D5B75EF81B6775CC00E4C25D /* I2WAPI.h */,
-				D5B75EF91B6775CC00E4C25D /* SplashADHelper.h */,
-				D5B75EFA1B6775CC00E4C25D /* SplashADInterfaceViewController.h */,
-				D5B75EFB1B6775CC00E4C25D /* StreamADHelper.h */,
+				D5B75EFE1B686D1900E4C25D /* BannerADHelper.h */,
+				D5B75EFF1B686D1900E4C25D /* CEContentADHelper.h */,
+				D5B75F001B686D1900E4C25D /* CESplashAD.h */,
+				D5B75F011B686D1900E4C25D /* CETableViewADHelper.h */,
+				D5B75F021B686D1900E4C25D /* ContentADHelper.h */,
+				D5B75F031B686D1900E4C25D /* CrystalExpress.plist */,
+				D5B75F061B686D1900E4C25D /* FlipDynamicADHelper.h */,
+				D5B75F0E1B68721E00E4C25D /* CrystalExpressSDK-1.3.0.a */,
+				D5B75F071B686D1900E4C25D /* I2WAPI.h */,
+				D5B75F081B686D1900E4C25D /* SplashADHelper.h */,
+				D5B75F091B686D1900E4C25D /* SplashADInterfaceViewController.h */,
+				D5B75F0A1B686D1900E4C25D /* StreamADHelper.h */,
 			);
 			name = CrystalExpressLib;
 			sourceTree = "<group>";
@@ -334,7 +334,7 @@
 				D5B4ACAE1B11792B007B674C /* LaunchScreen.xib in Resources */,
 				D5B4ACAB1B11792B007B674C /* Images.xcassets in Resources */,
 				D5B4ACFA1B117ACB007B674C /* asset.bundle in Resources */,
-				D5B75EFC1B6775CC00E4C25D /* CrystalExpress.plist in Resources */,
+				D5B75F0B1B686D1900E4C25D /* CrystalExpress.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

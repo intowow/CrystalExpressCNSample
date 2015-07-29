@@ -69,7 +69,8 @@
             [_interstitialSplashADHelper loadAd];
             break;
         case 3:
-            [self.navigationController pushViewController:[[ContentViewController alloc] initWithPlacementName:@"CONTENT"] animated:YES];
+            [self.navigationController pushViewController:[[ContentViewController alloc] init] animated:YES];
+//            [self.navigationController pushViewController:[[ContentViewController alloc] initWithPlacementName:@"CONTENT"] animated:YES];
             break;
         case 4:
             [self.navigationController pushViewController:[[StreamSectionViewController alloc] initWithPlacementName:@"STREAM"] animated:YES];

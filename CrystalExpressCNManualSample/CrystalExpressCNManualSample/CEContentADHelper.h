@@ -14,4 +14,6 @@
                          scrollView:(UIScrollView *)scrollView
                           contentId:(NSString *)contentId;
 - (void)loadAdInView:(UIView *)wrapperView;
+- (void)onShow;
+- (void)onHide;
 @end

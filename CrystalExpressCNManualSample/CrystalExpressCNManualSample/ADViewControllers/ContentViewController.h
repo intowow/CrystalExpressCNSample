@@ -10,5 +10,4 @@
 
 @interface ContentViewController : UIViewController
 
-- (instancetype)initWithPlacementName:(NSString *)placementName;
 @end

@@ -18,6 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     [I2WAPI initWithVerboseLog:YES isTestMode:NO];
     _nav = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
     [_nav setNavigationBarHidden:YES];
