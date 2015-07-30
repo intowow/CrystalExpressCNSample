@@ -1,4 +1,11 @@
+## [1.3.1]() (2015-07-30)
 
+#### Fixed
+* Change CETableViewADHelper API from `refreshAd` to `cleanAds` to clearify the meaning
+* Fix CEStreamADHelper strong delegate reference
+* Fix CESplashAD does not release pointer while viewcontroller dismissed
+
+---
 ## [1.3.0]() (2015-07-29)
 
 #### Feature
