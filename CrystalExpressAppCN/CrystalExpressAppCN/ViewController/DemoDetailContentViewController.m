@@ -10,7 +10,6 @@
 #import "LayoutUtils.h"
 #import "DemoContentViewController.h"
 #import "DemoFlipADViewController.h"
-#import "ContentADHelper.h"
 #import "FlipDynamicADHelper.h"
 #import "AppUtils.h"
 
@@ -22,7 +21,6 @@
 @property (nonatomic, assign) NSUInteger curIndex;
 @property (nonatomic, strong) NSMutableArray *articleVCPool;
 @property (nonatomic, strong) NSMutableArray *contentVCs;
-@property (nonatomic, strong) ContentADHelper *articleADHelper;
 @property (nonatomic, strong) FlipDynamicADHelper *flipADHelper;
 @property (nonatomic, strong) DemoFlipADViewController *flipADVC;
 @end
@@ -37,6 +35,8 @@
         _articleVCPool = [[NSMutableArray alloc] init];
         _contentVCs = [[NSMutableArray alloc] init];
         _flipADHelper = [[FlipDynamicADHelper alloc] initWithPlacement:[AppUtils decidePlacementName:@"FLIP"] pageIndex:_curIndex];
+        
+    
     }
     return self;
 }

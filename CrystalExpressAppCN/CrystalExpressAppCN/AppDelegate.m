@@ -13,30 +13,43 @@
 #import "DemoNavigationViewController.h"
 #import "AppUtils.h"
 
-
 @interface AppDelegate() <UIAlertViewDelegate, CESplashADDelegate, I2WADEventDelegate>
 @property (nonatomic, strong) DemoNavigationViewController *nav;
 @property (nonatomic, assign) BOOL resetViews;
-@property (nonatomic, strong) CESplashAD *openSplashHelper;
+@property (nonatomic, strong) CESplashAD *CEOpenSplashAD;
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    UIViewController *rootVC = [[UIViewController alloc] init];
-    _nav = [[DemoNavigationViewController alloc] initWithRootViewController:rootVC];
+    UIViewController *logoVC = [[UIViewController alloc] init];
+    // Load launch image
+    NSString *launchImageName;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        if ([UIScreen mainScreen].bounds.size.height == 480) launchImageName = @"LaunchImage-700@2x.png"; // iPhone 4/4s, 3.5 inch screen
+        if ([UIScreen mainScreen].bounds.size.height == 568) launchImageName = @"LaunchImage-700-568h@2x.png"; // iPhone 5/5s, 4.0 inch screen
+        if ([UIScreen mainScreen].bounds.size.height == 667) launchImageName = @"LaunchImage-800-667h@2x.png"; // iPhone 6, 4.7 inch screen
+        if ([UIScreen mainScreen].bounds.size.height == 736) launchImageName = @"LaunchImage-800-Portrait-736h@3x.png"; // iPhone 6+, 5.5 inch screen
+    }
+    UIImageView *lanuchImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:launchImageName]];
+    
+    [logoVC.view addSubview:lanuchImgView];
+    
+    _nav = [[DemoNavigationViewController alloc] initWithRootViewController:logoVC];
     [self.window addSubview:[_nav view]];
     [_nav setNavigationBarHidden:YES];
     self.window.rootViewController = _nav;
     [self.window makeKeyAndVisible];
-    _openSplashHelper = [[CESplashAD alloc] initWithPlacement:@"OPEN_SPLASH" delegate:self];
-    _resetViews = YES;
-  
     [I2WAPI initWithVerboseLog:YES isTestMode:NO];
     [I2WAPI setAdEventDelegate:self];
-    _shouldRequestOpenSplash = YES;
     
+    _CEOpenSplashAD = [[CESplashAD alloc] initWithPlacement:@"OPEN_SPLASH" delegate:self];
+    [_CEOpenSplashAD setPortraitViewControllerPresentAnimation:CE_SPLASH_PORTRAIT_PRESENT_DEFAULT
+                                              DismissAnimation:CE_SPLASH_PORTRAIT_DISMISS_DEFAULT];
+    _resetViews = YES;
+    _shouldRequestOpenSplash = YES;
     return YES;
 }
 
@@ -63,7 +76,6 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     _shouldRequestOpenSplash = YES;
-    [I2WAPI refreshI2WAds];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -122,13 +134,14 @@
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
     while (topController.presentedViewController) {
         topController = topController.presentedViewController;
-        if ([topController isKindOfClass:[SplashADInterfaceViewController class]]) {
+        if ([_CEOpenSplashAD isSplashAdVC:topController]) {
             isShowingSplashAd = YES;
             return NO;
         }
     }
-    
-    [_openSplashHelper loadAd];
+
+    // delay a little sec to avoid unbalanced call warning
+    [_CEOpenSplashAD performSelector:@selector(loadAd) withObject:nil afterDelay:0.05];
     return YES;
 }
 
@@ -140,18 +153,18 @@
     while (topController.presentedViewController) {
         topController = topController.presentedViewController;
     }
-    
-    [_openSplashHelper showFromViewController:topController animated:YES];
+  
+    [_CEOpenSplashAD showFromViewController:topController animated:YES];
 }
 
 - (void)CESplashADDidFailToReceiveAdWithError:(NSError *)error viewController:(SplashADInterfaceViewController *)vc
 {
-    NSLog(@"fail to request OPEN_SPLASH, reason:%@", error);
     [self prepareContentViewController];
 }
 
 - (void)CESplashAdWillDismissScreen:(SplashADInterfaceViewController *)vc
 {
+    
 }
 
 - (void)CESplashAdWillPresentScreen:(SplashADInterfaceViewController *)vc
@@ -172,7 +185,6 @@
 #pragma mark - adEvent delegate
 - (void)onAdClick:(NSString *)adId
 {
-    // the callback is on background thread, if you need to do UI things, please do it on main thread
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"ad[%@] click!", adId);
     });
@@ -180,7 +192,6 @@
 
 - (void)onAdImpression:(NSString *)adId
 {
-    // the callback is on background thread, if you need to do UI things, please do it on main thread
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"ad[%@] impression!", adId);
     });

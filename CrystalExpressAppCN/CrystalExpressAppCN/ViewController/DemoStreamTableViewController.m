@@ -224,7 +224,7 @@
 {
     [self.pullToRefreshView startLoading];
     [self prepareDataSources];
-    [_streamAdHelper reloadAd];
+    [_streamAdHelper cleanAds];
     [self.tableView reloadData];
     [self.pullToRefreshView finishLoading];
 }

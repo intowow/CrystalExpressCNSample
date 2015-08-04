@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "I2WAPI.h"
-#import "SplashADInterfaceViewController.h"
+//#import "SplashADInterfaceViewController.h"
 
+@class SplashADInterfaceViewController;
 /**
  *  CESplashADHelper Delegate that can receive AD events
  */
@@ -83,22 +84,55 @@ typedef NS_ENUM(NSUInteger, CESplashMode){
     CE_SPLASH_MODE_SINGLE_OFFER,
 };
 
+/**
+ *  Portrait viewcontroller present animation option
+ */
 typedef NS_ENUM(NSUInteger, CEPortraitViewControllerPresentAnimationOption){
+    /**
+     *  iOS default animation
+     */
     CE_SPLASH_PORTRAIT_PRESENT_DEFAULT,
+    /**
+     *  vertical bounce present animation
+     */
     CE_SPLASH_PORTRAIT_PRESENT_VERTICAL_BOUNCE,
 };
 
+/**
+ *  Portrait viewcontroller dismiss animation option
+ */
 typedef NS_ENUM(NSUInteger, CEPortraitViewControllerDismissAnimationOption){
+    /**
+     *  iOS default animation
+     */
     CE_SPLASH_PORTRAIT_DISMISS_DEFAULT,
 };
 
+/**
+ *  Landscape viewcontroller present animation option
+ */
 typedef NS_ENUM(NSUInteger, CELandscapeViewControllerPresentAnimationOption){
+    /**
+     *  iOS default animation
+     */
     CE_SPLASH_LANDSCAPE_PRESENT_DEFAULT,
+    /**
+     *  rotation from portrait to landscape animation
+     */
     CE_SPLASH_LANDSCAPE_PRESENT_ROTATION,
 };
 
+/**
+ *  Landscape viewcontroller dismiss animation option
+ */
 typedef NS_ENUM(NSUInteger, CELandscapeViewControllerDismissAnimationOption){
+    /**
+     *  iOS default animation
+     */
     CE_SPLASH_LANDSCAPE_DISMISS_DEFAULT,
+    /**
+     *  rotation from landscape to portrait animation 
+     */
     CE_SPLASH_LANDSCAPE_DISMISS_ROTATION,
 };
 
@@ -132,6 +166,15 @@ typedef NS_ENUM(NSUInteger, CELandscapeViewControllerDismissAnimationOption){
 - (void)loadAd;
 
 /**
+ *  @brief return whether viewcontroller is a Splash Ad viewcontroller
+ *
+ *  @param vc viewcontroller
+ *
+ *  @return bool to indicate viewcontroller is a CrystalExpress Splash AD viewcontroller
+ */
+- (BOOL)isSplashAdVC:(UIViewController *)vc;
+
+/**
  *  @brief Presents the splash ad modally from viewCotroller
  *
  *  @param viewController view controller from which splash ad will be presented.
@@ -147,10 +190,30 @@ typedef NS_ENUM(NSUInteger, CELandscapeViewControllerDismissAnimationOption){
  */
 - (void)dismissAnimated:(BOOL)animated;
 
+/**
+ *  @brief set portrait splash AD present and dismiss animation with CrystalExpress bulit-in animation effect
+ *
+ *  @param presentAnimation viewcontroller present animation
+ *  @param dismissAnimation viewcontroller dismiss animation
+ */
 - (void)setPortraitViewControllerPresentAnimation:(CEPortraitViewControllerPresentAnimationOption)presentAnimation
                                  DismissAnimation:(CEPortraitViewControllerDismissAnimationOption)dismissAnimation;
+
+/**
+ *  @brief set landscape splash AD present and dismiss animation with CrystalExpress bulit-in animation effect
+ *
+ *  @param presentAnimation viewcontroller present animation
+ *  @param dismissAnimation viewcontroller dismiss animation
+ */
 - (void)setLandscapeViewControllerPresentAnimation:(CELandscapeViewControllerPresentAnimationOption)presentAnimation
                                   DismissAnimation:(CELandscapeViewControllerDismissAnimationOption)dismissAnimation;
+
+/**
+ *  @brief Splash AD allowed customized present/dismiss animation
+ *
+ *  @param presentAnimation animation object which conform to UIViewControllerAnimatedTransitioning
+ *  @param dismissAnimation animation object which conform to UIViewControllerAnimatedTransitioning
+ */
 - (void)setCustomPortraitViewControllerPresentAnimation:(id<UIViewControllerAnimatedTransitioning>)presentAnimation
                                        DismissAnimation:(id<UIViewControllerAnimatedTransitioning>)dismissAnimation;
 - (void)setCustomLandscapeViewControllerPresentAnimation:(id<UIViewControllerAnimatedTransitioning>)presentAnimation

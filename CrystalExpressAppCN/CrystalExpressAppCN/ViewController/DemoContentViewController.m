@@ -11,15 +11,16 @@
 #import "CEContentADHelper.h"
 
 #define ARTICLES_CNT 3
-#define ADMARGIN     10.0f
+#define AD_MARGIN    10
 
 @interface DemoContentViewController () <UIScrollViewDelegate>
-@property (nonatomic, strong) NSString *contentId;
+@property (nonatomic, strong) NSString *articleId;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *articleADView;
 @property (nonatomic, strong) UIView *adWrapperView;
 @property (nonatomic, strong) UIImageView *relatedImgView;
 @property (nonatomic, assign) CGFloat adOffset;
+
 @property (nonatomic, strong) CEContentADHelper *contentAdHelper;
 @end
 
@@ -29,7 +30,7 @@
 {
     self = [super init];
     if (self) {
-        _contentId = @"";
+        _articleId = @"";
         _adOffset = -1;
 
     }
@@ -59,9 +60,9 @@
 }
 
 #pragma mark - public method
-- (void)loadContentWithId:(NSString *)contentId
+- (void)loadContentWithId:(NSString *)articleId
 {
-    _contentId = contentId;
+    _articleId = articleId;
     _scrollView = [[UIScrollView alloc] init];
     [_scrollView setDelegate:self];
     [[self view] addSubview:_scrollView];
@@ -71,7 +72,7 @@
     [_scrollView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
 
     // article top
-    UIImage *articleTop = [UIImage imageNamed:[NSString stringWithFormat:@"asset.bundle/article_%d.jpg", [contentId intValue]%ARTICLES_CNT+1]];
+    UIImage *articleTop = [UIImage imageNamed:[NSString stringWithFormat:@"asset.bundle/article_%d.jpg", [articleId intValue]%ARTICLES_CNT+1]];
     
     UIImageView *articleTopView = [[UIImageView alloc] initWithImage:articleTop];
     [articleTopView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, [LayoutUtils getRelatedHeightWithOriWidth:articleTop.size.width OriHeight:articleTop.size.height])];
@@ -79,7 +80,7 @@
     scrollHeight += articleTopView.bounds.size.height;
     
     // text
-    NSString *articleTextFilePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"asset.bundle/article_%d", [contentId intValue]%ARTICLES_CNT+1] ofType:@"txt"];
+    NSString *articleTextFilePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"asset.bundle/article_%d", [articleId intValue]%ARTICLES_CNT+1] ofType:@"txt"];
     NSString *articleText = [NSString stringWithContentsOfFile:articleTextFilePath encoding:NSUTF8StringEncoding error:nil];
 
     
@@ -101,21 +102,17 @@
     _adWrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, scrollHeight, self.view.bounds.size.width, 0)];
     
     // related article
-    UIImage *relatedImg = [UIImage imageNamed:[NSString stringWithFormat:@"asset.bundle/news_related_%d.jpg", [contentId intValue]%2+1]];
+    UIImage *relatedImg = [UIImage imageNamed:[NSString stringWithFormat:@"asset.bundle/news_related_%d.jpg", [articleId intValue]%2+1]];
     _relatedImgView = [[UIImageView alloc] initWithImage:relatedImg];
     [_relatedImgView setFrame:CGRectMake(0, scrollHeight, self.view.bounds.size.width, [LayoutUtils getRelatedHeightWithOriWidth:relatedImg.size.width OriHeight:relatedImg.size.height])];
     [_scrollView addSubview:_relatedImgView];
     scrollHeight += _relatedImgView.bounds.size.height;
 
-    
     [_scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, scrollHeight)];
     
-    [self setupContentAdWithAdView:_adWrapperView contentId:contentId];
+   
+    _contentAdHelper = [CEContentADHelper helperWithPlacement:@"CONTENT" scrollView:_scrollView contentId:articleId];
+    [_contentAdHelper loadAdInView:_adWrapperView];
 }
 
-- (void)setupContentAdWithAdView:(UIView *)adView contentId:(NSString *)contentId
-{
-    _contentAdHelper = [CEContentADHelper helperWithPlacement:@"CONTENT" scrollView:_scrollView contentId:contentId];
-    [_contentAdHelper loadAdInView:adView];
-}
 @end

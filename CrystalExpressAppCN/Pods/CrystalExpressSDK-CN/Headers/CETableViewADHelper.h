@@ -9,16 +9,59 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ *  CETableViewADHelper
+ */
 @interface CETableViewADHelper : NSObject
+/**
+ *  initialize helper with tableView to insert stream ADs, current viewcontroller and AD placement name
+ *
+ *  @param tableView  tableView to insert stream ADs
+ *  @param controller current view controller
+ *  @param placement  AD placement name
+ *
+ *  @return CETableViewADHelper instance
+ */
 + (instancetype)helperWithTableView:(UITableView *)tableView
                      viewController:(UIViewController *)controller
                           placement:(NSString *)placement;
 
+/**
+ *  this is an optional method to set stream AD's width
+ *  stream AD's height will be adjusted to keep the original creative ratio from width
+ *
+ *  @param width stream AD width
+ */
 - (void)setAdWidth:(float)width;
+
+/**
+ *  start load stream AD
+ */
 - (void)loadAd;
-- (void)reloadAd;
+
+/**
+ *  clean all cached ADs, reset the helper
+ */
+- (void)cleanAds;
+
+/**
+ *  call while view controller is present in front of user
+ *  this will trigger AD to check whether it should start play
+ */
 - (void)onShow;
+
+/**
+ *  call while view controller is hide from user
+ *  this will trigger AD to check whether it should stop play
+ */
 - (void)onHide;
+
+/**
+ *  set App AD indexPaths to avoid SDK insert aside them
+ *
+ *  @param appAdsIndexPaths App Ad's indexPaths
+ */
+- (void)setAppAdsIndexPaths:(NSArray *)appAdsIndexPaths;
 @end
 
 @interface UITableView (CETableViewAdHelper)

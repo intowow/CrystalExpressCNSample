@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class ContentADHelper;
 @interface DemoContentViewController : UIViewController
 - (void)loadContentWithId:(NSString *)articleId;
 @end
