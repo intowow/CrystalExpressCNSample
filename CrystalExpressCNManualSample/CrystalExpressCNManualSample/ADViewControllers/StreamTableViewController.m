@@ -11,7 +11,7 @@
 #import "CETableViewADHelper.h"
 
 #define NUM_OF_SECTIONS 3
-#define ROWS_IN_SECTION 100
+#define ROWS_IN_SECTION 20
 #define AD_VERTICAL_MARGIN 5
 #define AD_HORIZONTAL_MARGIN 5
 
@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *dataSources;
 @property (nonatomic, strong) CETableViewADHelper *adHelper;
 @property (nonatomic, strong) NSString *sectionName;
+@property (nonatomic, strong) NSMutableArray *appAdIndexPaths;
 @end
 
 @implementation StreamTableViewController
@@ -31,6 +32,7 @@
         _contentImages = [[NSMutableArray alloc] init];
         _dataSources = [[NSMutableArray alloc] init];
         _sectionName = @"business";
+        _appAdIndexPaths = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -74,7 +76,21 @@
 {
     _adHelper = [CETableViewADHelper helperWithTableView:self.tableView viewController:self placement:@"STREAM"];
     [_adHelper setAdWidth:310];
+    
+    [self addAppAdsIndexPaths];
+    
     [_adHelper loadAd];
+}
+
+- (void)addAppAdsIndexPaths
+{
+    [_appAdIndexPaths addObject:[NSIndexPath indexPathForRow:1 inSection:0]];
+    [_appAdIndexPaths addObject:[NSIndexPath indexPathForRow:4 inSection:0]];
+    [_appAdIndexPaths addObject:[NSIndexPath indexPathForRow:10 inSection:0]];
+    [_appAdIndexPaths addObject:[NSIndexPath indexPathForRow:15 inSection:0]];
+    [_appAdIndexPaths addObject:[NSIndexPath indexPathForRow:19 inSection:0]];
+    
+    [_adHelper setAppAdsIndexPaths:_appAdIndexPaths];
 }
 
 #pragma mark - Table view data source
@@ -126,6 +142,13 @@
             [[cell contentView] setBackgroundColor:[UIColor colorWithWhite:0.906 alpha:1.0]];
             [[cell contentView] addSubview:dataContainerView];
         }
+    }
+    
+    if ([_appAdIndexPaths containsObject:indexPath]) {
+        cell.contentView.layer.borderColor = [UIColor redColor].CGColor;
+        cell.contentView.layer.borderWidth = 1.0f;
+    } else {
+        cell.contentView.layer.borderWidth = 0.0f;
     }
     return cell;
 }

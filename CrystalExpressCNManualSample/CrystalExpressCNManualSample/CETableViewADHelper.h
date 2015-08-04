@@ -55,6 +55,8 @@
  *  this will trigger AD to check whether it should stop play
  */
 - (void)onHide;
+
+- (void)setAppAdsIndexPaths:(NSArray *)appAdsIndexPaths;
 @end
 
 @interface UITableView (CETableViewAdHelper)

@@ -66,9 +66,11 @@
 
     StreamTableViewController *vc = [[StreamTableViewController alloc] initWithPlacementName:_placementName];
     if ([vc.view superview] == nil) {
-        CGRect frame = vc.view.frame;
+        CGRect frame = [_contentView frame];
         frame.origin.x = 0;
         frame.origin.y = 0;
+        frame.size.width = frame.size.width;
+        frame.size.height = frame.size.height;
         vc.view.frame = frame;
         
         [self addChildViewController:vc];
