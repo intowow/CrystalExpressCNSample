@@ -66,7 +66,7 @@
             [_openSplashADHelper loadAd];
             break;
         case 2:
-            [_interstitialSplashADHelper loadAd];
+//            [_interstitialSplashADHelper loadAd];
             break;
         case 3:
             [self.navigationController pushViewController:[[ContentViewController alloc] init] animated:YES];
@@ -86,7 +86,7 @@
 #pragma mark - CESplashADDelegate method
 - (void)CESplashADDidReceiveAd:(NSArray *)ad viewController:(SplashADInterfaceViewController *)vc
 {
-    [self presentViewController:vc animated:YES completion:nil];
+    [_openSplashADHelper showFromViewController:self animated:YES];
 }
 
 - (void)CESplashADDidFailToReceiveAdWithError:(NSError *)error viewController:(SplashADInterfaceViewController *)vc
