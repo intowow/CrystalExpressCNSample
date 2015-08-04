@@ -1,3 +1,13 @@
+## [1.3.3]() (2014-08-04)
+
+#### Feature
+* Add API for app to input App's AD position to avoid CrystalExpress insert beside App's AD
+
+#### Fixed
+* CETableViewADHelper - (NSIndexPath *)positionToIndexPath:(int)position calculate wrong bug
+* Add flag in CETableViewADHelper loadAd to control load CrystalExpress AD
+
+
 ## [1.3.2]() (2014-08-03)
 
 #### Feature
@@ -9,6 +19,7 @@
 * Stream AD does not set active placement in CEStreamADHelper
 * Allow user interaction while AD view animating
 * Fix Stream AD insertion algorithm
+
 
 ## [1.3.1]() (2015-07-30)
 
