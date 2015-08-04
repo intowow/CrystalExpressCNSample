@@ -1,3 +1,15 @@
+## [1.3.4]() (2014-08-04)
+
+#### Feature
+* Add `- (void)setAdVerticalMargin:(float)verticalMargin;` in CETableViewADHelper API to allow customized stream AD's vertical margin
+* Add `- (void)setAdBackgroundColor:(UIColor *)bgColor;` in CETableViewADHelepr API to allow customized stream AD's background color
+* Add `- (void)setAdCellCustomizedBlock:(void (^)(UITableViewCell *adCell))customizedAdCellBlock;` in CETableViewADHelper API to allow customized ad view decoration
+* Set AD UITableViewCell background color to clearColor
+
+#### Fixed
+* Fix iOS7 / iOS8 landscape viewcontroller present animation inconsistency bug
+
+
 ## [1.3.3]() (2014-08-04)
 
 #### Feature
