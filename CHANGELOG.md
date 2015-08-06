@@ -1,3 +1,7 @@
+## [1.3.5]() (2014-08-05)
+#### Fixed
+* Cancel Splash AD request if there's already a Splash AD in current view hierarchy
+
 ## [1.3.4]() (2014-08-04)
 
 #### Feature
@@ -5,10 +9,13 @@
 * Add `- (void)setAdBackgroundColor:(UIColor *)bgColor;` in CETableViewADHelepr API to allow customized stream AD's background color
 * Add `- (void)setAdCellCustomizedBlock:(void (^)(UITableViewCell *adCell))customizedAdCellBlock;` in CETableViewADHelper API to allow customized ad view decoration
 * Set AD UITableViewCell background color to clearColor
+* Add `- (void)setAutoPlay:(BOOL)enableAutoPlay;` in CETableViewADHelper API to allow disable AD auto play
+* Add `- (void)startAdAtIndexPath:(NSIndexPath *)indexPath;` in CETableViewADHelper API to allow manually start AD play
+* Add `- (void)stopAdAtIndexPath:(NSIndexPath *)indexPath;` in CETableViewADHelper API to allow manually stop AD play
 
 #### Fixed
 * Fix iOS7 / iOS8 landscape viewcontroller present animation inconsistency bug
-
+* Fix CETableViewADHelper cleanAds reset lastAddedPostion calculate wrong bug
 
 ## [1.3.3]() (2014-08-04)
 
