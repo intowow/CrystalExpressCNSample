@@ -2,6 +2,9 @@
 #### Fixed
 * Cancel AD request if SDK is not ready to serve to avoid massive AD requests in stream.
 
+#### Feature
+* Refactor ADView.h to hide some private method and properties.
+
 ## [1.3.5]() (2014-08-05)
 #### Fixed
 * Cancel Splash AD request if there's already a Splash AD in current view hierarchy
