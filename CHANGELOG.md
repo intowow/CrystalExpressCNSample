@@ -1,4 +1,7 @@
 ## [1.3.7]() (2014-08-10)
+#### Feature
+* Open source CETableViewADHelper, CEContentADHelper, CECardADHelper
+
 #### Fixed
 * Check whether placement hierarchy need update every time in CheckSDK method
 * No onHide message sent in Stream AD while AD is not playing
@@ -9,18 +12,17 @@
 * Fix UI minor bugs
 
 ## [1.3.6]() (2014-08-07)
-#### Fixed
-* Cancel AD request if SDK is not ready to serve to avoid massive AD requests in stream.
-
 #### Feature
 * Refactor ADView.h to hide some private method and properties.
+
+#### Fixed
+* Cancel AD request if SDK is not ready to serve to avoid massive AD requests in stream.
 
 ## [1.3.5]() (2014-08-05)
 #### Fixed
 * Cancel Splash AD request if there's already a Splash AD in current view hierarchy
 
 ## [1.3.4]() (2014-08-04)
-
 #### Feature
 * Add `- (void)setAdVerticalMargin:(float)verticalMargin;` in CETableViewADHelper API to allow customized stream AD's vertical margin
 * Add `- (void)setAdBackgroundColor:(UIColor *)bgColor;` in CETableViewADHelepr API to allow customized stream AD's background color
