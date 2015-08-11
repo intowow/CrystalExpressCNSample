@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "I2WAPI.h"
-#import "SplashADInterfaceViewController.h"
+//#import "SplashADInterfaceViewController.h"
 
+@class SplashADInterfaceViewController;
 /**
  *  CESplashADHelper Delegate that can receive AD events
  */
@@ -163,6 +164,15 @@ typedef NS_ENUM(NSUInteger, CELandscapeViewControllerDismissAnimationOption){
  *  @brief Starts loading ad content process.
  */
 - (void)loadAd;
+
+/**
+ *  @brief return whether viewcontroller is a Splash Ad viewcontroller
+ *
+ *  @param vc viewcontroller
+ *
+ *  @return bool to indicate viewcontroller is a CrystalExpress Splash AD viewcontroller
+ */
+- (BOOL)isSplashAdVC:(UIViewController *)vc;
 
 /**
  *  @brief Presents the splash ad modally from viewCotroller

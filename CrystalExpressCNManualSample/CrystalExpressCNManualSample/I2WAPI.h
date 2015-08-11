@@ -19,8 +19,9 @@
  *  @brief callback while AD is clicked by user
  *
  *  @param adId AD unique string id
+ *  @param data the click landing url
  */
-- (void)onAdClick:(NSString *)adId;
+- (void)onAdClick:(NSString *)adId data:(NSString *)data;
 
 /**
  *  @brief callback while AD is viewed by user
@@ -228,6 +229,13 @@ typedef NS_ENUM(NSUInteger, CESplashType){
  *  @param props properties dictionary
  */
 + (void)trackCustomEventWithType:(NSString *)type props:(NSDictionary *)props;
+
+/**
+ *  @brief send AD request tracking message
+ *
+ *  @param placement placement string
+ */
++ (void)trackAdRequestWithPlacement:(NSString *)placement;
 
 /**
  *  @brief update user location

@@ -12,6 +12,7 @@
 #import "StreamSectionViewController.h"
 #import "FlipViewController.h"
 #import "CESplashAD.h"
+#import "CardAdViewController.h"
 
 @interface ViewController () <CESplashADDelegate>
 @property (nonatomic, strong) CESplashAD *openSplashADHelper;
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) UIButton *testContentBtn;
 @property (nonatomic, strong) UIButton *testStreamBtn;
 @property (nonatomic, strong) UIButton *testFlipBtn;
+@property (nonatomic, strong) UIButton *testCardAdBtn;
 @end
 
 @implementation ViewController
@@ -42,9 +44,10 @@
     _testContentBtn = [self createBtnWithTag:3 title:@"CONTENT_AD"];
     _testStreamBtn = [self createBtnWithTag:4 title:@"STREAM_AD"];
     _testFlipBtn = [self createBtnWithTag:5 title:@"FLIP_BANNER_AD"];
+    _testCardAdBtn = [self createBtnWithTag:6 title:@"CARD_AD"];
 
-    NSString *VConstraint = @"V:|-30-[_testMultiofferBtn(btnHeight)]-10-[_testSplashBtn(btnHeight)]-10-[_testContentBtn(btnHeight)]-10-[_testStreamBtn(btnHeight)]-10-[_testFlipBtn(btnHeight)]";
-    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:VConstraint options:NSLayoutFormatDirectionLeadingToTrailing metrics:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:btnHeight] forKey:@"btnHeight"] views:NSDictionaryOfVariableBindings(_testMultiofferBtn, _testSplashBtn, _testContentBtn, _testStreamBtn, _testFlipBtn)]];
+    NSString *VConstraint = @"V:|-30-[_testMultiofferBtn(btnHeight)]-10-[_testSplashBtn(btnHeight)]-10-[_testContentBtn(btnHeight)]-10-[_testStreamBtn(btnHeight)]-10-[_testFlipBtn(btnHeight)]-10-[_testCardAdBtn(btnHeight)]";
+    [[self view] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:VConstraint options:NSLayoutFormatDirectionLeadingToTrailing metrics:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:btnHeight] forKey:@"btnHeight"] views:NSDictionaryOfVariableBindings(_testMultiofferBtn, _testSplashBtn, _testContentBtn, _testStreamBtn, _testFlipBtn, _testCardAdBtn)]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,6 +79,9 @@
             break;
         case 5:
             [self.navigationController pushViewController:[[FlipViewController alloc] initWithPlacementName:@"FLIP"] animated:YES];
+            break;
+        case 6:
+            [self.navigationController pushViewController:[[CardAdViewController alloc] init] animated:YES];
             break;
         default:
             break;

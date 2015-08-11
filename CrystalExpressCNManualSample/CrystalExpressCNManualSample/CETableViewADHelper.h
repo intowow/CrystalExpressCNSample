@@ -35,6 +35,27 @@
 - (void)setAdWidth:(float)width;
 
 /**
+ *  this is an optiona; method to set stream AD's vertical margin between cells
+ *
+ *  @param verticalMargin the margin height
+ */
+- (void)setAdVerticalMargin:(float)verticalMargin;
+
+/**
+ *  this is an optional method to set stream AD's background color
+ *
+ *  @param bgColor background color
+ */
+- (void)setAdBackgroundColor:(UIColor *)bgColor;
+
+/**
+ *  customized adCell view
+ *
+ *  @param customizedAdCellBlock customized code block
+ */
+- (void)setAdCellCustomizedBlock:(void (^)(UITableViewCell *adCell))customizedAdCellBlock;
+
+/**
  *  start load stream AD
  */
 - (void)loadAd;
@@ -56,7 +77,33 @@
  */
 - (void)onHide;
 
+/**
+ *  set App AD indexPaths to avoid SDK insert aside them
+ *
+ *  @param appAdsIndexPaths App Ad's indexPaths
+ */
 - (void)setAppAdsIndexPaths:(NSArray *)appAdsIndexPaths;
+
+/**
+ *  set Stream Ad to be auto play
+ *
+ *  @param enableAutoPlay whether to enable AD auto play
+ */
+- (void)setAutoPlay:(BOOL)enableAutoPlay;
+
+/**
+ *  start playing ad at indexPath
+ *
+ *  @param indexPath Ad indexPath
+ */
+- (void)startAdAtIndexPath:(NSIndexPath *)indexPath;
+
+/**
+ *  stop playing ad at indexPath
+ *
+ *  @param indexPath Ad indexPath
+ */
+- (void)stopAdAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @interface UITableView (CETableViewAdHelper)

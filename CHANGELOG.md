@@ -1,3 +1,13 @@
+## [1.3.7]() (2014-08-10)
+#### Fixed
+* Check whether placement hierarchy need update every time in CheckSDK method
+* No onHide message sent in Stream AD while AD is not playing
+* Set AD placement request time at AdShow and AdHide
+* Add retry in SDK asset download
+* Fix content AD dealloc bug
+* Fix avplayer dealloc won't stop video
+* Fix UI minor bugs
+
 ## [1.3.6]() (2014-08-07)
 #### Fixed
 * Cancel AD request if SDK is not ready to serve to avoid massive AD requests in stream.
