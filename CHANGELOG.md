@@ -1,6 +1,9 @@
 ## [1.3.7]() (2014-08-10)
 #### Feature
 * Open source CETableViewADHelper, CEContentADHelper, CECardADHelper
+* Add custom click action setting to support customized click action
+* Ad click callback add landing url parameter
+* Add macro replacer in 3rd party tracking url which is defined in China MMA v1.5 (`__OS__, __IDFA__, __ANDROIDID__`)
 
 #### Fixed
 * Check whether placement hierarchy need update every time in CheckSDK method
@@ -10,6 +13,8 @@
 * Fix content AD dealloc bug
 * Fix avplayer dealloc won't stop video
 * Fix UI minor bugs
+* Enhance error handling in SDK asset fetch (add retry for 3 times)
+* Check Placement Hierarchy need reload in checkSDK everytime to avoid http failed
 
 ## [1.3.6]() (2014-08-07)
 #### Feature
