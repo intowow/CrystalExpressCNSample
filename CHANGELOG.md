@@ -1,9 +1,11 @@
-## [1.3.7]() (2014-08-10)
+## [1.3.7]() (2015-08-10)
 #### Feature
 * Open source CETableViewADHelper, CEContentADHelper, CECardADHelper
 * Add custom click action setting to support customized click action
 * Ad click callback add landing url parameter
 * Add macro replacer in 3rd party tracking url which is defined in China MMA v1.5 (`__OS__, __IDFA__, __ANDROIDID__`)
+* Add `- (void)setAdCustomIndexPaths:(NSArray *)adIndexPaths` in CETableViewADHelper to allow setting fixed position for stream ads configure by App publisher
+* Support SPLASH2_WEBVIEW AD format
 
 #### Fixed
 * Check whether placement hierarchy need update every time in CheckSDK method
@@ -16,18 +18,18 @@
 * Enhance error handling in SDK asset fetch (add retry for 3 times)
 * Check Placement Hierarchy need reload in checkSDK everytime to avoid http failed
 
-## [1.3.6]() (2014-08-07)
+## [1.3.6]() (2015-08-07)
 #### Feature
 * Refactor ADView.h to hide some private method and properties.
 
 #### Fixed
 * Cancel AD request if SDK is not ready to serve to avoid massive AD requests in stream.
 
-## [1.3.5]() (2014-08-05)
+## [1.3.5]() (2015-08-05)
 #### Fixed
 * Cancel Splash AD request if there's already a Splash AD in current view hierarchy
 
-## [1.3.4]() (2014-08-04)
+## [1.3.4]() (2015-08-04)
 #### Feature
 * Add `- (void)setAdVerticalMargin:(float)verticalMargin;` in CETableViewADHelper API to allow customized stream AD's vertical margin
 * Add `- (void)setAdBackgroundColor:(UIColor *)bgColor;` in CETableViewADHelepr API to allow customized stream AD's background color
@@ -41,7 +43,7 @@
 * Fix iOS7 / iOS8 landscape viewcontroller present animation inconsistency bug
 * Fix CETableViewADHelper cleanAds reset lastAddedPostion calculate wrong bug
 
-## [1.3.3]() (2014-08-04)
+## [1.3.3]() (2015-08-04)
 
 #### Feature
 * Add API for app to input App's AD position to avoid CrystalExpress insert beside App's AD
@@ -51,7 +53,7 @@
 * Add flag in CETableViewADHelper loadAd to control load CrystalExpress AD
 
 
-## [1.3.2]() (2014-08-03)
+## [1.3.2]() (2015-08-03)
 
 #### Feature
 * Replace WiFi marquee with WiFi hint label animation and tag
@@ -75,7 +77,6 @@
 * Fix CEStreamADHelper strong delegate reference
 * Fix CESplashAD does not release pointer while viewcontroller dismissed
 
----
 ## [1.3.0]() (2015-07-29)
 
 #### Feature
