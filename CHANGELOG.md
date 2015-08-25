@@ -1,3 +1,13 @@
+## [1.3.8]() (2015-08-21)
+#### Feature
+* Open source CEBannerADHelper
+* Add QR code email debug mechanism
+* Add Ad placement/placement_group display control mechanism
+* Use Ad display control to replace placement group dismiss time
+* Add support server blocked format
+
+#### Fixed
+
 ## [1.3.7]() (2015-08-10)
 #### Feature
 * Open source CETableViewADHelper, CEContentADHelper, CECardADHelper

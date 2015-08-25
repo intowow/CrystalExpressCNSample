@@ -1,1 +1,1 @@
-../../../CrystalExpressSDK-CN/Headers/CETableViewADHelper.h
+../../../CrystalExpressSDK-CN/Sources/CETableViewADHelper.h

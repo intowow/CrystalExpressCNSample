@@ -1,1 +1,1 @@
-../../../CrystalExpressSDK-CN/Headers/CESplashAD.h
+../../../CrystalExpressSDK-CN/Sources/CESplashAD.h
