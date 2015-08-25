@@ -68,8 +68,8 @@
         [_cardAd removeFromSuperview];
         _cardAd = nil;
     }
-    
-    [_adHelper requestADonReady:^(ADView *adView) {
+   
+    [_adHelper requestADWithAdWidth:360.0f onReady:^(ADView *adView) {
         CGFloat horizontalStart = (self.view.bounds.size.width - adView.bounds.size.width)/2.0f;
         CGFloat veritalStart = self.view.bounds.size.height - adView.bounds.size.height - 50;
         [adView setFrame:CGRectMake(horizontalStart, veritalStart, adView.bounds.size.width, adView.bounds.size.height)];
