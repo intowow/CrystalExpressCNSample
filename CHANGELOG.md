@@ -1,7 +1,11 @@
+## [1.3.9]() (2015-08-??)
+#### Feature
+* Allow CESplashAD to automatically dismiss viewcontroller if user engage Ad by using `- (void)setDismissAdAfterEngageAd:(BOOL)dismissAd`
+
 ## [1.3.8]() (2015-08-21)
 #### Feature
 * Open source CEBannerADHelper
-* Add QR code email debug mechanism
+* Add QR code/Long press AD email debug mechanism
 * Add Ad placement/placement_group display control mechanism
 * Use Ad display control to replace placement group dismiss time
 * Add support server blocked format
