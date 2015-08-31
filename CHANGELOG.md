@@ -1,4 +1,4 @@
-## [1.3.9]() (2015-08-??)
+## [1.3.9]() (2015-08-31)
 #### Feature
 * Allow CESplashAD to automatically dismiss viewcontroller if user engage Ad by using `- (void)setDismissAdAfterEngageAd:(BOOL)dismissAd`
 
