@@ -191,6 +191,13 @@ typedef NS_ENUM(NSUInteger, CELandscapeViewControllerDismissAnimationOption){
 - (void)dismissAnimated:(BOOL)animated;
 
 /**
+ *  @brief dismiss splash view controller automatically after user had engage this Ad
+ *
+ *  @param dismissAd
+ */
+- (void)setDismissAdAfterEngageAd:(BOOL)dismissAd;
+
+/**
  *  @brief set portrait splash AD present and dismiss animation with CrystalExpress bulit-in animation effect
  *
  *  @param presentAnimation viewcontroller present animation
