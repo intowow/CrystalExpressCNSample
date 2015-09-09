@@ -1,4 +1,4 @@
-## [1.3.10]() (2015-09-??)
+## [1.3.10]() (2015-09-09)
 #### Feature
 * Callback to dispatcher while AD pass guard time
 * Add ADProfileSupervisor to handle all profile status check
