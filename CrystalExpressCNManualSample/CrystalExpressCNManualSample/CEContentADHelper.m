@@ -17,22 +17,30 @@
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) ADView *adView;
 @property (nonatomic, assign) float scrollOffset;
+@property (nonatomic, strong) NSString *adToken;
 @property (nonatomic, assign) BOOL hadTracked;
 @property (nonatomic, assign) BOOL isPlaying;
 @property (nonatomic, assign) BOOL isShowing;
 
-- (instancetype)initWithContainerView:(UIView *)containerView adView:(ADView *)adView offset:(float)offset;
+- (instancetype)initWithContainerView:(UIView *)containerView
+                               adView:(ADView *)adView
+                               offset:(float)offset
+                              adToken:(NSString *)adToken;
 @end
 
 @implementation CEContentADHolder
 
-- (instancetype)initWithContainerView:(UIView *)containerView adView:(ADView *)adView offset:(float)offset
+- (instancetype)initWithContainerView:(UIView *)containerView
+                               adView:(ADView *)adView
+                               offset:(float)offset
+                              adToken:(NSString *)adToken
 {
     self = [super init];
     if (self) {
         _containerView = containerView;
         _adView = adView;
         _scrollOffset = offset;
+        _adToken = adToken;
         _hadTracked = NO;
         _isShowing = NO;
     }
@@ -97,6 +105,7 @@
     [self handleStartAndStopWithScrollViewBounds:CGRectZero];
 }
 
+
 #pragma mark - private method
 
 - (void)requestAd
@@ -106,18 +115,20 @@
     }
     
     _isProcessing = YES;
-    [I2WAPI getContentADWithPlacement:_placement isPreroll:YES registerCallback:NO adWidth:_preferAdWidth onReady:^(ADView *adView) {
-        [self onADLoaded:adView];
+    
+    __weak CEContentADHelper *weakSelf = self;
+    [I2WAPI getContentADWithPlacement:_placement isPreroll:YES registerCallback:NO adWidth:_preferAdWidth onReady:^(ADView *adView, NSString *adToken) {
+        [self onADLoaded:adView adToken:adToken];
         _isProcessing = NO;
     } onFailure:^(NSError *error) {
         [self onADFailed:error];
         _isProcessing = NO;
     } onPullDownAnimation:^(UIView *adView) {
-        [self onPullDownAnimation:adView];
+        [weakSelf onPullDownAnimation:adView];
     }];
 }
 
-- (void)onADLoaded:(ADView *)adView
+- (void)onADLoaded:(ADView *)adView adToken:(NSString *)adToken
 {
     if (_wrapperView.superview == nil) {
         [_scrollView addSubview:_wrapperView];
@@ -161,7 +172,10 @@
     contentSize.height += _wrapperView.bounds.size.height;
     [_scrollView setContentSize:contentSize];
     
-    _adHolder = [[CEContentADHolder alloc] initWithContainerView:decorateAdView adView:adView offset:_wrapperView.frame.origin.y];
+    _adHolder = [[CEContentADHolder alloc] initWithContainerView:decorateAdView
+                                                          adView:adView
+                                                          offset:_wrapperView.frame.origin.y
+                                                         adToken:adToken];
 }
 
 - (void)onADFailed:(NSError *)error
@@ -278,7 +292,7 @@
        
         CGFloat viewOffset = scrollViewBounds.origin.y + scrollViewBounds.size.height;
         if (viewOffset >= _adHolder.scrollOffset) {
-            [I2WAPI trackAdRequestWithPlacement:_placement];
+            [I2WAPI trackAdRequestWithPlacement:_placement adToken:_adHolder.adToken];
             _adHolder.hadTracked = YES;
         }
     }

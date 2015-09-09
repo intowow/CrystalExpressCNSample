@@ -10,6 +10,8 @@
 #import "I2WAPI.h"
 #import "CEADView.h"
 
+#define DEFAULT_INIT_VISIBLE_COUNTS 4
+
 #pragma mark - ADHolder
 @interface CEADHolder : NSObject
 @property (nonatomic, strong) ADView *adView;
@@ -46,6 +48,7 @@
 @property (nonatomic, assign) int place;
 @property (nonatomic, assign) float adWidth;
 @property (nonatomic, strong) NSMutableArray *prohibitPositions;
+@property (nonatomic, strong) NSMutableArray *desiredPositions;
 
 // serving conf
 @property (nonatomic, assign) int servingFreq;
@@ -89,6 +92,7 @@
         _enableAutoPlay = YES;
         
         _prohibitPositions = [[NSMutableArray alloc] init];
+        _desiredPositions = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -103,6 +107,10 @@
 - (void)setActive:(BOOL)isActive
 {
     _isActive = isActive;
+    if (isActive) {
+        [I2WAPI setActivePlacement:_placement];
+    }
+    
     [self updateAdStatus];
 }
 
@@ -121,11 +129,16 @@
     return numberOfItems + numberOfAdsBeforeLastItem;
 }
 
-- (void)preroll
+- (void)prerollWithVisibleCounts:(int)visibleCounts
 {
-    _isProcessing = YES;
-    [I2WAPI setActivePlacement:_placement];
-    [self requestAd];
+    if (visibleCounts <= 0) {
+        visibleCounts = DEFAULT_INIT_VISIBLE_COUNTS;
+    }
+    
+    if (_servingMinPos <= visibleCounts) {
+        _isProcessing = YES;
+        [self requestAd];
+    }
 }
 
 - (void)reset
@@ -149,6 +162,7 @@
     _lastVisiblePosition    = -1;
     
     [_prohibitPositions removeAllObjects];
+    [_desiredPositions removeAllObjects];
 }
 
 - (void)setAppAdsIndexPaths:(NSArray *)appAdsIndexPaths
@@ -163,6 +177,19 @@
         }
         if ([_prohibitPositions containsObject:@(adjustedPos+1)] == NO) {
             [_prohibitPositions addObject:@(adjustedPos+1)];
+        }
+    }
+}
+
+- (void)setAdCustomIndexPaths:(NSArray *)adIndexPaths
+{
+    [_desiredPositions removeAllObjects];
+    adIndexPaths = [adIndexPaths sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *adjustedIndexPaths = [self adjustedIndexPathsForOriginalIndexPaths:adIndexPaths];
+    for (NSIndexPath *adjustedIndexPath in adjustedIndexPaths) {
+        int adjustedPos = [_delegate indexPathToPosition:adjustedIndexPath];
+        if ([_desiredPositions containsObject:@(adjustedPos)] == NO) {
+            [_desiredPositions addObject:@(adjustedPos)];
         }
     }
 }
@@ -365,7 +392,12 @@
 #pragma mark - private method
 - (void)requestAd
 {
-    [I2WAPI getStreamADWithPlacement:_placement helperKey:_key place:_place adWidth:_adWidth onReady:^(ADView *adView) {
+    [I2WAPI getStreamADWithPlacement:_placement
+                           helperKey:_key
+                               place:_place
+                             adWidth:_adWidth
+                             timeout:5.0
+                             onReady:^(ADView *adView) {
         [self onADLoaded:adView];
         _isProcessing = NO;
     } onFailure:^(NSError *error) {
@@ -431,13 +463,28 @@
 - (void)onADLoaded:(ADView *)adView
 {
     int targetPosition = MAX(_lastVisiblePosition + 1, _lastAddedPosition + _servingFreq + 1);
-    while ([_prohibitPositions containsObject:@(targetPosition)]) {
-        targetPosition ++;
+    if ([_desiredPositions count] == 0) {
+        while ([_prohibitPositions containsObject:@(targetPosition)]) {
+            targetPosition ++;
+        }
+    } else {
+        targetPosition = -1;
+        NSArray *curDesiredPositions = [_desiredPositions copy];
+        for (NSNumber *desiredPos in curDesiredPositions) {
+            if ([desiredPos intValue] >= _lastVisiblePosition + 1) {
+                targetPosition = [desiredPos intValue];
+                break;
+            }
+        }
     }
     
     if (targetPosition < _servingMaxPos) {
-        NSIndexPath *targetIndexPath = [_delegate positionToIndexPath:targetPosition];
         if (targetPosition != -1 && adView != nil) {
+            NSIndexPath *targetIndexPath = [_delegate positionToIndexPath:targetPosition];
+            if (targetIndexPath == nil) {
+                return;
+            }
+            
             _lastAddedPosition = targetPosition;
             CEADHolder *newADHolder = [[CEADHolder alloc] initWithAdView:adView section:targetIndexPath.section row:targetIndexPath.row];
             [_adHolders setObject:newADHolder forKey:@(targetPosition)];
@@ -448,7 +495,6 @@
             
             [self updateProhibitPosWithAdPos:targetPosition];
             
-//            NSLog(@"insert AD at position:%d -> (%d, %d)", targetPosition, targetIndexPath.section, targetIndexPath.row);
             ++_place;
         }
     }
@@ -458,8 +504,8 @@
 - (void)decorateADView:(UIView *)adView
 {
     adView.layer.shadowColor = [[UIColor blackColor] CGColor];
-    adView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f); // [水平偏移, 垂直偏移]
-    adView.layer.shadowOpacity = 1.0f; // 0.0 ~ 1.0 的值
+    adView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f); // [horizontal offset, vertical offset]
+    adView.layer.shadowOpacity = 1.0f; // 0.0 ~ 1.0
     adView.layer.shadowRadius = 1.0f;
 }
 

@@ -13,9 +13,24 @@
 #import <UIKit/UIKit.h>
 
 @interface ADView : UIView
+/**
+ *  call onShow while ADView is seen by user
+ */
 - (void)onShow;
+
+/**
+ *  call onHide while ADView is hide from user
+ */
 - (void)onHide;
+
+/**
+ *  call onStart to trigger ADView impression and video play
+ */
 - (void)onStart;
+
+/**
+ *  call onStop to stop ADView video play
+ */
 - (void)onStop;
 
 @end

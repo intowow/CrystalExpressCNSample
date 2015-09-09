@@ -85,6 +85,13 @@
 - (void)setAppAdsIndexPaths:(NSArray *)appAdsIndexPaths;
 
 /**
+ *  set customized fixed AD position for CrystalExpress AD to insert
+ *
+ *  @param adIndexPaths fixed AD positions to insert
+ */
+- (void)setAdCustomIndexPaths:(NSArray *)adIndexPaths;
+
+/**
  *  set Stream Ad to be auto play
  *
  *  @param enableAutoPlay whether to enable AD auto play

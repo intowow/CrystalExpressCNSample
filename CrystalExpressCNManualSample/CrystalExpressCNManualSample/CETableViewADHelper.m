@@ -81,7 +81,8 @@
 - (void)loadAd
 {
     _enableAd = YES;
-    [_streamAdHelper preroll];
+    int visibleCounts = [[_tableView visibleCells] count];
+    [_streamAdHelper prerollWithVisibleCounts:visibleCounts];
     [_tableView ce_reloadData];
     [self updateVisiblePositions];
 }
@@ -104,6 +105,11 @@
 - (void)setAppAdsIndexPaths:(NSArray *)appAdsIndexPaths
 {
     [_streamAdHelper setAppAdsIndexPaths:appAdsIndexPaths];
+}
+
+- (void)setAdCustomIndexPaths:(NSArray *)adIndexPaths
+{
+    [_streamAdHelper setAdCustomIndexPaths:adIndexPaths];
 }
 
 - (void)setAutoPlay:(BOOL)enableAutoPlay
@@ -202,6 +208,11 @@
         } else {
             break;
         }
+    }
+    
+    // the cell count in tableView is not enougth for AD to insert
+    if (section >= _tableView.numberOfSections) {
+        return nil;
     }
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:position inSection:section];

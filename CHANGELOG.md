@@ -1,3 +1,23 @@
+## [1.3.10]() (2015-09-??)
+#### Feature
+* Callback to dispatcher while AD pass guard time
+* Add ADProfileSupervisor to handle all profile status check
+* Enhance http tracking message to send in app background
+* Change tracking message version from 4 to 6
+    * add AD token in ADREQ, IMPRESSION, CLICK, MUTE, UNMUTE, VIDEOVIEW
+    * add background fetch tracking properties: battery_state, battery_level, remaining_space
+* add QR code realtime debugger
+* ad display control, splash video auto dismiss can delay n seconds depends on server setting
+* add lan & long in geographic query api parameter
+* remove updateUserLocation method in I2WAPI.h
+
+#### Fixed
+* Add stream init visible count to control preroll AD
+* Move setActivePlacement to setActive function in CEStreamADHelepr
+* Filter non effective video view tracking
+* Fixed DebugEngine retain cycle
+* Fixed CEStreamADHelper if fail to insert tableView, don't add AD place count
+
 ## [1.3.9]() (2015-08-31)
 #### Feature
 * Allow CESplashAD to automatically dismiss viewcontroller if user engage Ad by using `- (void)setDismissAdAfterEngageAd:(BOOL)dismissAd`

@@ -26,9 +26,10 @@
 - (void)setAdWidth:(float)width;
 - (void)setActive:(BOOL)isActive;
 - (void)updateAdStatus;
-- (void)preroll;
+- (void)prerollWithVisibleCounts:(int)visibleCounts;
 - (void)reset;
 - (void)setAppAdsIndexPaths:(NSArray *)appAdsIndexPaths;
+- (void)setAdCustomIndexPaths:(NSArray *)adIndexPaths;
 - (void)setAutoPlay:(BOOL)enableAutoPlay;
 - (void)startAdAtPosition:(NSUInteger)position;
 - (void)stopAdAtPosition:(NSUInteger)position;

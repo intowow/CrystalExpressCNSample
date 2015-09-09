@@ -164,6 +164,7 @@ typedef NS_ENUM(NSUInteger, CESplashType){
                        helperKey:(NSString *)helperKey
                            place:(int)place
                          adWidth:(CGFloat)adWidth
+                         timeout:(int)timeout
                          onReady:(void (^)(ADView *adView))ready
                        onFailure:(void (^)(NSError *error))failure
              onPullDownAnimation:(void (^)(UIView *))animation;
@@ -178,14 +179,16 @@ typedef NS_ENUM(NSUInteger, CESplashType){
  *  @param ready     callback block while ADView is ready
  *  @param failure   callback block while fail to request AD
  *  @param animation callback block while AD animation occur (ex. CARD-VIDEO-PULLDOWN AD is clicked by user)
+ *
+ *  @return token to identify ad
  */
-+ (void)getContentADWithPlacement:(NSString *)placement
-                        isPreroll:(BOOL)isPreroll
-                 registerCallback:(BOOL)registerCallback
-                          adWidth:(CGFloat)adWidth
-                          onReady:(void (^)(ADView *))ready
-                        onFailure:(void (^)(NSError *))failure
-              onPullDownAnimation:(void (^)(UIView *))animation;
++ (NSString *)getContentADWithPlacement:(NSString *)placement
+                              isPreroll:(BOOL)isPreroll
+                       registerCallback:(BOOL)registerCallback
+                                adWidth:(CGFloat)adWidth
+                                onReady:(void (^)(ADView *adView, NSString *adToken))ready
+                              onFailure:(void (^)(NSError *))failure
+                    onPullDownAnimation:(void (^)(UIView *))animation;
 
 /**
  *  @brief set current active placement
@@ -234,15 +237,9 @@ typedef NS_ENUM(NSUInteger, CESplashType){
  *  @brief send AD request tracking message
  *
  *  @param placement placement string
+ *  @param adToken   ad token
  */
-+ (void)trackAdRequestWithPlacement:(NSString *)placement;
-
-/**
- *  @brief update user location
- *
- *  @param location loaction information
- */
-+ (void)updateUserLastLocation:(NSDictionary *)location;
++ (void)trackAdRequestWithPlacement:(NSString *)placement adToken:(NSString *)adToken;
 
 #pragma mark - callback method
 /**
