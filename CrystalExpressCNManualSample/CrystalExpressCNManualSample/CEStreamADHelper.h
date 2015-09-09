@@ -12,7 +12,7 @@
 @protocol CEStreamAdHelperDelegate <NSObject>
 
 @optional
-- (void)CEStreamADDidLoadAdAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)CEStreamADDidLoadAdAtIndexPath:(NSIndexPath *)indexPath;
 - (void)CEStreamADDidRemoveAdsAtIndexPaths:(NSArray *)indexPaths;
 - (void)CEStreamADOnPulldownAnimation;
 - (int)indexPathToPosition:(NSIndexPath *)indexPath;

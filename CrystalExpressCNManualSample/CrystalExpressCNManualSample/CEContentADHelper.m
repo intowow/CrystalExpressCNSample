@@ -80,7 +80,6 @@
         _originalDelegate = scrollView.delegate;
         scrollView.delegate = self;
         _wrapperView = nil;
-        _preferAdWidth = 300.0f;
         _adHolder = nil;
     }
     return self;

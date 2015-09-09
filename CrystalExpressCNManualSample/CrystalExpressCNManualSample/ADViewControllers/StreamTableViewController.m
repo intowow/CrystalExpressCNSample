@@ -75,7 +75,6 @@
 - (void)setupStreamADHelper
 {
     _adHelper = [CETableViewADHelper helperWithTableView:self.tableView viewController:self placement:@"STREAM"];
-    [_adHelper setAdWidth:310];
     
 //    [self addAppAdsIndexPaths];
     

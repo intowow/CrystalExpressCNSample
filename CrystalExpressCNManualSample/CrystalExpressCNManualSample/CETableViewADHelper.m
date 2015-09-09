@@ -148,18 +148,19 @@
 }
 
 #pragma mark - CEStreamAdHelperDelegate
-- (void)CEStreamADDidLoadAdAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)CEStreamADDidLoadAdAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger lastSectionIndex = self.tableView.numberOfSections - 1;
     if (indexPath.section == lastSectionIndex) {
         if (indexPath.row >= [self.tableView numberOfRowsInSection:lastSectionIndex]) {
-            return;
+            return NO;
         }
     }
     
     [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
+    return YES;
 }
 
 - (void)CEStreamADDidRemoveAdsAtIndexPaths:(NSArray *)indexPaths

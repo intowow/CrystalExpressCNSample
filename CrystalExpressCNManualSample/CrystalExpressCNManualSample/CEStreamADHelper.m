@@ -489,13 +489,15 @@
             CEADHolder *newADHolder = [[CEADHolder alloc] initWithAdView:adView section:targetIndexPath.section row:targetIndexPath.row];
             [_adHolders setObject:newADHolder forKey:@(targetPosition)];
             
-            [_delegate CEStreamADDidLoadAdAtIndexPath:targetIndexPath];
-            [self updateAdStatus];
-            [self decorateADView:(UIView *)adView];
+            BOOL isInsertedToTableView = [_delegate CEStreamADDidLoadAdAtIndexPath:targetIndexPath];
+           
+            if (isInsertedToTableView) {
+                [self updateAdStatus];
+                [self decorateADView:(UIView *)adView];
             
-            [self updateProhibitPosWithAdPos:targetPosition];
-            
-            ++_place;
+                [self updateProhibitPosWithAdPos:targetPosition];
+                ++_place;
+            }
         }
     }
 }
