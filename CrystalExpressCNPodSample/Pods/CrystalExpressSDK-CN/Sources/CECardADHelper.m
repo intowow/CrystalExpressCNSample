@@ -51,7 +51,12 @@
     }
     
     [I2WAPI setActivePlacement:_placement];
-    [I2WAPI getStreamADWithPlacement:_placement helperKey:_helperKey place:_place adWidth:adWidth onReady:^(ADView *adView) {
+    [I2WAPI getStreamADWithPlacement:_placement
+                           helperKey:_helperKey
+                               place:_place
+                             adWidth:adWidth
+                             timeout:5.0
+                             onReady:^(ADView *adView) {
         _place++;
         ready(adView);
         _isProcessing = NO;

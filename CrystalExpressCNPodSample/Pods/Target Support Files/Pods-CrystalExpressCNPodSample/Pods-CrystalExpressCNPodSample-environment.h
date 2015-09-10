@@ -58,13 +58,7 @@
 #define COCOAPODS_POD_AVAILABLE_CrystalExpressSDK_CN
 #define COCOAPODS_VERSION_MAJOR_CrystalExpressSDK_CN 1
 #define COCOAPODS_VERSION_MINOR_CrystalExpressSDK_CN 3
-#define COCOAPODS_VERSION_PATCH_CrystalExpressSDK_CN 8
-
-// JSONKit-NoWarning
-#define COCOAPODS_POD_AVAILABLE_JSONKit_NoWarning
-#define COCOAPODS_VERSION_MAJOR_JSONKit_NoWarning 1
-#define COCOAPODS_VERSION_MINOR_JSONKit_NoWarning 2
-#define COCOAPODS_VERSION_PATCH_JSONKit_NoWarning 0
+#define COCOAPODS_VERSION_PATCH_CrystalExpressSDK_CN 10
 
 // MTStatusBarOverlay
 #define COCOAPODS_POD_AVAILABLE_MTStatusBarOverlay
@@ -101,4 +95,10 @@
 #define COCOAPODS_VERSION_MAJOR_SSZipArchive 0
 #define COCOAPODS_VERSION_MINOR_SSZipArchive 3
 #define COCOAPODS_VERSION_PATCH_SSZipArchive 2
+
+// SocketRocket
+#define COCOAPODS_POD_AVAILABLE_SocketRocket
+#define COCOAPODS_VERSION_MAJOR_SocketRocket 0
+#define COCOAPODS_VERSION_MINOR_SocketRocket 4
+#define COCOAPODS_VERSION_PATCH_SocketRocket 0
 

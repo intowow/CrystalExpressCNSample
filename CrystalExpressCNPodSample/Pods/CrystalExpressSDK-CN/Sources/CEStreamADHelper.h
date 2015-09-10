@@ -12,7 +12,7 @@
 @protocol CEStreamAdHelperDelegate <NSObject>
 
 @optional
-- (void)CEStreamADDidLoadAdAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)CEStreamADDidLoadAdAtIndexPath:(NSIndexPath *)indexPath;
 - (void)CEStreamADDidRemoveAdsAtIndexPaths:(NSArray *)indexPaths;
 - (void)CEStreamADOnPulldownAnimation;
 - (int)indexPathToPosition:(NSIndexPath *)indexPath;
@@ -26,7 +26,7 @@
 - (void)setAdWidth:(float)width;
 - (void)setActive:(BOOL)isActive;
 - (void)updateAdStatus;
-- (void)preroll;
+- (void)prerollWithVisibleCounts:(int)visibleCounts;
 - (void)reset;
 - (void)setAppAdsIndexPaths:(NSArray *)appAdsIndexPaths;
 - (void)setAdCustomIndexPaths:(NSArray *)adIndexPaths;

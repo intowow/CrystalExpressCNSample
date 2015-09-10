@@ -10,6 +10,8 @@
 #import "I2WAPI.h"
 #import "CEADView.h"
 
+#define DEFAULT_INIT_VISIBLE_COUNTS 4
+
 #pragma mark - ADHolder
 @interface CEADHolder : NSObject
 @property (nonatomic, strong) ADView *adView;
@@ -105,6 +107,10 @@
 - (void)setActive:(BOOL)isActive
 {
     _isActive = isActive;
+    if (isActive) {
+        [I2WAPI setActivePlacement:_placement];
+    }
+    
     [self updateAdStatus];
 }
 
@@ -123,11 +129,16 @@
     return numberOfItems + numberOfAdsBeforeLastItem;
 }
 
-- (void)preroll
+- (void)prerollWithVisibleCounts:(int)visibleCounts
 {
-    _isProcessing = YES;
-    [I2WAPI setActivePlacement:_placement];
-    [self requestAd];
+    if (visibleCounts <= 0) {
+        visibleCounts = DEFAULT_INIT_VISIBLE_COUNTS;
+    }
+    
+    if (_servingMinPos <= visibleCounts) {
+        _isProcessing = YES;
+        [self requestAd];
+    }
 }
 
 - (void)reset
@@ -381,7 +392,12 @@
 #pragma mark - private method
 - (void)requestAd
 {
-    [I2WAPI getStreamADWithPlacement:_placement helperKey:_key place:_place adWidth:_adWidth onReady:^(ADView *adView) {
+    [I2WAPI getStreamADWithPlacement:_placement
+                           helperKey:_key
+                               place:_place
+                             adWidth:_adWidth
+                             timeout:5.0
+                             onReady:^(ADView *adView) {
         [self onADLoaded:adView];
         _isProcessing = NO;
     } onFailure:^(NSError *error) {
@@ -465,17 +481,23 @@
     if (targetPosition < _servingMaxPos) {
         if (targetPosition != -1 && adView != nil) {
             NSIndexPath *targetIndexPath = [_delegate positionToIndexPath:targetPosition];
+            if (targetIndexPath == nil) {
+                return;
+            }
+            
             _lastAddedPosition = targetPosition;
             CEADHolder *newADHolder = [[CEADHolder alloc] initWithAdView:adView section:targetIndexPath.section row:targetIndexPath.row];
             [_adHolders setObject:newADHolder forKey:@(targetPosition)];
             
-            [_delegate CEStreamADDidLoadAdAtIndexPath:targetIndexPath];
-            [self updateAdStatus];
-            [self decorateADView:(UIView *)adView];
+            BOOL isInsertedToTableView = [_delegate CEStreamADDidLoadAdAtIndexPath:targetIndexPath];
+           
+            if (isInsertedToTableView) {
+                [self updateAdStatus];
+                [self decorateADView:(UIView *)adView];
             
-            [self updateProhibitPosWithAdPos:targetPosition];
-            
-            ++_place;
+                [self updateProhibitPosWithAdPos:targetPosition];
+                ++_place;
+            }
         }
     }
 }

@@ -81,7 +81,8 @@
 - (void)loadAd
 {
     _enableAd = YES;
-    [_streamAdHelper preroll];
+    int visibleCounts = [[_tableView visibleCells] count];
+    [_streamAdHelper prerollWithVisibleCounts:visibleCounts];
     [_tableView ce_reloadData];
     [self updateVisiblePositions];
 }
@@ -147,18 +148,19 @@
 }
 
 #pragma mark - CEStreamAdHelperDelegate
-- (void)CEStreamADDidLoadAdAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)CEStreamADDidLoadAdAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger lastSectionIndex = self.tableView.numberOfSections - 1;
     if (indexPath.section == lastSectionIndex) {
         if (indexPath.row >= [self.tableView numberOfRowsInSection:lastSectionIndex]) {
-            return;
+            return NO;
         }
     }
     
     [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
+    return YES;
 }
 
 - (void)CEStreamADDidRemoveAdsAtIndexPaths:(NSArray *)indexPaths
@@ -207,6 +209,11 @@
         } else {
             break;
         }
+    }
+    
+    // the cell count in tableView is not enougth for AD to insert
+    if (section >= _tableView.numberOfSections) {
+        return nil;
     }
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:position inSection:section];

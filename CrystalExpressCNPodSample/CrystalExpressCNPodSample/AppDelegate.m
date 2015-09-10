@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [I2WAPI initWithVerboseLog:YES isTestMode:YES];
+    [I2WAPI initWithVerboseLog:YES isTestMode:YES crystalId:@"crystalidforiostestingdonotuseit"];
     _nav = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
     [_nav setNavigationBarHidden:YES];
     self.window.rootViewController = _nav;
