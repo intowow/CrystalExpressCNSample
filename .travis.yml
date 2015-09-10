@@ -1,7 +1,7 @@
 language: objective-c
 osx_image: xcode6.4
 script:
-  - xctool -project ./CrystalExpressCNManualSample/CrystalExpressCNManualSample.xcodeproj
+  - xctool -project CrystalExpressCNManualSample/CrystalExpressCNManualSample.xcodeproj
            -scheme CrystalExpressCNManualSample
            -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 #  - xctool test -project travis_practice.xcodeproj -scheme travis_practice -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
