@@ -526,7 +526,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0d82cd67-d747-421a-bbb4-8c11e8c51842";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -534,7 +534,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: YingTsung Lee (94WXQV65KE)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: YingTsung Lee (2U5B6RP9DV)";
 				INFOPLIST_FILE = CrystalExpressCNManualSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -544,7 +544,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0d82cd67-d747-421a-bbb4-8c11e8c51842";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
