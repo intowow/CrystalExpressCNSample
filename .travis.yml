@@ -9,7 +9,7 @@ script:
 #- xctool -project CrystalExpressCNManualSample/CrystalExpressCNManualSample.xcodeproj
 #  -scheme CrystalExpressCNManualSample -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 - xctool -project CrystalExpressCNManualSample/CrystalExpressCNManualSample.xcodeproj
-  -scheme CrystalExpressCNManualSample -sdk iphoneos ONLY_ACTIVE_ARCH=NO
+  -scheme CrystalExpressCNManualSample -sdk iphoneos ONLY_ACTIVE_ARCH=NO -configuration Release
 
 env:
   global:
