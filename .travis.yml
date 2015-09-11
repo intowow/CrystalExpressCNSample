@@ -4,12 +4,17 @@ before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/CrystalExpress_Ad_Hoc.mobileprovision.enc -d -a -out scripts/profile/CrystalExpress_Ad_Hoc.mobileprovision
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
+- ./scripts/add-key.sh
 
 script:
 #- xctool -project CrystalExpressCNManualSample/CrystalExpressCNManualSample.xcodeproj
 #  -scheme CrystalExpressCNManualSample -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 - xctool -project CrystalExpressCNManualSample/CrystalExpressCNManualSample.xcodeproj
-  -scheme CrystalExpressCNManualSample -sdk iphoneos ONLY_ACTIVE_ARCH=NO -configuration Release
+  -scheme CrystalExpressCNManualSample -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build
+  ONLY_ACTIVE_ARCH=NO 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
+
+after_script:
+- ./scripts/remove-key.sh
 
 env:
   global:
