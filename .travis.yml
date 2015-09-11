@@ -1,10 +1,20 @@
 language: objective-c
 osx_image: xcode6.4
+before_script:
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/Roy_App_Store_Distribution.mobileprovision.enc -d -a -out scripts/profile/Roy_App_Store_Distribution.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
+
 script:
-  - xctool -project CrystalExpressCNManualSample/CrystalExpressCNManualSample.xcodeproj
-           -scheme CrystalExpressCNManualSample
-           -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-  - xctool -project CrystalExpressCNManualSample/CrystalExpressCNManualSample.xcodeproj
-           -scheme CrystalExpressCNManualSample
-           -sdk iphoneos ONLY_ACTIVE_ARCH=NO
-#  - xctool test -project travis_practice.xcodeproj -scheme travis_practice -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool -project CrystalExpressCNManualSample/CrystalExpressCNManualSample.xcodeproj
+  -scheme CrystalExpressCNManualSample -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool -project CrystalExpressCNManualSample/CrystalExpressCNManualSample.xcodeproj
+  -scheme CrystalExpressCNManualSample -sdk iphoneos ONLY_ACTIVE_ARCH=NO
+
+env:
+  global:
+  - APP_NAME="CrystalExpressCNManualSample"
+  - DEVELOPER_NAME="iOS Developer"
+  - PROFILE_NAME="Roy_App_Store_Distribution"
+  - secure: jx0bH4LY8kDC1Wt9CWaL1EFpVv9GxEubrReRAEdcoYmHY7GCe2dhgRaYBSDJ52lQuP/FiNakV7TEgdbyQ188SC37GzRBzFqQpN+xfTURzWwWGFbX2FewnGcOk/GYvfMkuuAmSY5LE/MJi2HVDqvHSteMI/tHc5ZEcAhOZJl+ZUE6CcmT1PxsPlGYUXQjCVa2sDmDZOnYsRZnz+hUP7TXYMiQmgkoViXp1d9/65iJuuFGUEHtsveI3JUInHQ8dOgECaJjUY5jt6VsHSQELDSXNncwTLXj5Md4EysyEcClYHRgFU/qgw/07kke5KbNshvZzmcJuYbOUiLLJzI6DmwlpzfVzMag5BJ8XMb8rcsKGCFOtztbcJzSgD5kYyAKLpzyLqQ0pr9O31aJjj9vvwI9N8oIMR7BLLa9w3vTA6VrbNlEW7WS4Vfbz3urV9PpKkeQZZbOICdPTD2sUcBPfeJuhswcNqxIUJUobsqPZOfz7SD4dequVorrlXLBEoe4LGMiBeNoGboPTKkjvQs0t72CKkjhCmjyupWxXYMULkB5exXuytC+Rxv2M/ZxKcBCVfeisVgLUZW/F4PT0eFbIk1RCa3q7Dy2J7LJ7HVg5HKbOMWWNfDks245ydFQbyL/2qDOjGBZs2BlTuMBFU6UThe+ZZh8w+WoSGmWbj26gVOB59s=
+  - secure: pte9oU3+i01ClDm3911YVGV3p33GotJHdMuBrYnCa/chDOhVIgIl+VycHHdZxPT29XkyLw0n12CkxkiLgqYI+yyNk3kywHwOVmnS5qj9B0VvkrWbMhNBYC0n6o2r0ma1t/Lnv9+SmldpIpHhq2jcAVz27mvkcTMdcQRnBL2JrKVS7G5G0nF3+Gnbb8R+OZ0fhPSu1+5SA0sQeHzDpze5jWwYicVz3I0IvxXAGLfJV2ch3Wm05w53sAHOpo0m/gW7pwgCi6dGltBxHNE9Rd40JFpP05ITtBOh1jrzodUxk6lDj0Kvxs65ItQ2UogbaA8qU7n7shA1BBNqJSi9oXAkA5Qzie74SsOW9vl1jk96osFinEqilsBx4u5UITbr1Q+wi/WXjDHQ486wPsJ2mDKySzBgRN2viLS6mm9WoXJE4xM68nTqMcIstmLe6+3IpjLVW9wx3SPWD24bp43NUwsIdVDGyRjsXBeV2LR60HG5+Yk0/uq+BLgQcWD/ggsc7HFLlcps0j674Fu0qimfu+t8Vd5Ec6aLg1q5jrWIV62vgajGUom3UKRAWB33k30rjSP/9mqa1kaaf3unZOf58xlAsgIUpqaRuFb/heQuNGv5j2psXTkgtCVKQ/vKSrcmQ10rNAQ3orYAnfV1f6w9OMn9Rlx0dD5XiIN0QAyonx24Jns=
