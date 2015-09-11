@@ -1,7 +1,7 @@
 language: objective-c
 osx_image: xcode6.4
 before_script:
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/Roy_App_Store_Distribution.mobileprovision.enc -d -a -out scripts/profile/Roy_App_Store_Distribution.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/CrystalExpress_Ad_Hoc.mobileprovision.enc -d -a -out scripts/profile/CrystalExpress_Ad_Hoc.mobileprovision
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 
