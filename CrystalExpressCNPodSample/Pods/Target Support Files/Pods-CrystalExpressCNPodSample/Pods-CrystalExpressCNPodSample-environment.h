@@ -100,5 +100,5 @@
 #define COCOAPODS_POD_AVAILABLE_SocketRocket
 #define COCOAPODS_VERSION_MAJOR_SocketRocket 0
 #define COCOAPODS_VERSION_MINOR_SocketRocket 4
-#define COCOAPODS_VERSION_PATCH_SocketRocket 0
+#define COCOAPODS_VERSION_PATCH_SocketRocket 1
 

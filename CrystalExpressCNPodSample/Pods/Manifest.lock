@@ -37,7 +37,7 @@ PODS:
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
   - Reachability (3.2)
-  - SocketRocket (0.4)
+  - SocketRocket (0.4.1)
   - SSZipArchive (0.3.2)
 
 DEPENDENCIES:
@@ -50,7 +50,7 @@ SPEC CHECKSUMS:
   MTStatusBarOverlay: 258a1ee369f4dc4b94107d02cfd7f6b1317c421b
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SocketRocket: 01443933b7bc362621325f4607b80b4286a99707
+  SocketRocket: ee0b5c34182d37bb4f1f8d628bbe737718126daa
   SSZipArchive: 11801759495fa4efb7512ef652eb0042d68305d7
 
 COCOAPODS: 0.35.0

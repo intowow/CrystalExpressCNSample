@@ -193,7 +193,7 @@ typedef NS_ENUM(NSUInteger, CELandscapeViewControllerDismissAnimationOption){
 /**
  *  @brief dismiss splash view controller automatically after user had engage this Ad
  *
- *  @param dismissAd boolValue indicate whether to dismiss ad
+ *  @param dismissAd
  */
 - (void)setDismissAdAfterEngageAd:(BOOL)dismissAd;
 

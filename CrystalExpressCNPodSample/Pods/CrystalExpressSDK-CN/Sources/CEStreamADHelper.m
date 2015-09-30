@@ -471,6 +471,11 @@
         targetPosition = -1;
         NSArray *curDesiredPositions = [_desiredPositions copy];
         for (NSNumber *desiredPos in curDesiredPositions) {
+            // this position already has ad
+            if ([_adHolders objectForKey:desiredPos] != nil) {
+                continue;
+            }
+            
             if ([desiredPos intValue] >= _lastVisiblePosition + 1) {
                 targetPosition = [desiredPos intValue];
                 break;
@@ -497,6 +502,8 @@
             
                 [self updateProhibitPosWithAdPos:targetPosition];
                 ++_place;
+            } else {
+                [_adHolders removeObjectForKey:@(targetPosition)];
             }
         }
     }

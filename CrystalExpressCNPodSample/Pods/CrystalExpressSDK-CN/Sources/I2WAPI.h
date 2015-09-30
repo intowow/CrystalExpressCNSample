@@ -172,7 +172,7 @@ typedef NS_ENUM(NSUInteger, CESplashType){
  *  @param helperKey the key to identify this request, will be placement+unix_timestamp (ex. STREAM_1435318372000)
  *  @param place     AD order
  *  @param adWidth   preferred stream AD width
- *  @param timeout   timeout second to wait for stream ad 
+ *  @param timeout   timeout second to wait for stream ad
  *  @param ready     callback block while ADView is ready
  *  @param failure   callback block while fail to request AD
  *  @param animation callback block while AD animation occur (ex. CARD-VIDEO-PULLDOWN AD is clicked by user)
@@ -240,6 +240,27 @@ typedef NS_ENUM(NSUInteger, CESplashType){
  *  @return int value for max position
  */
 + (int)getStreamADServingMaxPositionWithPlacement:(NSString *)placement;
+
+#pragma mark - Ad tag
+/**
+ *  @brief get AD placement name from (adTag name, position)
+ *
+ *  @param adTag    AD tag name
+ *  @param position position to place AD
+ *
+ *  @return placement name
+ */
++ (NSString *)getPlacementWithAdTag:(NSString *)adTag position:(int)position;
+
+/**
+ *  @brief get stream placement setting, including serving max/min position, freq
+ *
+ *  @param tagName   ad tag name
+ *  @param placement placement name
+ *
+ *  @return dictionary with info key: maxPos, minPos, freq
+ */
++ (NSDictionary *)getStreamPlacementInfoWithTagName:(NSString *)tagName placement:(NSString *)placement;
 
 #pragma mark - track API
 /**
