@@ -62,6 +62,15 @@ typedef NS_ENUM(NSUInteger, CESplashType){
 + (void)initWithVerboseLog:(BOOL)enableVerbose isTestMode:(BOOL)testMode;
 
 /**
+ *  @brief initializer of I2WAPI
+ *
+ *  @param enableVerbose whether to enable debug message
+ *  @param testMode      whether to init in TEST mode
+ *  @param crystalId     your crystal id
+ */
++ (void)initWithVerboseLog:(BOOL)enableVerbose isTestMode:(BOOL)testMode crystalId:(NSString *)crystalId;
+
+/**
  *  @brief is I2WAPI is in TEST mode
  *
  *  @return BOOL
@@ -74,6 +83,13 @@ typedef NS_ENUM(NSUInteger, CESplashType){
  *  @return BOOL
  */
 + (BOOL)isAdServing;
+
+/**
+ *  @brief get current using crystal id
+ *
+ *  @return crystal id
+ */
++ (NSString *)getCrystalID;
 
 /**
  *  @brief refresh/remove unnecessary AD creatives
@@ -156,6 +172,7 @@ typedef NS_ENUM(NSUInteger, CESplashType){
  *  @param helperKey the key to identify this request, will be placement+unix_timestamp (ex. STREAM_1435318372000)
  *  @param place     AD order
  *  @param adWidth   preferred stream AD width
+ *  @param timeout   timeout second to wait for stream ad
  *  @param ready     callback block while ADView is ready
  *  @param failure   callback block while fail to request AD
  *  @param animation callback block while AD animation occur (ex. CARD-VIDEO-PULLDOWN AD is clicked by user)
@@ -198,6 +215,13 @@ typedef NS_ENUM(NSUInteger, CESplashType){
 + (void)setActivePlacement:(NSString *)placement;
 
 /**
+ *  @brief set current active placements
+ *
+ *  @param placements an array of placement names
+ */
++ (void)setActivePlacements:(NSArray *)placements;
+
+/**
  *  @brief get stream AD serving frequency server setting
  *
  *  @param placement placement string
@@ -223,6 +247,45 @@ typedef NS_ENUM(NSUInteger, CESplashType){
  *  @return int value for max position
  */
 + (int)getStreamADServingMaxPositionWithPlacement:(NSString *)placement;
+
+#pragma mark - Ad tag
+/**
+ *  @brief get AD placement name from (adTag name, position)
+ *
+ *  @param adTag    AD tag name
+ *  @param posIndex position index to place AD
+ *
+ *  @return placement name
+ */
++ (NSString *)getPlacementWithAdTag:(NSString *)adTag posIndex:(int)posIndex;
+
+/**
+ *  @brief check whether this placement is blocking
+ *
+ *  @param placement placement name
+ *
+ *  @return true if placement group is blocking, otherwise false
+ */
++ (BOOL)isPlacementBlocking:(NSString *)placement;
+
+/**
+ *  @brief get stream placement setting, including acceptanceRanges, freq
+ *
+ *  @param tagName   ad tag name
+ *  @param placement placement name
+ *
+ *  @return dictionary with info key: acceptanceRanges, freq
+ */
++ (NSDictionary *)getPositionLimitationWithTagName:(NSString *)tagName placement:(NSString *)placement;
+
+/**
+ *  @brief get stream all placements info, including min/max position in all placements, and placements name
+ *
+ *  @param tagName ad tag name
+ *
+ *  @return dictionary with info key: maxPos, minPos, placements
+ */
++ (NSDictionary *)getStreamPlacementsInfoWithTagName:(NSString *)tagName;
 
 #pragma mark - track API
 /**
