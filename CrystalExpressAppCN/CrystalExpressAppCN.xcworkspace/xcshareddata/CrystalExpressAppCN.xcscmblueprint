@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "FC48B91C47254096E41B3C9D2D71F7D7BCF1F146",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "FC48B91C47254096E41B3C9D2D71F7D7BCF1F146" : 0,
+    "A01B5663EDBBD8AD2CC762F869A7B7F5EDB68C1B" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "82674736-998C-4B2D-8703-798B570E8246",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "FC48B91C47254096E41B3C9D2D71F7D7BCF1F146" : "CrystalExpressCNSample",
+    "A01B5663EDBBD8AD2CC762F869A7B7F5EDB68C1B" : "CrystalExpressSDK-CN\/CrystalExpressSDK-CN"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CrystalExpressAppCN",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CrystalExpressAppCN\/CrystalExpressAppCN.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ytli1204\/CrystalExpressSDK-CN.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A01B5663EDBBD8AD2CC762F869A7B7F5EDB68C1B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:roylo\/CrystalExpressCNSample.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FC48B91C47254096E41B3C9D2D71F7D7BCF1F146"
+    }
+  ]
+}

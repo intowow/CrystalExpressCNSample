@@ -215,6 +215,13 @@ typedef NS_ENUM(NSUInteger, CESplashType){
 + (void)setActivePlacement:(NSString *)placement;
 
 /**
+ *  @brief set current active placements
+ *
+ *  @param placements an array of placement names
+ */
++ (void)setActivePlacements:(NSArray *)placements;
+
+/**
  *  @brief get stream AD serving frequency server setting
  *
  *  @param placement placement string
@@ -246,21 +253,39 @@ typedef NS_ENUM(NSUInteger, CESplashType){
  *  @brief get AD placement name from (adTag name, position)
  *
  *  @param adTag    AD tag name
- *  @param position position to place AD
+ *  @param posIndex position index to place AD
  *
  *  @return placement name
  */
-+ (NSString *)getPlacementWithAdTag:(NSString *)adTag position:(int)position;
++ (NSString *)getPlacementWithAdTag:(NSString *)adTag posIndex:(int)posIndex;
 
 /**
- *  @brief get stream placement setting, including serving max/min position, freq
+ *  @brief check whether this placement is blocking
+ *
+ *  @param placement placement name
+ *
+ *  @return true if placement group is blocking, otherwise false
+ */
++ (BOOL)isPlacementBlocking:(NSString *)placement;
+
+/**
+ *  @brief get stream placement setting, including acceptanceRanges, freq
  *
  *  @param tagName   ad tag name
  *  @param placement placement name
  *
- *  @return dictionary with info key: maxPos, minPos, freq
+ *  @return dictionary with info key: acceptanceRanges, freq
  */
-+ (NSDictionary *)getStreamPlacementInfoWithTagName:(NSString *)tagName placement:(NSString *)placement;
++ (NSDictionary *)getPositionLimitationWithTagName:(NSString *)tagName placement:(NSString *)placement;
+
+/**
+ *  @brief get stream all placements info, including min/max position in all placements, and placements name
+ *
+ *  @param tagName ad tag name
+ *
+ *  @return dictionary with info key: maxPos, minPos, placements
+ */
++ (NSDictionary *)getStreamPlacementsInfoWithTagName:(NSString *)tagName;
 
 #pragma mark - track API
 /**

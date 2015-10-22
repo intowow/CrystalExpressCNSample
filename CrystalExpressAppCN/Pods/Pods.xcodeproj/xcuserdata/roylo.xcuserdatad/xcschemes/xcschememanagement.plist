@@ -19,11 +19,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-CrystalExpressAppCN-JSONKit-NoWarning.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-CrystalExpressAppCN-MTStatusBarOverlay.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -49,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-CrystalExpressAppCN-SocketRocket.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CrystalExpressAppCN.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,52 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>13A51D43DCA18CFC465DE78F</key>
+		<key>2AD753093D37CDB303E3B5EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>176B03534D0703F5E7E56302</key>
+		<key>3383A42941B898EE4A880308</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1F6A68368A899B07160297CB</key>
+		<key>3898D8D4D124064708839AD3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2A16F1EFD6E41A8238ABF106</key>
+		<key>5A281BD0273E3127B02696DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2E8EDB1A8A7D7C6898A2114A</key>
+		<key>6D33F6213927EEB0AA272D16</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3E5F5456B958D7B0A378DC8C</key>
+		<key>A961AC856542D7B677E9CB5A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>818F82731DFEA23957BB9843</key>
+		<key>AA460DE4CC2FEF5BC8947C02</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C8F322A6BCFD8567520526C0</key>
+		<key>C0CAA45EE2E766E7D5CE544E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E5458F579A725C0037DD353A</key>
+		<key>C7EB8942E6A39107298CA182</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F74DEDD47ECAFD491F8F3F7C</key>
+		<key>D3A0CFEBCA244B7B5BF23E51</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -11,18 +11,7 @@
 #import "CEADView.h"
 
 #pragma mark - ADHolder
-@interface CEADHolder : NSObject
-@property (nonatomic, strong) ADView *adView;
-@property (nonatomic, assign) BOOL isShowing;
-@property (nonatomic, assign) BOOL isPlaying;
-@property (nonatomic, assign) NSUInteger section;
-@property (nonatomic, assign) NSUInteger row;
-
-- (instancetype)initWithAdView:(ADView *)adView section:(NSUInteger)section row:(NSUInteger)row;
-@end
-
 @implementation CEADHolder
-
 - (instancetype)initWithAdView:(ADView *)adView section:(NSUInteger)section row:(NSUInteger)row
 {
     self = [super init];
@@ -38,49 +27,68 @@
 
 @end
 
+#pragma mark - CEStreamPositionManager
+@implementation CEStreamPositionManager
+
+- (instancetype)initWithPlacement:(NSString *)placement minPos:(int)minPos maxPos:(int)maxPos
+{
+    self = [super init];
+    if (self) {
+        _placement = placement;
+        _tag = nil;
+        _minPos = minPos;
+        _maxPos = maxPos;
+        _servingFreq = [I2WAPI getStreamADServingFreqWithPlacement:placement];
+        _nextPos = _minPos -1;
+    }
+    return self;
+}
+
+- (instancetype)initWithTag:(NSString *)tag minPos:(int)minPos maxPos:(int)maxPos
+{
+    self = [super init];
+    if (self) {
+        _placement = nil;
+        _tag = tag;
+        _minPos = minPos;
+        _maxPos = maxPos;
+        _servingFreq = [I2WAPI getStreamADServingFreqWithPlacement:nil];
+        _nextPos = _minPos -1;
+    }
+    return self;
+}
+
+@end
+
+#pragma mark - CEStreamADHelper
 @interface CEStreamADHelper()
-@property (nonatomic, strong) NSMutableDictionary *sectionCounts;
-@property (nonatomic, strong) NSMutableDictionary *adHolders;
-@property (nonatomic, strong) NSString *placement;
-@property (nonatomic, strong) NSString *key;
 @property (nonatomic, assign) int place;
 @property (nonatomic, assign) float adWidth;
 @property (nonatomic, strong) NSMutableArray *prohibitPositions;
-@property (nonatomic, strong) NSMutableArray *desiredPositions;
 
 // serving conf
-@property (nonatomic, assign) int servingFreq;
-@property (nonatomic, assign) int servingMinPos;
-@property (nonatomic, assign) int servingMaxPos;
-@property (nonatomic, assign) int lastAddedPosition;
 @property (nonatomic, assign) int firstVisiblePosition;
 @property (nonatomic, assign) int lastVisiblePosition;
 
 // state
-@property (nonatomic, assign) BOOL isProcessing;
 @property (nonatomic, assign) BOOL isActive;
 @property (nonatomic, assign) BOOL enableAutoPlay;
 @end
 
 @implementation CEStreamADHelper
-- (instancetype)initWithPlacement:(NSString *)placement delegate:(id<CEStreamAdHelperDelegate>)delegate
+
+#pragma mark - constructor
+- (instancetype)initWithDelegate:(id<CEStreamAdHelperDelegate>)delegate
 {
     self = [super init];
     if (self) {
-        _sectionCounts = [[NSMutableDictionary alloc] init];
-        _adHolders = [[NSMutableDictionary alloc] init];
-        _placement = placement;
         _delegate = delegate;
-        long long now = [[NSDate date] timeIntervalSince1970] * 1000L;
-        // Used to distinguish ad requests from different streams
-        _key            = [NSString stringWithFormat:@"%@_%lld", _placement, now];
+        _adHolders = [[NSMutableDictionary alloc] init];
+        
+        _key = nil;
         _place = 1;
         _adWidth = -1;
-        
-        _servingFreq    = [I2WAPI getStreamADServingFreqWithPlacement:placement];
-        _servingMinPos  = [I2WAPI getStreamADServingMinPositionWithPlacement:placement];
-        _servingMaxPos  = [I2WAPI getStreamADServingMaxPositionWithPlacement:placement];
-        _lastAddedPosition = _servingMinPos - _servingFreq - 2;
+
         _firstVisiblePosition = -1;
         _lastVisiblePosition = -1;
         
@@ -95,6 +103,7 @@
     return self;
 }
 
+#pragma mark - public API
 - (void)setAdWidth:(float)width
 {
     if (width > 0) {
@@ -105,12 +114,11 @@
 - (void)setActive:(BOOL)isActive
 {
     _isActive = isActive;
+    if (isActive) {
+        [I2WAPI setActivePlacements:_channelPlacements];
+    }
+    
     [self updateAdStatus];
-}
-
-- (void)setItemCount:(NSUInteger)count forSection:(NSInteger)section
-{
-    self.sectionCounts[@(section)] = @(count);
 }
 
 - (NSUInteger)adjustedNumberOfItems:(NSUInteger)numberOfItems inSection:(NSUInteger)section
@@ -123,11 +131,9 @@
     return numberOfItems + numberOfAdsBeforeLastItem;
 }
 
-- (void)preroll
+- (void)prerollWithVisibleCounts:(int)visibleCounts
 {
-    _isProcessing = YES;
-    [I2WAPI setActivePlacement:_placement];
-    [self requestAd];
+    NSLog(@"CEStreamADHelper Error: should not called parent method");
 }
 
 - (void)reset
@@ -146,7 +152,6 @@
     _adHolders      = [[NSMutableDictionary alloc] init];
     
     // A trick so we can pass the initial condition and insert ad at the minimum position!
-    _lastAddedPosition      = _servingMinPos - _servingFreq - 2;
     _firstVisiblePosition   = -1;
     _lastVisiblePosition    = -1;
     
@@ -209,25 +214,7 @@
 
 - (UIView *)loadAdAtIndexPath:(NSIndexPath *)indexPath
 {
-    int position = [_delegate indexPathToPosition:indexPath];
-    if ([_adHolders objectForKey:@(position)] != nil) {
-        CEADHolder *holder = [_adHolders objectForKey:@(position)];
-        return (UIView *)[holder adView];
-    }
-    
-    
-    if (!_isProcessing &&
-        (position >= _lastAddedPosition + _servingFreq) &&
-        (position <= _servingMaxPos) &&
-        (_lastAddedPosition + _servingFreq <= _servingMaxPos)) {
-        
-        _isProcessing = YES;
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            [self requestAd];
-        });
-    }
-    
+    NSLog(@"CEStreamADHelper Error: should not called parent method");
     return nil;
 }
 
@@ -378,10 +365,14 @@
     [self updateAdStatus];
 }
 
-#pragma mark - private method
-- (void)requestAd
+- (void)requestAdWithPlacement:(NSString *)placement
 {
-    [I2WAPI getStreamADWithPlacement:_placement helperKey:_key place:_place adWidth:_adWidth onReady:^(ADView *adView) {
+    [I2WAPI getStreamADWithPlacement:placement
+                           helperKey:_key
+                               place:_place
+                             adWidth:_adWidth
+                             timeout:5.0
+                             onReady:^(ADView *adView) {
         [self onADLoaded:adView];
         _isProcessing = NO;
     } onFailure:^(NSError *error) {
@@ -391,6 +382,7 @@
     }];
 }
 
+#pragma mark - private method
 - (void)updateProhibitPosWithAdPos:(int)adPos
 {
     NSMutableArray *newProhitbitPos = [[NSMutableArray alloc] init];
@@ -403,6 +395,12 @@
     }
     
     _prohibitPositions = newProhitbitPos;
+}
+
+- (BOOL)isInAcceptanceRangesWithTargetPositionIndex:(int)posIndex
+{
+    NSLog(@"CEStreamADHelper Error: should not called parent method");
+    return NO;
 }
 
 #pragma mark - indexPath helper
@@ -446,36 +444,50 @@
 
 - (void)onADLoaded:(ADView *)adView
 {
-    int targetPosition = MAX(_lastVisiblePosition + 1, _lastAddedPosition + _servingFreq + 1);
+    // this is index, which start from 0
+    int targetPosIndex = MAX(_lastVisiblePosition + 1, _positionMgr.nextPos);
     if ([_desiredPositions count] == 0) {
-        while ([_prohibitPositions containsObject:@(targetPosition)]) {
-            targetPosition ++;
+        while ([_prohibitPositions containsObject:@(targetPosIndex)]) {
+            targetPosIndex ++;
         }
     } else {
-        targetPosition = -1;
+        targetPosIndex = -1;
         NSArray *curDesiredPositions = [_desiredPositions copy];
         for (NSNumber *desiredPos in curDesiredPositions) {
+            // this position already has ad
+            if ([_adHolders objectForKey:desiredPos] != nil) {
+                continue;
+            }
+            
             if ([desiredPos intValue] >= _lastVisiblePosition + 1) {
-                targetPosition = [desiredPos intValue];
+                targetPosIndex = [desiredPos intValue];
                 break;
             }
         }
     }
-    
-    if (targetPosition < _servingMaxPos) {
-        if (targetPosition != -1 && adView != nil) {
-            NSIndexPath *targetIndexPath = [_delegate positionToIndexPath:targetPosition];
-            _lastAddedPosition = targetPosition;
+  
+    if ([self isInAcceptanceRangesWithTargetPositionIndex:targetPosIndex]) {
+        if (targetPosIndex != -1 && adView != nil) {
+            NSIndexPath *targetIndexPath = [_delegate positionToIndexPath:targetPosIndex];
+            if (targetIndexPath == nil) {
+                return;
+            }
+            
+            NSLog(@"insert ad at position: %d", targetPosIndex);
             CEADHolder *newADHolder = [[CEADHolder alloc] initWithAdView:adView section:targetIndexPath.section row:targetIndexPath.row];
-            [_adHolders setObject:newADHolder forKey:@(targetPosition)];
+            [_adHolders setObject:newADHolder forKey:@(targetPosIndex)];
             
-            [_delegate CEStreamADDidLoadAdAtIndexPath:targetIndexPath];
-            [self updateAdStatus];
-            [self decorateADView:(UIView *)adView];
+            BOOL isInsertedToTableView = [_delegate CEStreamADDidLoadAdAtIndexPath:targetIndexPath];
+            if (isInsertedToTableView) {
+                _lastAddedPosition = targetPosIndex;
+                [self updateAdStatus];
+                [self decorateADView:(UIView *)adView];
+                [self updateProhibitPosWithAdPos:targetPosIndex];
+                ++_place;
+            } else {
+                [_adHolders removeObjectForKey:@(targetPosIndex)];
+            }
             
-            [self updateProhibitPosWithAdPos:targetPosition];
-            
-            ++_place;
         }
     }
 }

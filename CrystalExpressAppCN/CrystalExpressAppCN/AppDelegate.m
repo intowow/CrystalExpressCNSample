@@ -42,7 +42,7 @@
     [_nav setNavigationBarHidden:YES];
     self.window.rootViewController = _nav;
     [self.window makeKeyAndVisible];
-    [I2WAPI initWithVerboseLog:YES isTestMode:YES];
+    [I2WAPI initWithVerboseLog:YES isTestMode:YES crystalId:@"crystalidforiostestingdonotuseit"];
     [I2WAPI setAdEventDelegate:self];
     
     _CEOpenSplashAD = [[CESplashAD alloc] initWithPlacement:@"OPEN_SPLASH" delegate:self];

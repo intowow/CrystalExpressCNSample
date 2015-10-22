@@ -12,7 +12,7 @@
 @protocol CEStreamAdHelperDelegate <NSObject>
 
 @optional
-- (void)CEStreamADDidLoadAdAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)CEStreamADDidLoadAdAtIndexPath:(NSIndexPath *)indexPath;
 - (void)CEStreamADDidRemoveAdsAtIndexPaths:(NSArray *)indexPaths;
 - (void)CEStreamADOnPulldownAnimation;
 - (int)indexPathToPosition:(NSIndexPath *)indexPath;
@@ -20,13 +20,53 @@
 - (BOOL)isIdle;
 @end
 
+#pragma mark - CEADHolder
+@class ADView;
+
+@interface CEADHolder : NSObject
+@property (nonatomic, strong) ADView *adView;
+@property (nonatomic, assign) BOOL isShowing;
+@property (nonatomic, assign) BOOL isPlaying;
+@property (nonatomic, assign) NSUInteger section;
+@property (nonatomic, assign) NSUInteger row;
+
+- (instancetype)initWithAdView:(ADView *)adView section:(NSUInteger)section row:(NSUInteger)row;
+@end
+
+#pragma mark - CEStreamPositionManager
+@interface CEStreamPositionManager : NSObject
+@property (nonatomic, strong) NSString *placement;
+@property (nonatomic, strong) NSString *tag;
+@property (nonatomic, assign) int minPos;
+@property (nonatomic, assign) int maxPos;
+@property (nonatomic, assign) int servingFreq;
+@property (nonatomic, assign) int nextPos;
+
+- (instancetype)initWithPlacement:(NSString *)placement minPos:(int)minPos maxPos:(int)maxPos;
+- (instancetype)initWithTag:(NSString *)tag minPos:(int)minPos maxPos:(int)maxPos;
+@end
+
+#define DEFAULT_INIT_VISIBLE_COUNTS 5
+
+#pragma mark - CEStreamADHelper
 @interface CEStreamADHelper : NSObject
 @property (nonatomic, weak) id<CEStreamAdHelperDelegate> delegate;
-- (instancetype)initWithPlacement:(NSString *)placement delegate:(id<CEStreamAdHelperDelegate>)delegate;
+@property (nonatomic, strong) NSMutableDictionary *adHolders;
+@property (nonatomic, strong) CEStreamPositionManager *positionMgr;
+@property (nonatomic, strong) NSArray *channelPlacements;
+@property (nonatomic, strong) NSString *key;
+@property (nonatomic, strong) NSMutableArray *desiredPositions;
+@property (nonatomic, assign) int lastAddedPosition;
+
+// state
+@property (nonatomic, assign) BOOL isProcessing;
+
+
+- (instancetype)initWithDelegate:(id<CEStreamAdHelperDelegate>)delegate;
 - (void)setAdWidth:(float)width;
 - (void)setActive:(BOOL)isActive;
 - (void)updateAdStatus;
-- (void)preroll;
+- (void)prerollWithVisibleCounts:(int)visibleCounts;
 - (void)reset;
 - (void)setAppAdsIndexPaths:(NSArray *)appAdsIndexPaths;
 - (void)setAdCustomIndexPaths:(NSArray *)adIndexPaths;
@@ -34,9 +74,7 @@
 - (void)startAdAtPosition:(NSUInteger)position;
 - (void)stopAdAtPosition:(NSUInteger)position;
 
-- (void)setItemCount:(NSUInteger)count forSection:(NSInteger)section;
 - (NSUInteger)adjustedNumberOfItems:(NSUInteger)numberOfItems inSection:(NSUInteger)section;
-- (UIView *)loadAdAtIndexPath:(NSIndexPath *)indexPath;
 - (BOOL)isAdAtIndexPath:(NSIndexPath *)indexPath;
 - (CGSize)getAdSizeAtIndexPath:(NSIndexPath *)indexPath;
 
@@ -53,4 +91,9 @@
 - (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection;
 
 - (void)updateVisibleCellsFromPosition:(int)firstPos toPosition:(int)lastPos;
+
+// override by children class
+- (UIView *)loadAdAtIndexPath:(NSIndexPath *)indexPath;
+- (void)requestAdWithPlacement:(NSString *)placement;
+- (BOOL)isInAcceptanceRangesWithTargetPositionIndex:(int)posIndex;
 @end

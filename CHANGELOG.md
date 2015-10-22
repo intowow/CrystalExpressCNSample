@@ -1,3 +1,20 @@
+## [1.4.1]() (2015-10-22)
+#### Feature
+* Disable time range check in AD valid to fetch
+* Send trace log while query geographic api to verify lat & long
+* Support roadblock mode for stream AD
+* Support init SDK with crystal_id to replace in plist
+* Add API in CETableViewADHelper to disable load AD
+
+#### Fixed
+* Use adid instead of ADProfile in ADGuarder to avoid ADProfile setting change while callback to dispatcher
+* Download tasks are not scheduled with their best priority in schedulePrefetch
+* fix CEStreamADHelper duplicate insert AD if use - (void)setAdCustomIndexPaths:(NSArray *)adIndexPaths;
+* fix device_id generator to use normal UUID since identifierForVendor might sometimes return nil
+* fix error handling in snapshot if carrier is nil
+* fix unrecognized device ppi to 326 in iPhone&iPad case
+* return nil in Matcher if app is in background
+
 ## [1.3.10]() (2015-09-09)
 #### Feature
 * Callback to dispatcher while AD pass guard time

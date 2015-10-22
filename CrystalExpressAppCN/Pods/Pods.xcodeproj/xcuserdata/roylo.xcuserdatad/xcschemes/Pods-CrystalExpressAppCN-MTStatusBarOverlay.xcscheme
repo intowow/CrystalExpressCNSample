@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E5458F579A725C0037DD353A"
+               BlueprintIdentifier = "6D33F6213927EEB0AA272D16"
                BuildableName = "libPods-CrystalExpressAppCN-MTStatusBarOverlay.a"
                BlueprintName = "Pods-CrystalExpressAppCN-MTStatusBarOverlay"
                ReferencedContainer = "container:Pods.xcodeproj">

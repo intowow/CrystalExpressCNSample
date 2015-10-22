@@ -27,6 +27,19 @@
                           placement:(NSString *)placement;
 
 /**
+ *  initialize helper with tableView to insert stream ADs, current viewcontroller and tag name
+ *
+ *  @param tableView  tableView to insert stream ADs
+ *  @param controller current view controller
+ *  @param adTag      tag name
+ *
+ *  @return CETableViewADHelper instance
+ */
++ (instancetype)helperWithTableView:(UITableView *)tableView
+                     viewController:(UIViewController *)controller
+                              adTag:(NSString *)adTag;
+
+/**
  *  this is an optional method to set stream AD's width
  *  stream AD's height will be adjusted to keep the original creative ratio from width
  *
@@ -59,6 +72,11 @@
  *  start load stream AD
  */
 - (void)loadAd;
+
+/**
+ *  disable load AD
+ */
+- (void)disableAd;
 
 /**
  *  clean all cached ADs, reset the helper

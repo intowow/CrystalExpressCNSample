@@ -7,7 +7,8 @@
 //
 
 #import "CETableViewADHelper.h"
-#import "CEStreamADHelper.h"
+#import "CEStreamPlacementADHelper.h"
+#import "CEStreamTagADHelper.h"
 #import "I2WAPI.h"
 #import "CEAdInvocation.h"
 #import <objc/runtime.h>
@@ -32,17 +33,26 @@
                      viewController:(UIViewController *)controller
                           placement:(NSString *)placement
 {
-    return [[CETableViewADHelper alloc] initWithTableView:tableView viewController:controller placement:placement];
+    CETableViewADHelper *helper = [[CETableViewADHelper alloc] initWithTableView:tableView viewController:controller];
+    helper.streamAdHelper = [[CEStreamPlacementADHelper alloc] initWithPlacement:placement delegate:helper];
+    return helper;
+}
+
++ (instancetype)helperWithTableView:(UITableView *)tableView
+                     viewController:(UIViewController *)controller
+                              adTag:(NSString *)adTag
+{
+    CETableViewADHelper *helper = [[CETableViewADHelper alloc] initWithTableView:tableView viewController:controller];
+    helper.streamAdHelper = [[CEStreamTagADHelper alloc] initWithAdTag:adTag delegate:helper];
+    return helper;
 }
 
 - (instancetype)initWithTableView:(UITableView *)tableView
                    viewController:(UIViewController *)controller
-                        placement:(NSString *)placement;
 {
     self = [super init];
     if (self) {
         _tableView = tableView;
-        _streamAdHelper = [[CEStreamADHelper alloc] initWithPlacement:placement delegate:self];
         _originalDataSource = tableView.dataSource;
         _originalDelegate = tableView.delegate;
         tableView.delegate = self;
@@ -81,10 +91,16 @@
 - (void)loadAd
 {
     _enableAd = YES;
-    int visibleCounts = [[_tableView visibleCells] count];
+    int visibleCounts = (int)[[_tableView visibleCells] count];
     [_streamAdHelper prerollWithVisibleCounts:visibleCounts];
     [_tableView ce_reloadData];
     [self updateVisiblePositions];
+}
+
+- (void)disableAd
+{
+    _enableAd = NO;
+    [self cleanAds];
 }
 
 - (void)cleanAds
@@ -143,7 +159,7 @@
         firstPos = [self indexPathToPosition:[_tableView indexPathForCell:[cells firstObject]]];
         lastPos = [self indexPathToPosition:[_tableView indexPathForCell:[cells lastObject]]];
     }
-    
+   
     [_streamAdHelper updateVisibleCellsFromPosition:firstPos toPosition:lastPos];
 }
 
@@ -234,7 +250,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSUInteger numberOfItems = [self.originalDataSource tableView:tableView numberOfRowsInSection:section];
-    [self.streamAdHelper setItemCount:numberOfItems forSection:section];
     
     return [self.streamAdHelper adjustedNumberOfItems:numberOfItems inSection:section];
 }
