@@ -15,7 +15,7 @@
 		D56D823F1BD885C100A68E45 /* CEStreamPlacementADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D82321BD885C100A68E45 /* CEStreamPlacementADHelper.m */; settings = {ASSET_TAGS = (); }; };
 		D56D82401BD885C100A68E45 /* CEStreamTagADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D82341BD885C100A68E45 /* CEStreamTagADHelper.m */; settings = {ASSET_TAGS = (); }; };
 		D56D82411BD885C100A68E45 /* CETableViewADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D82361BD885C100A68E45 /* CETableViewADHelper.m */; settings = {ASSET_TAGS = (); }; };
-		D56D82421BD885C100A68E45 /* CrystalExpressSDK-CN-1.4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D56D82371BD885C100A68E45 /* CrystalExpressSDK-CN-1.4.1.a */; settings = {ASSET_TAGS = (); }; };
+		D56D83571BDDDF0900A68E45 /* CrystalExpressSDK-CN-1.4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D56D83561BDDDF0900A68E45 /* CrystalExpressSDK-CN-1.4.1.a */; settings = {ASSET_TAGS = (); }; };
 		D5B4ACA01B11792B007B674C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4AC9F1B11792B007B674C /* main.m */; };
 		D5B4ACA31B11792B007B674C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACA21B11792B007B674C /* AppDelegate.m */; };
 		D5B4ACA61B11792B007B674C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACA51B11792B007B674C /* ViewController.m */; };
@@ -74,9 +74,9 @@
 		D56D82341BD885C100A68E45 /* CEStreamTagADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStreamTagADHelper.m; sourceTree = "<group>"; };
 		D56D82351BD885C100A68E45 /* CETableViewADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETableViewADHelper.h; sourceTree = "<group>"; };
 		D56D82361BD885C100A68E45 /* CETableViewADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETableViewADHelper.m; sourceTree = "<group>"; };
-		D56D82371BD885C100A68E45 /* CrystalExpressSDK-CN-1.4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-CN-1.4.1.a"; sourceTree = "<group>"; };
 		D56D82381BD885C100A68E45 /* FlipDynamicADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipDynamicADHelper.h; sourceTree = "<group>"; };
 		D56D82391BD885C100A68E45 /* I2WAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I2WAPI.h; sourceTree = "<group>"; };
+		D56D83561BDDDF0900A68E45 /* CrystalExpressSDK-CN-1.4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-CN-1.4.1.a"; sourceTree = "<group>"; };
 		D5B4AC9A1B11792B007B674C /* CrystalExpressCNManualSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrystalExpressCNManualSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B4AC9E1B11792B007B674C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5B4AC9F1B11792B007B674C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 				D5B4ACDE1B1179D1007B674C /* libc++.dylib in Frameworks */,
 				D5B4ACDC1B1179C4007B674C /* libz.dylib in Frameworks */,
 				D5B4ACDA1B1179BC007B674C /* AdSupport.framework in Frameworks */,
-				D56D82421BD885C100A68E45 /* CrystalExpressSDK-CN-1.4.1.a in Frameworks */,
+				D56D83571BDDDF0900A68E45 /* CrystalExpressSDK-CN-1.4.1.a in Frameworks */,
 				D5B4ACD81B1179B1007B674C /* SystemConfiguration.framework in Frameworks */,
 				D5B4ACD61B1179A7007B674C /* MobileCoreServices.framework in Frameworks */,
 				D5B4ACD41B1179A0007B674C /* MessageUI.framework in Frameworks */,
@@ -234,9 +234,9 @@
 				D56D82321BD885C100A68E45 /* CEStreamPlacementADHelper.m */,
 				D56D82331BD885C100A68E45 /* CEStreamTagADHelper.h */,
 				D56D82341BD885C100A68E45 /* CEStreamTagADHelper.m */,
+				D56D83561BDDDF0900A68E45 /* CrystalExpressSDK-CN-1.4.1.a */,
 				D56D82351BD885C100A68E45 /* CETableViewADHelper.h */,
 				D56D82361BD885C100A68E45 /* CETableViewADHelper.m */,
-				D56D82371BD885C100A68E45 /* CrystalExpressSDK-CN-1.4.1.a */,
 				D56D82381BD885C100A68E45 /* FlipDynamicADHelper.h */,
 				D56D82391BD885C100A68E45 /* I2WAPI.h */,
 			);
@@ -526,6 +526,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CrystalExpressCNManualSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -544,6 +545,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: YingTsung Lee (2U5B6RP9DV)";
 				INFOPLIST_FILE = CrystalExpressCNManualSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
