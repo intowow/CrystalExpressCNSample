@@ -1,3 +1,9 @@
+## [1.5.0]() (2015-10-30)
+#### Feature
+* Support audience targeting
+* Replace AWS tracking library with custom tracking
+* Remove KSCrash
+
 ## [1.4.1]() (2015-10-22)
 #### Feature
 * Disable time range check in AD valid to fetch

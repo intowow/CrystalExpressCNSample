@@ -57,7 +57,7 @@
 // CrystalExpressSDK-CN
 #define COCOAPODS_POD_AVAILABLE_CrystalExpressSDK_CN
 #define COCOAPODS_VERSION_MAJOR_CrystalExpressSDK_CN 1
-#define COCOAPODS_VERSION_MINOR_CrystalExpressSDK_CN 4
+#define COCOAPODS_VERSION_MINOR_CrystalExpressSDK_CN 5
 #define COCOAPODS_VERSION_PATCH_CrystalExpressSDK_CN 1
 
 // MTStatusBarOverlay
@@ -100,5 +100,5 @@
 #define COCOAPODS_POD_AVAILABLE_SocketRocket
 #define COCOAPODS_VERSION_MAJOR_SocketRocket 0
 #define COCOAPODS_VERSION_MINOR_SocketRocket 4
-#define COCOAPODS_VERSION_PATCH_SocketRocket 1
+#define COCOAPODS_VERSION_PATCH_SocketRocket 2
 
