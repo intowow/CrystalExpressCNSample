@@ -11,6 +11,7 @@
 * Support roadblock mode for stream AD
 * Support init SDK with crystal_id to replace in plist
 * Add API in CETableViewADHelper to disable load AD
+* Full screen Splash2 image/animation if the screen ratio >= 1.6
 
 #### Fixed
 * Use adid instead of ADProfile in ADGuarder to avoid ADProfile setting change while callback to dispatcher
