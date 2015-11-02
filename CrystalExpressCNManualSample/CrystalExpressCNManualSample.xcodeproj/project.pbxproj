@@ -7,15 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D56D823A1BD885C100A68E45 /* CEAdInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D82261BD885C100A68E45 /* CEAdInvocation.m */; settings = {ASSET_TAGS = (); }; };
-		D56D823B1BD885C100A68E45 /* CEBannerADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D82291BD885C100A68E45 /* CEBannerADHelper.m */; settings = {ASSET_TAGS = (); }; };
-		D56D823C1BD885C100A68E45 /* CECardADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D822B1BD885C100A68E45 /* CECardADHelper.m */; settings = {ASSET_TAGS = (); }; };
-		D56D823D1BD885C100A68E45 /* CEContentADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D822D1BD885C100A68E45 /* CEContentADHelper.m */; settings = {ASSET_TAGS = (); }; };
-		D56D823E1BD885C100A68E45 /* CEStreamADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D82301BD885C100A68E45 /* CEStreamADHelper.m */; settings = {ASSET_TAGS = (); }; };
-		D56D823F1BD885C100A68E45 /* CEStreamPlacementADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D82321BD885C100A68E45 /* CEStreamPlacementADHelper.m */; settings = {ASSET_TAGS = (); }; };
-		D56D82401BD885C100A68E45 /* CEStreamTagADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D82341BD885C100A68E45 /* CEStreamTagADHelper.m */; settings = {ASSET_TAGS = (); }; };
-		D56D82411BD885C100A68E45 /* CETableViewADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D82361BD885C100A68E45 /* CETableViewADHelper.m */; settings = {ASSET_TAGS = (); }; };
-		D56D83571BDDDF0900A68E45 /* CrystalExpressSDK-CN-1.4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D56D83561BDDDF0900A68E45 /* CrystalExpressSDK-CN-1.4.1.a */; settings = {ASSET_TAGS = (); }; };
+		D56D835A1BDDF5B400A68E45 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D56D83581BDDF4E400A68E45 /* libicucore.tbd */; };
 		D5B4ACA01B11792B007B674C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4AC9F1B11792B007B674C /* main.m */; };
 		D5B4ACA31B11792B007B674C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACA21B11792B007B674C /* AppDelegate.m */; };
 		D5B4ACA61B11792B007B674C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACA51B11792B007B674C /* ViewController.m */; };
@@ -35,7 +27,6 @@
 		D5B4ACE21B1179E2007B674C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACE11B1179E2007B674C /* CoreMedia.framework */; };
 		D5B4ACE41B1179EA007B674C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACE31B1179EA007B674C /* libsqlite3.dylib */; };
 		D5B4ACE61B1179F1007B674C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACE51B1179F1007B674C /* AVFoundation.framework */; };
-		D5B4ACE81B1179FB007B674C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B4ACE71B1179FB007B674C /* libicucore.dylib */; };
 		D5B4ACF31B117AB2007B674C /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACEC1B117AB2007B674C /* ContentViewController.m */; };
 		D5B4ACF41B117AB2007B674C /* FlipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACEE1B117AB2007B674C /* FlipViewController.m */; };
 		D5B4ACF51B117AB2007B674C /* StreamSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACF01B117AB2007B674C /* StreamSectionViewController.m */; };
@@ -43,6 +34,16 @@
 		D5B4ACFA1B117ACB007B674C /* asset.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5B4ACF71B117ACB007B674C /* asset.bundle */; };
 		D5B4ACFB1B117ACB007B674C /* LayoutUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACF91B117ACB007B674C /* LayoutUtils.m */; };
 		D5C2F69F1B79A97A00A41A2A /* CardAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C2F69E1B79A97A00A41A2A /* CardAdViewController.m */; };
+		D5D977631BE7359C0017D960 /* CEAdInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D9774E1BE7359C0017D960 /* CEAdInvocation.m */; };
+		D5D977641BE7359C0017D960 /* CEBannerADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D977511BE7359C0017D960 /* CEBannerADHelper.m */; };
+		D5D977651BE7359C0017D960 /* CECardADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D977531BE7359C0017D960 /* CECardADHelper.m */; };
+		D5D977661BE7359C0017D960 /* CEContentADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D977551BE7359C0017D960 /* CEContentADHelper.m */; };
+		D5D977671BE7359C0017D960 /* CEStreamADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D977581BE7359C0017D960 /* CEStreamADHelper.m */; };
+		D5D977681BE7359C0017D960 /* CEStreamPlacementADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D9775A1BE7359C0017D960 /* CEStreamPlacementADHelper.m */; };
+		D5D977691BE7359C0017D960 /* CEStreamTagADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D9775C1BE7359C0017D960 /* CEStreamTagADHelper.m */; };
+		D5D9776A1BE7359C0017D960 /* CETableViewADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D9775E1BE7359C0017D960 /* CETableViewADHelper.m */; };
+		D5D9776B1BE7359C0017D960 /* CrystalExpress.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5D9775F1BE7359C0017D960 /* CrystalExpress.plist */; };
+		D5D9776C1BE7359C0017D960 /* CrystalExpressSDK-CN-1.5.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D977601BE7359C0017D960 /* CrystalExpressSDK-CN-1.5.0.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,27 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D56D82251BD885C100A68E45 /* CEAdInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAdInvocation.h; sourceTree = "<group>"; };
-		D56D82261BD885C100A68E45 /* CEAdInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEAdInvocation.m; sourceTree = "<group>"; };
-		D56D82271BD885C100A68E45 /* CEADView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEADView.h; sourceTree = "<group>"; };
-		D56D82281BD885C100A68E45 /* CEBannerADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEBannerADHelper.h; sourceTree = "<group>"; };
-		D56D82291BD885C100A68E45 /* CEBannerADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEBannerADHelper.m; sourceTree = "<group>"; };
-		D56D822A1BD885C100A68E45 /* CECardADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CECardADHelper.h; sourceTree = "<group>"; };
-		D56D822B1BD885C100A68E45 /* CECardADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CECardADHelper.m; sourceTree = "<group>"; };
-		D56D822C1BD885C100A68E45 /* CEContentADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEContentADHelper.h; sourceTree = "<group>"; };
-		D56D822D1BD885C100A68E45 /* CEContentADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEContentADHelper.m; sourceTree = "<group>"; };
-		D56D822E1BD885C100A68E45 /* CESplashAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESplashAD.h; sourceTree = "<group>"; };
-		D56D822F1BD885C100A68E45 /* CEStreamADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStreamADHelper.h; sourceTree = "<group>"; };
-		D56D82301BD885C100A68E45 /* CEStreamADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStreamADHelper.m; sourceTree = "<group>"; };
-		D56D82311BD885C100A68E45 /* CEStreamPlacementADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStreamPlacementADHelper.h; sourceTree = "<group>"; };
-		D56D82321BD885C100A68E45 /* CEStreamPlacementADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStreamPlacementADHelper.m; sourceTree = "<group>"; };
-		D56D82331BD885C100A68E45 /* CEStreamTagADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStreamTagADHelper.h; sourceTree = "<group>"; };
-		D56D82341BD885C100A68E45 /* CEStreamTagADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStreamTagADHelper.m; sourceTree = "<group>"; };
-		D56D82351BD885C100A68E45 /* CETableViewADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETableViewADHelper.h; sourceTree = "<group>"; };
-		D56D82361BD885C100A68E45 /* CETableViewADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETableViewADHelper.m; sourceTree = "<group>"; };
-		D56D82381BD885C100A68E45 /* FlipDynamicADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipDynamicADHelper.h; sourceTree = "<group>"; };
-		D56D82391BD885C100A68E45 /* I2WAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I2WAPI.h; sourceTree = "<group>"; };
-		D56D83561BDDDF0900A68E45 /* CrystalExpressSDK-CN-1.4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-CN-1.4.1.a"; sourceTree = "<group>"; };
+		D56D83581BDDF4E400A68E45 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		D5B4AC9A1B11792B007B674C /* CrystalExpressCNManualSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrystalExpressCNManualSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B4AC9E1B11792B007B674C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5B4AC9F1B11792B007B674C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -116,6 +97,28 @@
 		D5B4ACF91B117ACB007B674C /* LayoutUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutUtils.m; sourceTree = "<group>"; };
 		D5C2F69D1B79A97A00A41A2A /* CardAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardAdViewController.h; sourceTree = "<group>"; };
 		D5C2F69E1B79A97A00A41A2A /* CardAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardAdViewController.m; sourceTree = "<group>"; };
+		D5D9774D1BE7359C0017D960 /* CEAdInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAdInvocation.h; sourceTree = "<group>"; };
+		D5D9774E1BE7359C0017D960 /* CEAdInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEAdInvocation.m; sourceTree = "<group>"; };
+		D5D9774F1BE7359C0017D960 /* CEADView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEADView.h; sourceTree = "<group>"; };
+		D5D977501BE7359C0017D960 /* CEBannerADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEBannerADHelper.h; sourceTree = "<group>"; };
+		D5D977511BE7359C0017D960 /* CEBannerADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEBannerADHelper.m; sourceTree = "<group>"; };
+		D5D977521BE7359C0017D960 /* CECardADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CECardADHelper.h; sourceTree = "<group>"; };
+		D5D977531BE7359C0017D960 /* CECardADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CECardADHelper.m; sourceTree = "<group>"; };
+		D5D977541BE7359C0017D960 /* CEContentADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEContentADHelper.h; sourceTree = "<group>"; };
+		D5D977551BE7359C0017D960 /* CEContentADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEContentADHelper.m; sourceTree = "<group>"; };
+		D5D977561BE7359C0017D960 /* CESplashAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESplashAD.h; sourceTree = "<group>"; };
+		D5D977571BE7359C0017D960 /* CEStreamADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStreamADHelper.h; sourceTree = "<group>"; };
+		D5D977581BE7359C0017D960 /* CEStreamADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStreamADHelper.m; sourceTree = "<group>"; };
+		D5D977591BE7359C0017D960 /* CEStreamPlacementADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStreamPlacementADHelper.h; sourceTree = "<group>"; };
+		D5D9775A1BE7359C0017D960 /* CEStreamPlacementADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStreamPlacementADHelper.m; sourceTree = "<group>"; };
+		D5D9775B1BE7359C0017D960 /* CEStreamTagADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStreamTagADHelper.h; sourceTree = "<group>"; };
+		D5D9775C1BE7359C0017D960 /* CEStreamTagADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStreamTagADHelper.m; sourceTree = "<group>"; };
+		D5D9775D1BE7359C0017D960 /* CETableViewADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETableViewADHelper.h; sourceTree = "<group>"; };
+		D5D9775E1BE7359C0017D960 /* CETableViewADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETableViewADHelper.m; sourceTree = "<group>"; };
+		D5D9775F1BE7359C0017D960 /* CrystalExpress.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CrystalExpress.plist; sourceTree = "<group>"; };
+		D5D977601BE7359C0017D960 /* CrystalExpressSDK-CN-1.5.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-CN-1.5.0.a"; sourceTree = "<group>"; };
+		D5D977611BE7359C0017D960 /* FlipDynamicADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipDynamicADHelper.h; sourceTree = "<group>"; };
+		D5D977621BE7359C0017D960 /* I2WAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I2WAPI.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,15 +126,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5B4ACE81B1179FB007B674C /* libicucore.dylib in Frameworks */,
+				D56D835A1BDDF5B400A68E45 /* libicucore.tbd in Frameworks */,
 				D5B4ACE61B1179F1007B674C /* AVFoundation.framework in Frameworks */,
 				D5B4ACE41B1179EA007B674C /* libsqlite3.dylib in Frameworks */,
 				D5B4ACE21B1179E2007B674C /* CoreMedia.framework in Frameworks */,
+				D5D9776C1BE7359C0017D960 /* CrystalExpressSDK-CN-1.5.0.a in Frameworks */,
 				D5B4ACE01B1179D9007B674C /* CoreTelephony.framework in Frameworks */,
 				D5B4ACDE1B1179D1007B674C /* libc++.dylib in Frameworks */,
 				D5B4ACDC1B1179C4007B674C /* libz.dylib in Frameworks */,
 				D5B4ACDA1B1179BC007B674C /* AdSupport.framework in Frameworks */,
-				D56D83571BDDDF0900A68E45 /* CrystalExpressSDK-CN-1.4.1.a in Frameworks */,
 				D5B4ACD81B1179B1007B674C /* SystemConfiguration.framework in Frameworks */,
 				D5B4ACD61B1179A7007B674C /* MobileCoreServices.framework in Frameworks */,
 				D5B4ACD41B1179A0007B674C /* MessageUI.framework in Frameworks */,
@@ -218,27 +221,28 @@
 		D5B4ACC31B11794F007B674C /* CrystalExpressLib */ = {
 			isa = PBXGroup;
 			children = (
-				D56D82251BD885C100A68E45 /* CEAdInvocation.h */,
-				D56D82261BD885C100A68E45 /* CEAdInvocation.m */,
-				D56D82271BD885C100A68E45 /* CEADView.h */,
-				D56D82281BD885C100A68E45 /* CEBannerADHelper.h */,
-				D56D82291BD885C100A68E45 /* CEBannerADHelper.m */,
-				D56D822A1BD885C100A68E45 /* CECardADHelper.h */,
-				D56D822B1BD885C100A68E45 /* CECardADHelper.m */,
-				D56D822C1BD885C100A68E45 /* CEContentADHelper.h */,
-				D56D822D1BD885C100A68E45 /* CEContentADHelper.m */,
-				D56D822E1BD885C100A68E45 /* CESplashAD.h */,
-				D56D822F1BD885C100A68E45 /* CEStreamADHelper.h */,
-				D56D82301BD885C100A68E45 /* CEStreamADHelper.m */,
-				D56D82311BD885C100A68E45 /* CEStreamPlacementADHelper.h */,
-				D56D82321BD885C100A68E45 /* CEStreamPlacementADHelper.m */,
-				D56D82331BD885C100A68E45 /* CEStreamTagADHelper.h */,
-				D56D82341BD885C100A68E45 /* CEStreamTagADHelper.m */,
-				D56D83561BDDDF0900A68E45 /* CrystalExpressSDK-CN-1.4.1.a */,
-				D56D82351BD885C100A68E45 /* CETableViewADHelper.h */,
-				D56D82361BD885C100A68E45 /* CETableViewADHelper.m */,
-				D56D82381BD885C100A68E45 /* FlipDynamicADHelper.h */,
-				D56D82391BD885C100A68E45 /* I2WAPI.h */,
+				D5D9774D1BE7359C0017D960 /* CEAdInvocation.h */,
+				D5D9774E1BE7359C0017D960 /* CEAdInvocation.m */,
+				D5D9774F1BE7359C0017D960 /* CEADView.h */,
+				D5D977501BE7359C0017D960 /* CEBannerADHelper.h */,
+				D5D977511BE7359C0017D960 /* CEBannerADHelper.m */,
+				D5D977521BE7359C0017D960 /* CECardADHelper.h */,
+				D5D977531BE7359C0017D960 /* CECardADHelper.m */,
+				D5D977541BE7359C0017D960 /* CEContentADHelper.h */,
+				D5D977551BE7359C0017D960 /* CEContentADHelper.m */,
+				D5D977561BE7359C0017D960 /* CESplashAD.h */,
+				D5D977571BE7359C0017D960 /* CEStreamADHelper.h */,
+				D5D977581BE7359C0017D960 /* CEStreamADHelper.m */,
+				D5D977591BE7359C0017D960 /* CEStreamPlacementADHelper.h */,
+				D5D9775A1BE7359C0017D960 /* CEStreamPlacementADHelper.m */,
+				D5D9775B1BE7359C0017D960 /* CEStreamTagADHelper.h */,
+				D5D9775C1BE7359C0017D960 /* CEStreamTagADHelper.m */,
+				D5D9775D1BE7359C0017D960 /* CETableViewADHelper.h */,
+				D5D9775E1BE7359C0017D960 /* CETableViewADHelper.m */,
+				D5D9775F1BE7359C0017D960 /* CrystalExpress.plist */,
+				D5D977601BE7359C0017D960 /* CrystalExpressSDK-CN-1.5.0.a */,
+				D5D977611BE7359C0017D960 /* FlipDynamicADHelper.h */,
+				D5D977621BE7359C0017D960 /* I2WAPI.h */,
 			);
 			name = CrystalExpressLib;
 			sourceTree = "<group>";
@@ -246,6 +250,7 @@
 		D5B4ACE91B117A57007B674C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D56D83581BDDF4E400A68E45 /* libicucore.tbd */,
 				D5B4ACE71B1179FB007B674C /* libicucore.dylib */,
 				D5B4ACE51B1179F1007B674C /* AVFoundation.framework */,
 				D5B4ACE31B1179EA007B674C /* libsqlite3.dylib */,
@@ -365,6 +370,7 @@
 				D5B4ACAE1B11792B007B674C /* LaunchScreen.xib in Resources */,
 				D5B4ACAB1B11792B007B674C /* Images.xcassets in Resources */,
 				D5B4ACFA1B117ACB007B674C /* asset.bundle in Resources */,
+				D5D9776B1BE7359C0017D960 /* CrystalExpress.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,22 +389,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B4ACF31B117AB2007B674C /* ContentViewController.m in Sources */,
-				D56D823B1BD885C100A68E45 /* CEBannerADHelper.m in Sources */,
-				D56D823C1BD885C100A68E45 /* CECardADHelper.m in Sources */,
+				D5D977641BE7359C0017D960 /* CEBannerADHelper.m in Sources */,
+				D5D977651BE7359C0017D960 /* CECardADHelper.m in Sources */,
 				D5B4ACA61B11792B007B674C /* ViewController.m in Sources */,
-				D56D823D1BD885C100A68E45 /* CEContentADHelper.m in Sources */,
-				D56D82401BD885C100A68E45 /* CEStreamTagADHelper.m in Sources */,
+				D5D977661BE7359C0017D960 /* CEContentADHelper.m in Sources */,
+				D5D977691BE7359C0017D960 /* CEStreamTagADHelper.m in Sources */,
 				D5B4ACF51B117AB2007B674C /* StreamSectionViewController.m in Sources */,
 				D5B4ACA31B11792B007B674C /* AppDelegate.m in Sources */,
 				D5B4ACA01B11792B007B674C /* main.m in Sources */,
-				D56D823E1BD885C100A68E45 /* CEStreamADHelper.m in Sources */,
+				D5D977671BE7359C0017D960 /* CEStreamADHelper.m in Sources */,
 				D5C2F69F1B79A97A00A41A2A /* CardAdViewController.m in Sources */,
-				D56D823F1BD885C100A68E45 /* CEStreamPlacementADHelper.m in Sources */,
-				D56D823A1BD885C100A68E45 /* CEAdInvocation.m in Sources */,
+				D5D977681BE7359C0017D960 /* CEStreamPlacementADHelper.m in Sources */,
+				D5D977631BE7359C0017D960 /* CEAdInvocation.m in Sources */,
 				D5B4ACF61B117AB2007B674C /* StreamTableViewController.m in Sources */,
 				D5B4ACF41B117AB2007B674C /* FlipViewController.m in Sources */,
 				D5B4ACFB1B117ACB007B674C /* LayoutUtils.m in Sources */,
-				D56D82411BD885C100A68E45 /* CETableViewADHelper.m in Sources */,
+				D5D9776A1BE7359C0017D960 /* CETableViewADHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
