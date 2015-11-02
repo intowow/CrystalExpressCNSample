@@ -22,7 +22,7 @@ PODS:
   - AFNetworking/UIKit (2.6.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CrystalExpressSDK-CN (1.4.1):
+  - CrystalExpressSDK-CN (1.5.1):
     - AFDownloadRequestOperation
     - AFNetworking (~> 2.3)
     - MTStatusBarOverlay (~> 0.9)
@@ -37,22 +37,22 @@ PODS:
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
   - Reachability (3.2)
-  - SocketRocket (0.4.1)
+  - SocketRocket (0.4.2)
   - SSPullToRefresh (1.2.4)
   - SSZipArchive (0.3.3)
 
 DEPENDENCIES:
-  - CrystalExpressSDK-CN (~> 1.4)
+  - CrystalExpressSDK-CN (~> 1.5)
   - SSPullToRefresh
 
 SPEC CHECKSUMS:
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
   AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
-  CrystalExpressSDK-CN: d897494a8f91b425e99b8daac2c382682f62c8f7
+  CrystalExpressSDK-CN: 6351c4ba614570c5a69e6c0314cf538d9bb536c9
   MTStatusBarOverlay: 258a1ee369f4dc4b94107d02cfd7f6b1317c421b
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SocketRocket: ee0b5c34182d37bb4f1f8d628bbe737718126daa
+  SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
   SSPullToRefresh: 369e862c1d6528c7a354fc85cd4763d4e670e9af
   SSZipArchive: 2cf2a6d3ac9f03252b7d96f93728b9b983be9afb
 

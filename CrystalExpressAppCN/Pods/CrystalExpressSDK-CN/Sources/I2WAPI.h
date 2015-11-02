@@ -287,6 +287,14 @@ typedef NS_ENUM(NSUInteger, CESplashType){
  */
 + (NSDictionary *)getStreamPlacementsInfoWithTagName:(NSString *)tagName;
 
+#pragma mark - audience targeting
+/**
+ *  @brief set audience targeting tags
+ *
+ *  @param tags set of tag strings
+ */
++ (void)setAudienceTargetingUserTags:(NSSet *)tags;
+
 #pragma mark - track API
 /**
  *  @brief send customized track event to CrystalExpress tracking server
