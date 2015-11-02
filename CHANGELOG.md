@@ -1,4 +1,4 @@
-## [1.5.0]() (2015-10-30)
+## [1.5.0]() (2015-11-02)
 #### Feature
 * Support audience targeting
 * Replace AWS tracking library with custom tracking
