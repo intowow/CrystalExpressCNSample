@@ -7,16 +7,17 @@
 //
 
 #import "ViewController.h"
-#import "I2WAPI.h"
+//#import "I2WAPI.h"
 #import "ContentViewController.h"
 #import "StreamSectionViewController.h"
 #import "FlipViewController.h"
-#import "CESplashAD.h"
+//#import "CESplashAD.h"
 #import "CardAdViewController.h"
 
-@interface ViewController () <CESplashADDelegate>
-@property (nonatomic, strong) CESplashAD *openSplashADHelper;
-@property (nonatomic, strong) CESplashAD *interstitialSplashADHelper;
+@interface ViewController()
+//@interface ViewController () <CESplashADDelegate>
+//@property (nonatomic, strong) CESplashAD *openSplashADHelper;
+//@property (nonatomic, strong) CESplashAD *interstitialSplashADHelper;
 @property (nonatomic, strong) UIButton *testMultiofferBtn;
 @property (nonatomic, strong) UIButton *testSplashBtn;
 @property (nonatomic, strong) UIButton *testContentBtn;
@@ -33,8 +34,8 @@
     
     int screenHeight = [[UIScreen mainScreen] bounds].size.height;
     
-    _openSplashADHelper = [[CESplashAD alloc] initWithPlacement:@"OPEN_SPLASH" delegate:self];
-    _interstitialSplashADHelper = [[CESplashAD alloc] initWithPlacement:@"INTERSTITIAL_SPLASH" delegate:self];
+//    _openSplashADHelper = [[CESplashAD alloc] initWithPlacement:@"OPEN_SPLASH" delegate:self];
+//    _interstitialSplashADHelper = [[CESplashAD alloc] initWithPlacement:@"INTERSTITIAL_SPLASH" delegate:self];
     
     CGFloat spaceHeight = screenHeight / 25;
     CGFloat btnHeight = spaceHeight * 1.8;
@@ -66,7 +67,7 @@
     [sender setBackgroundColor:[UIColor blueColor]];
     switch ([sender tag]) {
         case 1:
-            [_openSplashADHelper loadAd];
+//            [_openSplashADHelper loadAd];
             break;
         case 2:
 //            [_interstitialSplashADHelper loadAd];
@@ -90,30 +91,30 @@
 }
 
 #pragma mark - CESplashADDelegate method
-- (void)CESplashADDidReceiveAd:(NSArray *)ad viewController:(SplashADInterfaceViewController *)vc
-{
-    [_openSplashADHelper showFromViewController:self animated:YES];
-}
-
-- (void)CESplashADDidFailToReceiveAdWithError:(NSError *)error viewController:(SplashADInterfaceViewController *)vc
-{
-}
-
-- (void)CESplashAdWillPresentScreen:(SplashADInterfaceViewController *)vc
-{
-}
-
-- (void)CESplashAdDidPresentScreen:(SplashADInterfaceViewController *)vc
-{
-}
-
-- (void)CESplashAdWillDismissScreen:(SplashADInterfaceViewController *)vc
-{
-}
-
-- (void)CESplashAdDidDismissScreen:(SplashADInterfaceViewController *)vc
-{
-}
+//- (void)CESplashADDidReceiveAd:(NSArray *)ad viewController:(SplashADInterfaceViewController *)vc
+//{
+//    [_openSplashADHelper showFromViewController:self animated:YES];
+//}
+//
+//- (void)CESplashADDidFailToReceiveAdWithError:(NSError *)error viewController:(SplashADInterfaceViewController *)vc
+//{
+//}
+//
+//- (void)CESplashAdWillPresentScreen:(SplashADInterfaceViewController *)vc
+//{
+//}
+//
+//- (void)CESplashAdDidPresentScreen:(SplashADInterfaceViewController *)vc
+//{
+//}
+//
+//- (void)CESplashAdWillDismissScreen:(SplashADInterfaceViewController *)vc
+//{
+//}
+//
+//- (void)CESplashAdDidDismissScreen:(SplashADInterfaceViewController *)vc
+//{
+//}
 
 #pragma mark - private method
 - (UIButton *)createBtnWithTag:(NSInteger)tag title:(NSString *)text
