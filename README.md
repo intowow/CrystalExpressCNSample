@@ -22,3 +22,8 @@
 ## 3. CrystalExpressManualSample
 - Integration with manual library include
 - Simple buttons to show how to use CrystalExpress API to get ADs.
+
+## 4. CrystalExpressLite
+- Use CrystalExpressSDK-lite
+- Integration with manual library include
+- Show how to request and display native AD
