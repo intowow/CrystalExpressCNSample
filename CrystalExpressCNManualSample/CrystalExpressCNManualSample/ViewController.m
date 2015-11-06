@@ -16,7 +16,6 @@
 
 @interface ViewController () <CESplashADDelegate>
 @property (nonatomic, strong) CESplashAD *openSplashADHelper;
-@property (nonatomic, strong) CESplashAD *interstitialSplashADHelper;
 @property (nonatomic, strong) UIButton *testMultiofferBtn;
 @property (nonatomic, strong) UIButton *testSplashBtn;
 @property (nonatomic, strong) UIButton *testContentBtn;
@@ -34,7 +33,6 @@
     int screenHeight = [[UIScreen mainScreen] bounds].size.height;
     
     _openSplashADHelper = [[CESplashAD alloc] initWithPlacement:@"OPEN_SPLASH" delegate:self];
-    _interstitialSplashADHelper = [[CESplashAD alloc] initWithPlacement:@"INTERSTITIAL_SPLASH" delegate:self];
     
     CGFloat spaceHeight = screenHeight / 25;
     CGFloat btnHeight = spaceHeight * 1.8;

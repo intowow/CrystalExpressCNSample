@@ -1,3 +1,7 @@
+## [1.5.1]() (2015-11-06)
+#### Fixed
+* OPEN_SPLASH_FOREGROUND might match nil profile if App state is not update to APP_STATE_FOREGROUND yet.
+
 ## [1.5.0]() (2015-11-02)
 #### Feature
 * Support audience targeting
