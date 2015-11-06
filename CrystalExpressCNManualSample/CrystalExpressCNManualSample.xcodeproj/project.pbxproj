@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D518AC3B1BEC5E50003690C4 /* CrystalExpressSDK-CN-1.5.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D518AC3A1BEC5E50003690C4 /* CrystalExpressSDK-CN-1.5.1.a */; };
 		D559C8D31BEA1F1200BE0CC0 /* CEAdInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D559C8BC1BEA1F1200BE0CC0 /* CEAdInvocation.m */; };
 		D559C8D41BEA1F1200BE0CC0 /* CEBannerADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D559C8BF1BEA1F1200BE0CC0 /* CEBannerADHelper.m */; };
 		D559C8D51BEA1F1200BE0CC0 /* CECardADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D559C8C11BEA1F1200BE0CC0 /* CECardADHelper.m */; };
@@ -16,7 +17,6 @@
 		D559C8D91BEA1F1200BE0CC0 /* CEStreamTagADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D559C8CC1BEA1F1200BE0CC0 /* CEStreamTagADHelper.m */; };
 		D559C8DA1BEA1F1200BE0CC0 /* CETableViewADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D559C8CE1BEA1F1200BE0CC0 /* CETableViewADHelper.m */; };
 		D559C8DB1BEA1F1200BE0CC0 /* CrystalExpress.plist in Resources */ = {isa = PBXBuildFile; fileRef = D559C8CF1BEA1F1200BE0CC0 /* CrystalExpress.plist */; };
-		D559C8DC1BEA1F1200BE0CC0 /* CrystalExpressSDK-CN-1.5.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D559C8D01BEA1F1200BE0CC0 /* CrystalExpressSDK-CN-1.5.0.a */; };
 		D56D835A1BDDF5B400A68E45 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D56D83581BDDF4E400A68E45 /* libicucore.tbd */; };
 		D5B4ACA01B11792B007B674C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4AC9F1B11792B007B674C /* main.m */; };
 		D5B4ACA31B11792B007B674C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B4ACA21B11792B007B674C /* AppDelegate.m */; };
@@ -57,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D518AC3A1BEC5E50003690C4 /* CrystalExpressSDK-CN-1.5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-CN-1.5.1.a"; sourceTree = "<group>"; };
 		D559C8BB1BEA1F1200BE0CC0 /* CEAdInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAdInvocation.h; sourceTree = "<group>"; };
 		D559C8BC1BEA1F1200BE0CC0 /* CEAdInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEAdInvocation.m; sourceTree = "<group>"; };
 		D559C8BD1BEA1F1200BE0CC0 /* CEADView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEADView.h; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		D559C8CD1BEA1F1200BE0CC0 /* CETableViewADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETableViewADHelper.h; sourceTree = "<group>"; };
 		D559C8CE1BEA1F1200BE0CC0 /* CETableViewADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETableViewADHelper.m; sourceTree = "<group>"; };
 		D559C8CF1BEA1F1200BE0CC0 /* CrystalExpress.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CrystalExpress.plist; sourceTree = "<group>"; };
-		D559C8D01BEA1F1200BE0CC0 /* CrystalExpressSDK-CN-1.5.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-CN-1.5.0.a"; sourceTree = "<group>"; };
 		D559C8D11BEA1F1200BE0CC0 /* FlipDynamicADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipDynamicADHelper.h; sourceTree = "<group>"; };
 		D559C8D21BEA1F1200BE0CC0 /* I2WAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I2WAPI.h; sourceTree = "<group>"; };
 		D56D83581BDDF4E400A68E45 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -132,12 +132,12 @@
 				D5B4ACE61B1179F1007B674C /* AVFoundation.framework in Frameworks */,
 				D5B4ACE41B1179EA007B674C /* libsqlite3.dylib in Frameworks */,
 				D5B4ACE21B1179E2007B674C /* CoreMedia.framework in Frameworks */,
-				D559C8DC1BEA1F1200BE0CC0 /* CrystalExpressSDK-CN-1.5.0.a in Frameworks */,
 				D5B4ACE01B1179D9007B674C /* CoreTelephony.framework in Frameworks */,
 				D5B4ACDE1B1179D1007B674C /* libc++.dylib in Frameworks */,
 				D5B4ACDC1B1179C4007B674C /* libz.dylib in Frameworks */,
 				D5B4ACDA1B1179BC007B674C /* AdSupport.framework in Frameworks */,
 				D5B4ACD81B1179B1007B674C /* SystemConfiguration.framework in Frameworks */,
+				D518AC3B1BEC5E50003690C4 /* CrystalExpressSDK-CN-1.5.1.a in Frameworks */,
 				D5B4ACD61B1179A7007B674C /* MobileCoreServices.framework in Frameworks */,
 				D5B4ACD41B1179A0007B674C /* MessageUI.framework in Frameworks */,
 				D5B4ACD21B117998007B674C /* CFNetwork.framework in Frameworks */,
@@ -235,6 +235,7 @@
 				D559C8C41BEA1F1200BE0CC0 /* CEMediaView.h */,
 				D559C8C51BEA1F1200BE0CC0 /* CENativeAd.h */,
 				D559C8C61BEA1F1200BE0CC0 /* CESplashAD.h */,
+				D518AC3A1BEC5E50003690C4 /* CrystalExpressSDK-CN-1.5.1.a */,
 				D559C8C71BEA1F1200BE0CC0 /* CEStreamADHelper.h */,
 				D559C8C81BEA1F1200BE0CC0 /* CEStreamADHelper.m */,
 				D559C8C91BEA1F1200BE0CC0 /* CEStreamPlacementADHelper.h */,
@@ -244,7 +245,6 @@
 				D559C8CD1BEA1F1200BE0CC0 /* CETableViewADHelper.h */,
 				D559C8CE1BEA1F1200BE0CC0 /* CETableViewADHelper.m */,
 				D559C8CF1BEA1F1200BE0CC0 /* CrystalExpress.plist */,
-				D559C8D01BEA1F1200BE0CC0 /* CrystalExpressSDK-CN-1.5.0.a */,
 				D559C8D11BEA1F1200BE0CC0 /* FlipDynamicADHelper.h */,
 				D559C8D21BEA1F1200BE0CC0 /* I2WAPI.h */,
 			);
