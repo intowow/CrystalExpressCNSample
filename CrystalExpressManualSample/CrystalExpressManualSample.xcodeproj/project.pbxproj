@@ -1,0 +1,633 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D56A9AA31BA8061A0074501F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D0941B3D089700FEC621 /* Security.framework */; };
+		D5C2F7371B7C7A7E00A41A2A /* CardAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C2F7361B7C7A7E00A41A2A /* CardAdViewController.m */; };
+		D5C7D0541B3D078000FEC621 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C7D0531B3D078000FEC621 /* main.m */; };
+		D5C7D0571B3D078000FEC621 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C7D0561B3D078000FEC621 /* AppDelegate.m */; };
+		D5C7D05A1B3D078000FEC621 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C7D0591B3D078000FEC621 /* ViewController.m */; };
+		D5C7D05D1B3D078000FEC621 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5C7D05B1B3D078000FEC621 /* Main.storyboard */; };
+		D5C7D05F1B3D078000FEC621 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5C7D05E1B3D078000FEC621 /* Images.xcassets */; };
+		D5C7D0621B3D078000FEC621 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C7D0601B3D078000FEC621 /* LaunchScreen.xib */; };
+		D5C7D06E1B3D078000FEC621 /* CrystalExpressManualSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C7D06D1B3D078000FEC621 /* CrystalExpressManualSampleTests.m */; };
+		D5C7D0801B3D07EB00FEC621 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C7D0791B3D07EB00FEC621 /* ContentViewController.m */; };
+		D5C7D0811B3D07EB00FEC621 /* FlipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C7D07B1B3D07EB00FEC621 /* FlipViewController.m */; };
+		D5C7D0821B3D07EB00FEC621 /* StreamSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C7D07D1B3D07EB00FEC621 /* StreamSectionViewController.m */; };
+		D5C7D0831B3D07EB00FEC621 /* StreamTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C7D07F1B3D07EB00FEC621 /* StreamTableViewController.m */; };
+		D5C7D0851B3D07F300FEC621 /* asset.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5C7D0841B3D07F300FEC621 /* asset.bundle */; };
+		D5C7D0971B3D08AA00FEC621 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D0961B3D08AA00FEC621 /* CFNetwork.framework */; };
+		D5C7D0991B3D08AF00FEC621 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D0981B3D08AF00FEC621 /* MessageUI.framework */; };
+		D5C7D09B1B3D08C300FEC621 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D09A1B3D08C300FEC621 /* MobileCoreServices.framework */; };
+		D5C7D09D1B3D08CD00FEC621 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D09C1B3D08CD00FEC621 /* SystemConfiguration.framework */; };
+		D5C7D09F1B3D08D800FEC621 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D09E1B3D08D800FEC621 /* AdSupport.framework */; };
+		D5C7D0A11B3D08E000FEC621 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D0A01B3D08E000FEC621 /* libz.dylib */; };
+		D5C7D0A31B3D08EB00FEC621 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D0A21B3D08EB00FEC621 /* libc++.dylib */; };
+		D5C7D0A51B3D08F000FEC621 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D0A41B3D08F000FEC621 /* CoreTelephony.framework */; };
+		D5C7D0A71B3D090A00FEC621 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D0A61B3D090A00FEC621 /* CoreMedia.framework */; };
+		D5C7D0A91B3D090F00FEC621 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D0A81B3D090F00FEC621 /* libsqlite3.dylib */; };
+		D5C7D0AB1B3D091C00FEC621 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D0AA1B3D091C00FEC621 /* libicucore.dylib */; };
+		D5C7D0AD1B3D092200FEC621 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C7D0AC1B3D092200FEC621 /* AVFoundation.framework */; };
+		D5C7D0B31B3D0C1E00FEC621 /* LayoutUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C7D0B21B3D0C1E00FEC621 /* LayoutUtils.m */; };
+		D5D977431BE733EE0017D960 /* CEAdInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D9772E1BE733EE0017D960 /* CEAdInvocation.m */; };
+		D5D977441BE733EE0017D960 /* CEBannerADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D977311BE733EE0017D960 /* CEBannerADHelper.m */; };
+		D5D977451BE733EE0017D960 /* CECardADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D977331BE733EE0017D960 /* CECardADHelper.m */; };
+		D5D977461BE733EE0017D960 /* CEContentADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D977351BE733EE0017D960 /* CEContentADHelper.m */; };
+		D5D977471BE733EE0017D960 /* CEStreamADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D977381BE733EE0017D960 /* CEStreamADHelper.m */; };
+		D5D977481BE733EE0017D960 /* CEStreamPlacementADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D9773A1BE733EE0017D960 /* CEStreamPlacementADHelper.m */; };
+		D5D977491BE733EE0017D960 /* CEStreamTagADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D9773C1BE733EE0017D960 /* CEStreamTagADHelper.m */; };
+		D5D9774A1BE733EE0017D960 /* CETableViewADHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D9773E1BE733EE0017D960 /* CETableViewADHelper.m */; };
+		D5D9774B1BE733EE0017D960 /* CrystalExpress.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5D9773F1BE733EE0017D960 /* CrystalExpress.plist */; };
+		F3D3ED4F1C28559000BF6709 /* CrystalExpressSDK-CN-1.6.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D3ED4E1C28559000BF6709 /* CrystalExpressSDK-CN-1.6.2.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D5C7D0681B3D078000FEC621 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5C7D0461B3D078000FEC621 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5C7D04D1B3D078000FEC621;
+			remoteInfo = CrystalExpressManualSample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D5C2F7351B7C7A7E00A41A2A /* CardAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardAdViewController.h; sourceTree = "<group>"; };
+		D5C2F7361B7C7A7E00A41A2A /* CardAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardAdViewController.m; sourceTree = "<group>"; };
+		D5C7D04E1B3D078000FEC621 /* CrystalExpressManualSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrystalExpressManualSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5C7D0521B3D078000FEC621 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5C7D0531B3D078000FEC621 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D5C7D0551B3D078000FEC621 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D5C7D0561B3D078000FEC621 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D5C7D0581B3D078000FEC621 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D5C7D0591B3D078000FEC621 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D5C7D05C1B3D078000FEC621 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D5C7D05E1B3D078000FEC621 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D5C7D0611B3D078000FEC621 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D5C7D0671B3D078000FEC621 /* CrystalExpressManualSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrystalExpressManualSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5C7D06C1B3D078000FEC621 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5C7D06D1B3D078000FEC621 /* CrystalExpressManualSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrystalExpressManualSampleTests.m; sourceTree = "<group>"; };
+		D5C7D0781B3D07EB00FEC621 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		D5C7D0791B3D07EB00FEC621 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		D5C7D07A1B3D07EB00FEC621 /* FlipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipViewController.h; sourceTree = "<group>"; };
+		D5C7D07B1B3D07EB00FEC621 /* FlipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipViewController.m; sourceTree = "<group>"; };
+		D5C7D07C1B3D07EB00FEC621 /* StreamSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamSectionViewController.h; sourceTree = "<group>"; };
+		D5C7D07D1B3D07EB00FEC621 /* StreamSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamSectionViewController.m; sourceTree = "<group>"; };
+		D5C7D07E1B3D07EB00FEC621 /* StreamTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewController.h; sourceTree = "<group>"; };
+		D5C7D07F1B3D07EB00FEC621 /* StreamTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewController.m; sourceTree = "<group>"; };
+		D5C7D0841B3D07F300FEC621 /* asset.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = asset.bundle; sourceTree = "<group>"; };
+		D5C7D0941B3D089700FEC621 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D5C7D0961B3D08AA00FEC621 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D5C7D0981B3D08AF00FEC621 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		D5C7D09A1B3D08C300FEC621 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D5C7D09C1B3D08CD00FEC621 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D5C7D09E1B3D08D800FEC621 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		D5C7D0A01B3D08E000FEC621 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D5C7D0A21B3D08EB00FEC621 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		D5C7D0A41B3D08F000FEC621 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		D5C7D0A61B3D090A00FEC621 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D5C7D0A81B3D090F00FEC621 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D5C7D0AA1B3D091C00FEC621 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		D5C7D0AC1B3D092200FEC621 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D5C7D0B11B3D0C1E00FEC621 /* LayoutUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayoutUtils.h; path = CrystalExpressManualSample/LayoutUtils.h; sourceTree = SOURCE_ROOT; };
+		D5C7D0B21B3D0C1E00FEC621 /* LayoutUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LayoutUtils.m; path = CrystalExpressManualSample/LayoutUtils.m; sourceTree = SOURCE_ROOT; };
+		D5D9772D1BE733EE0017D960 /* CEAdInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAdInvocation.h; sourceTree = "<group>"; };
+		D5D9772E1BE733EE0017D960 /* CEAdInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEAdInvocation.m; sourceTree = "<group>"; };
+		D5D9772F1BE733EE0017D960 /* CEADView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEADView.h; sourceTree = "<group>"; };
+		D5D977301BE733EE0017D960 /* CEBannerADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEBannerADHelper.h; sourceTree = "<group>"; };
+		D5D977311BE733EE0017D960 /* CEBannerADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEBannerADHelper.m; sourceTree = "<group>"; };
+		D5D977321BE733EE0017D960 /* CECardADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CECardADHelper.h; sourceTree = "<group>"; };
+		D5D977331BE733EE0017D960 /* CECardADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CECardADHelper.m; sourceTree = "<group>"; };
+		D5D977341BE733EE0017D960 /* CEContentADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEContentADHelper.h; sourceTree = "<group>"; };
+		D5D977351BE733EE0017D960 /* CEContentADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEContentADHelper.m; sourceTree = "<group>"; };
+		D5D977361BE733EE0017D960 /* CESplashAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESplashAD.h; sourceTree = "<group>"; };
+		D5D977371BE733EE0017D960 /* CEStreamADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStreamADHelper.h; sourceTree = "<group>"; };
+		D5D977381BE733EE0017D960 /* CEStreamADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStreamADHelper.m; sourceTree = "<group>"; };
+		D5D977391BE733EE0017D960 /* CEStreamPlacementADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStreamPlacementADHelper.h; sourceTree = "<group>"; };
+		D5D9773A1BE733EE0017D960 /* CEStreamPlacementADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStreamPlacementADHelper.m; sourceTree = "<group>"; };
+		D5D9773B1BE733EE0017D960 /* CEStreamTagADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStreamTagADHelper.h; sourceTree = "<group>"; };
+		D5D9773C1BE733EE0017D960 /* CEStreamTagADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStreamTagADHelper.m; sourceTree = "<group>"; };
+		D5D9773D1BE733EE0017D960 /* CETableViewADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETableViewADHelper.h; sourceTree = "<group>"; };
+		D5D9773E1BE733EE0017D960 /* CETableViewADHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETableViewADHelper.m; sourceTree = "<group>"; };
+		D5D9773F1BE733EE0017D960 /* CrystalExpress.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CrystalExpress.plist; sourceTree = "<group>"; };
+		D5D977411BE733EE0017D960 /* FlipDynamicADHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipDynamicADHelper.h; sourceTree = "<group>"; };
+		D5D977421BE733EE0017D960 /* I2WAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I2WAPI.h; sourceTree = "<group>"; };
+		F3D3ED4A1C27FFD200BF6709 /* CEMediaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMediaView.h; sourceTree = "<group>"; };
+		F3D3ED4B1C27FFD200BF6709 /* CENativeAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CENativeAd.h; sourceTree = "<group>"; };
+		F3D3ED4E1C28559000BF6709 /* CrystalExpressSDK-CN-1.6.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "CrystalExpressSDK-CN-1.6.2.a"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D5C7D04B1B3D078000FEC621 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D56A9AA31BA8061A0074501F /* Security.framework in Frameworks */,
+				F3D3ED4F1C28559000BF6709 /* CrystalExpressSDK-CN-1.6.2.a in Frameworks */,
+				D5C7D0AD1B3D092200FEC621 /* AVFoundation.framework in Frameworks */,
+				D5C7D0AB1B3D091C00FEC621 /* libicucore.dylib in Frameworks */,
+				D5C7D0A91B3D090F00FEC621 /* libsqlite3.dylib in Frameworks */,
+				D5C7D0A71B3D090A00FEC621 /* CoreMedia.framework in Frameworks */,
+				D5C7D0A51B3D08F000FEC621 /* CoreTelephony.framework in Frameworks */,
+				D5C7D0A31B3D08EB00FEC621 /* libc++.dylib in Frameworks */,
+				D5C7D0A11B3D08E000FEC621 /* libz.dylib in Frameworks */,
+				D5C7D09F1B3D08D800FEC621 /* AdSupport.framework in Frameworks */,
+				D5C7D09D1B3D08CD00FEC621 /* SystemConfiguration.framework in Frameworks */,
+				D5C7D09B1B3D08C300FEC621 /* MobileCoreServices.framework in Frameworks */,
+				D5C7D0991B3D08AF00FEC621 /* MessageUI.framework in Frameworks */,
+				D5C7D0971B3D08AA00FEC621 /* CFNetwork.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5C7D0641B3D078000FEC621 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D586F1E41BA0418B0037156B /* CrystalExpressSDK */ = {
+			isa = PBXGroup;
+			children = (
+				F3D3ED4E1C28559000BF6709 /* CrystalExpressSDK-CN-1.6.2.a */,
+				D5D9772D1BE733EE0017D960 /* CEAdInvocation.h */,
+				D5D9772E1BE733EE0017D960 /* CEAdInvocation.m */,
+				D5D9772F1BE733EE0017D960 /* CEADView.h */,
+				D5D977301BE733EE0017D960 /* CEBannerADHelper.h */,
+				D5D977311BE733EE0017D960 /* CEBannerADHelper.m */,
+				D5D977321BE733EE0017D960 /* CECardADHelper.h */,
+				D5D977331BE733EE0017D960 /* CECardADHelper.m */,
+				D5D977341BE733EE0017D960 /* CEContentADHelper.h */,
+				D5D977351BE733EE0017D960 /* CEContentADHelper.m */,
+				F3D3ED4A1C27FFD200BF6709 /* CEMediaView.h */,
+				F3D3ED4B1C27FFD200BF6709 /* CENativeAd.h */,
+				D5D977361BE733EE0017D960 /* CESplashAD.h */,
+				D5D977371BE733EE0017D960 /* CEStreamADHelper.h */,
+				D5D977381BE733EE0017D960 /* CEStreamADHelper.m */,
+				D5D977391BE733EE0017D960 /* CEStreamPlacementADHelper.h */,
+				D5D9773A1BE733EE0017D960 /* CEStreamPlacementADHelper.m */,
+				D5D9773B1BE733EE0017D960 /* CEStreamTagADHelper.h */,
+				D5D9773C1BE733EE0017D960 /* CEStreamTagADHelper.m */,
+				D5D9773D1BE733EE0017D960 /* CETableViewADHelper.h */,
+				D5D9773E1BE733EE0017D960 /* CETableViewADHelper.m */,
+				D5D9773F1BE733EE0017D960 /* CrystalExpress.plist */,
+				D5D977411BE733EE0017D960 /* FlipDynamicADHelper.h */,
+				D5D977421BE733EE0017D960 /* I2WAPI.h */,
+			);
+			name = CrystalExpressSDK;
+			sourceTree = "<group>";
+		};
+		D5C7D0451B3D078000FEC621 = {
+			isa = PBXGroup;
+			children = (
+				D5C7D0AE1B3D092600FEC621 /* Frameworks */,
+				D5C7D0501B3D078000FEC621 /* CrystalExpressManualSample */,
+				D5C7D06A1B3D078000FEC621 /* CrystalExpressManualSampleTests */,
+				D5C7D04F1B3D078000FEC621 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D5C7D04F1B3D078000FEC621 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5C7D04E1B3D078000FEC621 /* CrystalExpressManualSample.app */,
+				D5C7D0671B3D078000FEC621 /* CrystalExpressManualSampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D5C7D0501B3D078000FEC621 /* CrystalExpressManualSample */ = {
+			isa = PBXGroup;
+			children = (
+				D586F1E41BA0418B0037156B /* CrystalExpressSDK */,
+				D5C7D0841B3D07F300FEC621 /* asset.bundle */,
+				D5C7D0771B3D07EB00FEC621 /* ADViewControllers */,
+				D5C7D0551B3D078000FEC621 /* AppDelegate.h */,
+				D5C7D0561B3D078000FEC621 /* AppDelegate.m */,
+				D5C7D0581B3D078000FEC621 /* ViewController.h */,
+				D5C7D0591B3D078000FEC621 /* ViewController.m */,
+				D5C7D0B11B3D0C1E00FEC621 /* LayoutUtils.h */,
+				D5C7D0B21B3D0C1E00FEC621 /* LayoutUtils.m */,
+				D5C7D05B1B3D078000FEC621 /* Main.storyboard */,
+				D5C7D05E1B3D078000FEC621 /* Images.xcassets */,
+				D5C7D0601B3D078000FEC621 /* LaunchScreen.xib */,
+				D5C7D0511B3D078000FEC621 /* Supporting Files */,
+			);
+			path = CrystalExpressManualSample;
+			sourceTree = "<group>";
+		};
+		D5C7D0511B3D078000FEC621 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5C7D0521B3D078000FEC621 /* Info.plist */,
+				D5C7D0531B3D078000FEC621 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D5C7D06A1B3D078000FEC621 /* CrystalExpressManualSampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				D5C7D06D1B3D078000FEC621 /* CrystalExpressManualSampleTests.m */,
+				D5C7D06B1B3D078000FEC621 /* Supporting Files */,
+			);
+			path = CrystalExpressManualSampleTests;
+			sourceTree = "<group>";
+		};
+		D5C7D06B1B3D078000FEC621 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5C7D06C1B3D078000FEC621 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D5C7D0771B3D07EB00FEC621 /* ADViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D5C2F7351B7C7A7E00A41A2A /* CardAdViewController.h */,
+				D5C2F7361B7C7A7E00A41A2A /* CardAdViewController.m */,
+				D5C7D0781B3D07EB00FEC621 /* ContentViewController.h */,
+				D5C7D0791B3D07EB00FEC621 /* ContentViewController.m */,
+				D5C7D07A1B3D07EB00FEC621 /* FlipViewController.h */,
+				D5C7D07B1B3D07EB00FEC621 /* FlipViewController.m */,
+				D5C7D07C1B3D07EB00FEC621 /* StreamSectionViewController.h */,
+				D5C7D07D1B3D07EB00FEC621 /* StreamSectionViewController.m */,
+				D5C7D07E1B3D07EB00FEC621 /* StreamTableViewController.h */,
+				D5C7D07F1B3D07EB00FEC621 /* StreamTableViewController.m */,
+			);
+			path = ADViewControllers;
+			sourceTree = "<group>";
+		};
+		D5C7D0AE1B3D092600FEC621 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5C7D0AC1B3D092200FEC621 /* AVFoundation.framework */,
+				D5C7D0AA1B3D091C00FEC621 /* libicucore.dylib */,
+				D5C7D0A81B3D090F00FEC621 /* libsqlite3.dylib */,
+				D5C7D0A61B3D090A00FEC621 /* CoreMedia.framework */,
+				D5C7D0A41B3D08F000FEC621 /* CoreTelephony.framework */,
+				D5C7D0A21B3D08EB00FEC621 /* libc++.dylib */,
+				D5C7D0A01B3D08E000FEC621 /* libz.dylib */,
+				D5C7D09E1B3D08D800FEC621 /* AdSupport.framework */,
+				D5C7D09C1B3D08CD00FEC621 /* SystemConfiguration.framework */,
+				D5C7D09A1B3D08C300FEC621 /* MobileCoreServices.framework */,
+				D5C7D0981B3D08AF00FEC621 /* MessageUI.framework */,
+				D5C7D0961B3D08AA00FEC621 /* CFNetwork.framework */,
+				D5C7D0941B3D089700FEC621 /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D5C7D04D1B3D078000FEC621 /* CrystalExpressManualSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5C7D0711B3D078000FEC621 /* Build configuration list for PBXNativeTarget "CrystalExpressManualSample" */;
+			buildPhases = (
+				D5C7D04A1B3D078000FEC621 /* Sources */,
+				D5C7D04B1B3D078000FEC621 /* Frameworks */,
+				D5C7D04C1B3D078000FEC621 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CrystalExpressManualSample;
+			productName = CrystalExpressManualSample;
+			productReference = D5C7D04E1B3D078000FEC621 /* CrystalExpressManualSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D5C7D0661B3D078000FEC621 /* CrystalExpressManualSampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5C7D0741B3D078000FEC621 /* Build configuration list for PBXNativeTarget "CrystalExpressManualSampleTests" */;
+			buildPhases = (
+				D5C7D0631B3D078000FEC621 /* Sources */,
+				D5C7D0641B3D078000FEC621 /* Frameworks */,
+				D5C7D0651B3D078000FEC621 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5C7D0691B3D078000FEC621 /* PBXTargetDependency */,
+			);
+			name = CrystalExpressManualSampleTests;
+			productName = CrystalExpressManualSampleTests;
+			productReference = D5C7D0671B3D078000FEC621 /* CrystalExpressManualSampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D5C7D0461B3D078000FEC621 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = intowow;
+				TargetAttributes = {
+					D5C7D04D1B3D078000FEC621 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					D5C7D0661B3D078000FEC621 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = D5C7D04D1B3D078000FEC621;
+					};
+				};
+			};
+			buildConfigurationList = D5C7D0491B3D078000FEC621 /* Build configuration list for PBXProject "CrystalExpressManualSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D5C7D0451B3D078000FEC621;
+			productRefGroup = D5C7D04F1B3D078000FEC621 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D5C7D04D1B3D078000FEC621 /* CrystalExpressManualSample */,
+				D5C7D0661B3D078000FEC621 /* CrystalExpressManualSampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D5C7D04C1B3D078000FEC621 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5C7D0851B3D07F300FEC621 /* asset.bundle in Resources */,
+				D5C7D05D1B3D078000FEC621 /* Main.storyboard in Resources */,
+				D5C7D0621B3D078000FEC621 /* LaunchScreen.xib in Resources */,
+				D5C7D05F1B3D078000FEC621 /* Images.xcassets in Resources */,
+				D5D9774B1BE733EE0017D960 /* CrystalExpress.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5C7D0651B3D078000FEC621 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D5C7D04A1B3D078000FEC621 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5C7D0801B3D07EB00FEC621 /* ContentViewController.m in Sources */,
+				D5D977441BE733EE0017D960 /* CEBannerADHelper.m in Sources */,
+				D5D977451BE733EE0017D960 /* CECardADHelper.m in Sources */,
+				D5C7D05A1B3D078000FEC621 /* ViewController.m in Sources */,
+				D5D977461BE733EE0017D960 /* CEContentADHelper.m in Sources */,
+				D5D977491BE733EE0017D960 /* CEStreamTagADHelper.m in Sources */,
+				D5C7D0821B3D07EB00FEC621 /* StreamSectionViewController.m in Sources */,
+				D5C7D0571B3D078000FEC621 /* AppDelegate.m in Sources */,
+				D5C7D0541B3D078000FEC621 /* main.m in Sources */,
+				D5D977471BE733EE0017D960 /* CEStreamADHelper.m in Sources */,
+				D5C2F7371B7C7A7E00A41A2A /* CardAdViewController.m in Sources */,
+				D5D977481BE733EE0017D960 /* CEStreamPlacementADHelper.m in Sources */,
+				D5D977431BE733EE0017D960 /* CEAdInvocation.m in Sources */,
+				D5C7D0831B3D07EB00FEC621 /* StreamTableViewController.m in Sources */,
+				D5C7D0811B3D07EB00FEC621 /* FlipViewController.m in Sources */,
+				D5C7D0B31B3D0C1E00FEC621 /* LayoutUtils.m in Sources */,
+				D5D9774A1BE733EE0017D960 /* CETableViewADHelper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5C7D0631B3D078000FEC621 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5C7D06E1B3D078000FEC621 /* CrystalExpressManualSampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5C7D0691B3D078000FEC621 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5C7D04D1B3D078000FEC621 /* CrystalExpressManualSample */;
+			targetProxy = D5C7D0681B3D078000FEC621 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D5C7D05B1B3D078000FEC621 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5C7D05C1B3D078000FEC621 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D5C7D0601B3D078000FEC621 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5C7D0611B3D078000FEC621 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D5C7D06F1B3D078000FEC621 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D5C7D0701B3D078000FEC621 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D5C7D0721B3D078000FEC621 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrystalExpressManualSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CrystalExpressManualSample/CrystalExpressLib",
+					"$(PROJECT_DIR)/CrystalExpressManualSample",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/crystalexpress-gyrlkbsalnzyzrauyqmopihqkoap/Build/Products/Manual",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.intowow.CrystalExpressManualSampleCN;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D5C7D0731B3D078000FEC621 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrystalExpressManualSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CrystalExpressManualSample/CrystalExpressLib",
+					"$(PROJECT_DIR)/CrystalExpressManualSample",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/crystalexpress-gyrlkbsalnzyzrauyqmopihqkoap/Build/Products/Manual",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.intowow.CrystalExpressManualSampleCN;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D5C7D0751B3D078000FEC621 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CrystalExpressManualSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrystalExpressManualSample.app/CrystalExpressManualSample";
+			};
+			name = Debug;
+		};
+		D5C7D0761B3D078000FEC621 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CrystalExpressManualSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrystalExpressManualSample.app/CrystalExpressManualSample";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D5C7D0491B3D078000FEC621 /* Build configuration list for PBXProject "CrystalExpressManualSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5C7D06F1B3D078000FEC621 /* Debug */,
+				D5C7D0701B3D078000FEC621 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5C7D0711B3D078000FEC621 /* Build configuration list for PBXNativeTarget "CrystalExpressManualSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5C7D0721B3D078000FEC621 /* Debug */,
+				D5C7D0731B3D078000FEC621 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5C7D0741B3D078000FEC621 /* Build configuration list for PBXNativeTarget "CrystalExpressManualSampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5C7D0751B3D078000FEC621 /* Debug */,
+				D5C7D0761B3D078000FEC621 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D5C7D0461B3D078000FEC621 /* Project object */;
+}

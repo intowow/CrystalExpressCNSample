@@ -1,3 +1,13 @@
+## [1.6.2]() (2015-12-21)
+#### Feature
+* CE-108: SDK should reset last impression time of ADs after a certain period of time
+* Fix content AD helper's UI view using incorrect offset to cause AD playback non-smooth.
+* Fix logic errors identified by Xcode's analyze tool.
+* CE-216: time zone preference
+* CE-242: add new price type, SPONSOR
+* CE-244: support new field "required_impression" to optimize prefetch and match algorithm
+* CE-245, CE-254, CE-385, CE-388, CE-389, CE-401: support new event properties to help cost analysis
+
 ## [1.5.1]() (2015-11-06)
 #### Fixed
 * OPEN_SPLASH_FOREGROUND might match nil profile if App state is not update to APP_STATE_FOREGROUND yet.

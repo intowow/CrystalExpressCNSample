@@ -1,2 +1,8 @@
 *.xcuserstate
 *.xcbkptlist
+CrystalExpressApp/CrystalExpressApp.xcodeproj/xcuserdata
+CrystalExpressApp/Pods/Headers/Private
+CrystalExpressApp/Pods/Pods.xcodeproj/xcuserdata
+CrystalExpressPodSample/CrystalExpressPodSample.xcodeproj/xcuserdata
+CrystalExpressPodSample/Pods/Headers/Private
+CrystalExpressPodSample/Pods/Pods.xcodeproj/xcuserdata
