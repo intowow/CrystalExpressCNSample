@@ -304,6 +304,7 @@
 		73B61ABC1D94CCBF8FEAD52F6F9AD8FC /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
 		73F5B6DD1A43A45ED5101ABC0347C6EA /* CrystalExpressSDK-CN-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CrystalExpressSDK-CN-dummy.m"; sourceTree = "<group>"; };
 		74A8BA72F567141BACDE6C0BBC181960 /* libSSZipArchive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSSZipArchive.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		78706CB8D9DB98676F5BCD727CA2418A /* libCrystalExpressSDK-CN-1.7.1.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libCrystalExpressSDK-CN-1.7.1.a"; sourceTree = "<group>"; };
 		7B2D410D289461763998733D7209E479 /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+AFNetworking.h"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
 		7C14F537823C78B4E2E9E1A5E37C5DC8 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFSecurityPolicy.h; path = AFNetworking/AFSecurityPolicy.h; sourceTree = "<group>"; };
 		7E3B02E9570CD6B1AAB8405426904EBC /* CEBannerADHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CEBannerADHelper.h; path = Sources/CEBannerADHelper.h; sourceTree = "<group>"; };
@@ -361,7 +362,6 @@
 		D7E19FB69304551D961223673CA94A63 /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
 		D9C73CE344F4FC86872889EFB1C7B08C /* Reachability.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Reachability.xcconfig; sourceTree = "<group>"; };
 		DB5F2DA1333C93367D827FAEF2BA1D02 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		DC47DF40AAC4D48935B52AC7B79F587A /* libCrystalExpressSDK-1.6.2.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libCrystalExpressSDK-1.6.2.a"; sourceTree = "<group>"; };
 		DD58F81916F2B9D02FE97A5EA705ECA9 /* UIActivityIndicatorView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+AFNetworking.m"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m"; sourceTree = "<group>"; };
 		DD7171B35BF2FDB6AC6312040A3B5B0A /* Reachability.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DD75314617F96A59C4574EAE203C2F3A /* FlipDynamicADHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FlipDynamicADHelper.h; path = Sources/FlipDynamicADHelper.h; sourceTree = "<group>"; };
@@ -511,6 +511,14 @@
 			path = "../Target Support Files/NJKWebViewProgress";
 			sourceTree = "<group>";
 		};
+		26F2729DDCB6DC5BAF57B78EDFBC2D59 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				78706CB8D9DB98676F5BCD727CA2418A /* libCrystalExpressSDK-CN-1.7.1.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2FD202A3E78C4FEA05C2291FC535F012 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -634,7 +642,7 @@
 				6A19F44EA223A0ED63B3F940AC193ADE /* CETableViewADHelper.m */,
 				DD75314617F96A59C4574EAE203C2F3A /* FlipDynamicADHelper.h */,
 				7F61D05D2471F4FAA2B00DF93F18E5C7 /* I2WAPI.h */,
-				AD408011DA80E24F67A8322B4A2F1FC1 /* Frameworks */,
+				26F2729DDCB6DC5BAF57B78EDFBC2D59 /* Frameworks */,
 				DA53FEECEB7EA750FF854F1A7937EF80 /* Resources */,
 				DFB5EDC1D2FD627BF07E594392F4076F /* Support Files */,
 			);
@@ -766,14 +774,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/MTStatusBarOverlay";
-			sourceTree = "<group>";
-		};
-		AD408011DA80E24F67A8322B4A2F1FC1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DC47DF40AAC4D48935B52AC7B79F587A /* libCrystalExpressSDK-1.6.2.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B58F0BACE2BBE858EACCDE63D6AF0B21 /* Targets Support Files */ = {

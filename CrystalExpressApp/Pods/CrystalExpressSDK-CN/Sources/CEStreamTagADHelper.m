@@ -11,7 +11,6 @@
 
 @interface CEStreamTagADHelper ()
 @property (nonatomic, strong) NSString *adTag;
-@property (nonatomic, strong) NSString *curPlacement;
 @property (nonatomic, strong) NSArray *acceptanceRanges;
 @end
 
@@ -32,7 +31,6 @@
             [[CEStreamPositionManager alloc] initWithTag:adTag
                                                   minPos:minPos
                                                   maxPos:maxPos];
-            self.lastAddedPosition = self.positionMgr.minPos - self.positionMgr.servingFreq - 2;
             
             if (streamPlacements) {
                 self.channelPlacements = streamPlacements;
@@ -48,6 +46,14 @@
     return self;
 }
 
+- (NSString *)getPlacement:(int)index
+{
+    if (index >= self.positionMgr.minPos - 1 && index < self.positionMgr.maxPos){
+        return [I2WAPI getPlacementWithAdTag:_adTag posIndex:index];
+    }
+    return nil;
+}
+
 - (void)prerollWithVisibleCounts:(int)visibleCounts
 {
     if (visibleCounts <= 0) {
@@ -55,14 +61,18 @@
     }
     
     if (self.positionMgr.minPos <= visibleCounts) {
-        NSString *placement = [I2WAPI getPlacementWithAdTag:_adTag posIndex:self.positionMgr.minPos -1];
-        if (placement) {
-            _curPlacement = placement;
-            NSDictionary *streamServingDict = [I2WAPI getPositionLimitationWithTagName:_adTag placement:placement];
-            _acceptanceRanges = [streamServingDict objectForKey:@"acceptanceRanges"];
-            
-            self.isProcessing = YES;
-            [self requestAdWithPlacement:placement];
+        for (int targetIndex = MAX(self.positionMgr.minPos - 1, 0); targetIndex <= visibleCounts - 1; targetIndex++) {
+            NSString *placement = [self getPlacement:targetIndex];
+
+            if (placement) {
+                NSNumber *isProcessing = [self.isPlacementProcessing objectForKey:placement];
+                if (isProcessing == nil){
+                    [self.isPlacementProcessing setObject:[NSNumber numberWithBool:YES] forKey:placement];
+                    self.curPlacement = placement;
+                    self.lastViewedPosition = targetIndex - 1;
+                    [self requestAdWithPlacement:placement];
+                }
+            }
         }
     }
 }
@@ -70,10 +80,10 @@
 - (UIView *)loadAdAtIndexPath:(NSIndexPath *)indexPath
 {
     int posIndex = [self.delegate indexPathToPosition:indexPath];
-    if (self.isProcessing == NO) {
-        [self checkShouldLoadAdWithPosition:posIndex];
+    if ([self.adHolders objectForKey:@(posIndex + 1)] == nil) {
+        [self checkShouldLoadAdWithPosition:posIndex + 1];
     }
-    
+
     if ([self.adHolders objectForKey:@(posIndex)] != nil) {
         CEADHolder *holder = [self.adHolders objectForKey:@(posIndex)];
         return (UIView *)[holder adView];
@@ -82,64 +92,33 @@
     return nil;
 }
 
-- (void)checkShouldLoadAdWithPosition:(int)posIndex
+- (void)checkShouldLoadAdWithPosition:(int)targetInsertPosIndex
 {
-    NSString *desirePlacement = nil;
-    int targetInsertPosIndex = posIndex + 1;
-    
-    if (targetInsertPosIndex < self.positionMgr.minPos -1
-        || targetInsertPosIndex <= self.lastAddedPosition
-        || targetInsertPosIndex > self.positionMgr.maxPos) {
+    BOOL validPosition = targetInsertPosIndex > self.lastViewedPosition;
+    if (!validPosition) return;
+
+    NSString *targetPlacement = [self getPlacement:targetInsertPosIndex];
+    NSString *lastPlacement = self.curPlacement;
+    self.curPlacement = targetPlacement;
+
+    if (!targetPlacement) return;
+
+    NSNumber *lastAddedPosition = [self.placementLastAddedPosition objectForKey:targetPlacement];
+
+    BOOL needRequest = targetPlacement != lastPlacement || lastAddedPosition == nil || targetInsertPosIndex > [lastAddedPosition intValue] + self.positionMgr.servingFreq;
+    if (!needRequest) return;
+
+    //  with ongoing ad request and same placement
+    NSNumber *isProcessing = [self.isPlacementProcessing objectForKey:targetPlacement];
+    if (isProcessing != nil && [isProcessing boolValue]){
         return;
     }
-    
-    BOOL needRequestAd = NO;
-    NSString *newAdTagPlacement = [I2WAPI getPlacementWithAdTag:_adTag posIndex:targetInsertPosIndex];
-    
-    if (newAdTagPlacement) {
-        BOOL isPlacementBlocking = [I2WAPI isPlacementBlocking:newAdTagPlacement];
-        if (isPlacementBlocking == YES || _curPlacement != newAdTagPlacement) {
-            needRequestAd = YES;
-            self.positionMgr.nextPos = targetInsertPosIndex;
-        } else if (targetInsertPosIndex > self.lastAddedPosition + self.positionMgr.servingFreq) {
-            needRequestAd = YES;
-            self.positionMgr.nextPos = targetInsertPosIndex;
-        } else {
-            return;
-        }
-        
-        if (_curPlacement != newAdTagPlacement) {
-            NSDictionary *streamServingDict = [I2WAPI getPositionLimitationWithTagName:_adTag placement:newAdTagPlacement];
-            _acceptanceRanges = [streamServingDict objectForKey:@"acceptanceRanges"];
-            _curPlacement = newAdTagPlacement;
-        }
-        
-    }
-    
-    if (needRequestAd) {
-        desirePlacement = newAdTagPlacement;
-    }
-    
+
+    [self.isPlacementProcessing setObject:[NSNumber numberWithBool:YES] forKey:targetPlacement];
     // [IMPORTANT] Cannot remove dispatch_async to main thread, or tableview might appear unexpect result
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (desirePlacement != nil) {
-            self.isProcessing = YES;
-            [self requestAdWithPlacement:desirePlacement];
-        }
+        [self requestAdWithPlacement:targetPlacement];
     });
-}
-
-- (BOOL)isInAcceptanceRangesWithTargetPositionIndex:(int)posIndex
-{
-    for (NSArray *range in _acceptanceRanges) {
-        int minPos = [[range firstObject] intValue];
-        int maxPos = [[range lastObject] intValue];
-        if (posIndex >= minPos -1 && posIndex < maxPos) {
-            return YES;
-        }
-    }
-    
-    return NO;
 }
 
 - (void)reset
@@ -154,7 +133,6 @@
     [[CEStreamPositionManager alloc] initWithTag:_adTag
                                           minPos:minPos
                                           maxPos:maxPos];
-    self.lastAddedPosition = self.positionMgr.minPos - self.positionMgr.servingFreq - 2;
     
     if (streamPlacements) {
         self.channelPlacements = streamPlacements;

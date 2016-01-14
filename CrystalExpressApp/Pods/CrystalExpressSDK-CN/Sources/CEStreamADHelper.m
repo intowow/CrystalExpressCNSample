@@ -39,7 +39,6 @@
         _minPos = minPos;
         _maxPos = maxPos;
         _servingFreq = [I2WAPI getStreamADServingFreqWithPlacement:placement];
-        _nextPos = _minPos -1;
     }
     return self;
 }
@@ -53,7 +52,6 @@
         _minPos = minPos;
         _maxPos = maxPos;
         _servingFreq = [I2WAPI getStreamADServingFreqWithPlacement:nil];
-        _nextPos = _minPos -1;
     }
     return self;
 }
@@ -73,6 +71,7 @@
 // state
 @property (nonatomic, assign) BOOL isActive;
 @property (nonatomic, assign) BOOL enableAutoPlay;
+@property (nonatomic, strong) NSString *token;
 @end
 
 @implementation CEStreamADHelper
@@ -93,12 +92,16 @@
         _lastVisiblePosition = -1;
         
         // state
-        _isProcessing = NO;
         _isActive = NO;
         _enableAutoPlay = YES;
+        _curPlacement = nil;
+        _lastViewedPosition = -1;
         
         _prohibitPositions = [[NSMutableArray alloc] init];
         _desiredPositions = [[NSMutableArray alloc] init];
+        _placementAdViewRecycled = [[NSMutableDictionary<NSString *, ADView *> alloc] init];
+        _isPlacementProcessing = [[NSMutableDictionary<NSString *, NSNumber *> alloc] init];
+        _placementLastAddedPosition = [[NSMutableDictionary<NSString *, NSNumber *> alloc] init];
     }
     return self;
 }
@@ -140,7 +143,6 @@
 {
     // clean all previous ads
     _place          = 1;
-    _isProcessing   = NO;
     
     for (NSNumber *posNum in _adHolders) {
         CEADHolder *holder = [_adHolders objectForKey:posNum];
@@ -150,13 +152,15 @@
     }
     
     _adHolders      = [[NSMutableDictionary alloc] init];
-    
+    _curPlacement   = nil;
     // A trick so we can pass the initial condition and insert ad at the minimum position!
     _firstVisiblePosition   = -1;
     _lastVisiblePosition    = -1;
-    
+    _lastViewedPosition     = -1;
+
     [_prohibitPositions removeAllObjects];
     [_desiredPositions removeAllObjects];
+    [_placementLastAddedPosition removeAllObjects];
 }
 
 - (void)setAppAdsIndexPaths:(NSArray *)appAdsIndexPaths
@@ -361,25 +365,44 @@
     _firstVisiblePosition = firstPos;
     _lastVisiblePosition = lastPos;
     
+    _lastViewedPosition = MAX(_lastVisiblePosition, _lastViewedPosition);
+    
     // for ad status onShow/onHide event
     [self updateAdStatus];
 }
 
 - (void)requestAdWithPlacement:(NSString *)placement
 {
+    ADView * recycledAdViewInPlacement = [self.placementAdViewRecycled objectForKey: placement];
+    void (^onReady)() = ^(ADView *adView) {
+        if (placement == self.curPlacement){
+            [self onADLoaded:adView
+              targetPosIndex:self.lastViewedPosition + 1
+                 placement:placement];
+        } else {
+            [self.placementAdViewRecycled setObject:adView forKey:placement];
+        }
+        [self.isPlacementProcessing setObject:[NSNumber numberWithBool:NO] forKey:placement];
+    };
+
+    if (recycledAdViewInPlacement){
+        [self.placementAdViewRecycled removeObjectForKey:placement];
+        onReady(recycledAdViewInPlacement);
+        return;
+    }
+
     [I2WAPI getStreamADWithPlacement:placement
                            helperKey:_key
                                place:_place
                              adWidth:_adWidth
                              timeout:5.0
-                             onReady:^(ADView *adView) {
-        [self onADLoaded:adView];
-        _isProcessing = NO;
-    } onFailure:^(NSError *error) {
-        _isProcessing = NO;
-    } onPullDownAnimation:^(UIView *adView) {
-        [_delegate CEStreamADOnPulldownAnimation];
-    }];
+                             onReady:onReady
+                           onFailure:^(NSError *error) {
+                           }
+                 onPullDownAnimation:^(UIView *adView) {
+                     [_delegate CEStreamADOnPulldownAnimation];
+                 }
+     ];
 }
 
 #pragma mark - private method
@@ -395,12 +418,6 @@
     }
     
     _prohibitPositions = newProhitbitPos;
-}
-
-- (BOOL)isInAcceptanceRangesWithTargetPositionIndex:(int)posIndex
-{
-    NSLog(@"CEStreamADHelper Error: should not called parent method");
-    return NO;
 }
 
 #pragma mark - indexPath helper
@@ -442,10 +459,8 @@
     return count;
 }
 
-- (void)onADLoaded:(ADView *)adView
+- (void)onADLoaded:(ADView *)adView targetPosIndex:(int)targetPosIndex placement:(NSString *)placement
 {
-    // this is index, which start from 0
-    int targetPosIndex = MAX(_lastVisiblePosition + 1, _positionMgr.nextPos);
     if ([_desiredPositions count] == 0) {
         while ([_prohibitPositions containsObject:@(targetPosIndex)]) {
             targetPosIndex ++;
@@ -465,30 +480,27 @@
             }
         }
     }
-  
-    if ([self isInAcceptanceRangesWithTargetPositionIndex:targetPosIndex]) {
-        if (targetPosIndex != -1 && adView != nil) {
-            NSIndexPath *targetIndexPath = [_delegate positionToIndexPath:targetPosIndex];
-            if (targetIndexPath == nil) {
-                return;
-            }
-            
-            NSLog(@"insert ad at position: %d", targetPosIndex);
-            CEADHolder *newADHolder = [[CEADHolder alloc] initWithAdView:adView section:targetIndexPath.section row:targetIndexPath.row];
-            [_adHolders setObject:newADHolder forKey:@(targetPosIndex)];
-            
-            BOOL isInsertedToTableView = [_delegate CEStreamADDidLoadAdAtIndexPath:targetIndexPath];
-            if (isInsertedToTableView) {
-                _lastAddedPosition = targetPosIndex;
-                [self updateAdStatus];
-                [self decorateADView:(UIView *)adView];
-                [self updateProhibitPosWithAdPos:targetPosIndex];
-                ++_place;
-            } else {
-                [_adHolders removeObjectForKey:@(targetPosIndex)];
-            }
-            
+
+    if (targetPosIndex != -1 && adView != nil) {
+        NSIndexPath *targetIndexPath = [_delegate positionToIndexPath:targetPosIndex];
+        if (targetIndexPath == nil) {
+            return;
         }
+        
+        NSLog(@"insert ad at position: %d", targetPosIndex);
+        CEADHolder *newADHolder = [[CEADHolder alloc] initWithAdView:adView section:targetIndexPath.section row:targetIndexPath.row];
+        [_adHolders setObject:newADHolder forKey:@(targetPosIndex)];
+        
+        BOOL isInsertedToTableView = [_delegate CEStreamADDidLoadAdAtIndexPath:targetIndexPath];
+        if (isInsertedToTableView) {
+            [self updateAdStatus];
+            [self decorateADView:(UIView *)adView];
+            [self updateProhibitPosWithAdPos:targetPosIndex];
+            ++_place;
+            [self.placementLastAddedPosition setObject:[NSNumber numberWithInt:targetPosIndex] forKey:placement];
+        } else {
+            [_adHolders removeObjectForKey:@(targetPosIndex)];
+        }   
     }
 }
 

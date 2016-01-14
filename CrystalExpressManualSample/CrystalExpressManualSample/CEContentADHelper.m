@@ -16,7 +16,7 @@
 @interface CEContentADHolder : NSObject
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) ADView *adView;
-@property (nonatomic, assign) float scrollOffset;
+@property (nonatomic, weak) UIView *wrapperView;
 @property (nonatomic, strong) NSString *adToken;
 @property (nonatomic, assign) BOOL hadTracked;
 @property (nonatomic, assign) BOOL isPlaying;
@@ -24,7 +24,7 @@
 
 - (instancetype)initWithContainerView:(UIView *)containerView
                                adView:(ADView *)adView
-                               offset:(float)offset
+                          wrapperView:(UIView *)wrapperView
                               adToken:(NSString *)adToken;
 @end
 
@@ -32,14 +32,14 @@
 
 - (instancetype)initWithContainerView:(UIView *)containerView
                                adView:(ADView *)adView
-                               offset:(float)offset
+                          wrapperView:(UIView *)wrapperView
                               adToken:(NSString *)adToken
 {
     self = [super init];
     if (self) {
         _containerView = containerView;
         _adView = adView;
-        _scrollOffset = offset;
+        _wrapperView = wrapperView;
         _adToken = adToken;
         _hadTracked = NO;
         _isShowing = NO;
@@ -112,9 +112,9 @@
     if (_isProcessing) {
         return;
     }
-    
+
     _isProcessing = YES;
-    
+
     __weak CEContentADHelper *weakSelf = self;
     [I2WAPI getContentADWithPlacement:_placement isPreroll:YES registerCallback:NO adWidth:_preferAdWidth onReady:^(ADView *adView, NSString *adToken) {
         [self onADLoaded:adView adToken:adToken];
@@ -132,21 +132,21 @@
     if (_wrapperView.superview == nil) {
         [_scrollView addSubview:_wrapperView];
     }
-    
+
     // update wrapper bounds
     UIView *decorateAdView = [self decorateAdView:adView];
     [_wrapperView addSubview:decorateAdView];
-    
+
     CGRect tmpFrame = _wrapperView.frame;
     tmpFrame.size.height = decorateAdView.bounds.size.height + 2*AD_VERTICAL_MARGIN;
     [_wrapperView setFrame:tmpFrame];
-    
+
     float startX = (_wrapperView.bounds.size.width - decorateAdView.bounds.size.width)/2.0f;
     [decorateAdView setFrame:CGRectMake(startX, AD_VERTICAL_MARGIN, decorateAdView.bounds.size.width, decorateAdView.bounds.size.height)];
-    
+
     BOOL showsVerticalScrollIndicator = _scrollView.showsVerticalScrollIndicator;
     BOOL showsHorizontalScrollIndicator = _scrollView.showsHorizontalScrollIndicator;
-    
+
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
 
@@ -155,7 +155,7 @@
         if (childView == _wrapperView) {
             continue;
         }
-        
+
         CGRect frame = childView.frame;
         if (frame.origin.y >= _wrapperView.frame.origin.y) {
             frame.origin.y += _wrapperView.bounds.size.height;
@@ -165,16 +165,13 @@
 
     _scrollView.showsVerticalScrollIndicator = showsVerticalScrollIndicator;
     _scrollView.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator;
-    
+
     // update content size
     CGSize contentSize = _scrollView.contentSize;
     contentSize.height += _wrapperView.bounds.size.height;
     [_scrollView setContentSize:contentSize];
-    
-    _adHolder = [[CEContentADHolder alloc] initWithContainerView:decorateAdView
-                                                          adView:adView
-                                                          offset:_wrapperView.frame.origin.y
-                                                         adToken:adToken];
+
+    _adHolder = [[CEContentADHolder alloc] initWithContainerView:decorateAdView adView:adView wrapperView:_wrapperView adToken:adToken];
 }
 
 - (void)onADFailed:(NSError *)error
@@ -182,14 +179,14 @@
     if (_wrapperView.superview == nil) {
         [_scrollView addSubview:_wrapperView];
     }
-    
+
     CGRect tmpFrame = _wrapperView.frame;
     tmpFrame.size.height = 10;
     [_wrapperView setFrame:tmpFrame];
-    
+
     BOOL showsVerticalScrollIndicator = _scrollView.showsVerticalScrollIndicator;
     BOOL showsHorizontalScrollIndicator = _scrollView.showsHorizontalScrollIndicator;
-    
+
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
 
@@ -198,22 +195,22 @@
         if (childView == _wrapperView) {
             continue;
         }
-        
+
         CGRect frame = childView.frame;
         if (frame.origin.y >= _wrapperView.frame.origin.y) {
             frame.origin.y += _wrapperView.bounds.size.height;
         }
         [childView setFrame:frame];
     }
-   
+
     _scrollView.showsVerticalScrollIndicator = showsVerticalScrollIndicator;
     _scrollView.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator;
-    
+
     // update content size
     CGSize contentSize = _scrollView.contentSize;
     contentSize.height += _wrapperView.bounds.size.height;
     [_scrollView setContentSize:contentSize];
-    
+
 }
 
 - (void)onPullDownAnimation:(UIView *)adView
@@ -223,18 +220,18 @@
         CGRect frame = _adHolder.containerView.frame;
         frame.size.height = adView.bounds.size.height;
         [_adHolder.containerView setFrame:frame];
-    
+
         frame = _wrapperView.frame;
         frame.size.height = _adHolder.containerView.frame.size.height + 2*AD_VERTICAL_MARGIN;
         [_wrapperView setFrame:frame];
     }
-   
+
     BOOL showsVerticalScrollIndicator = _scrollView.showsVerticalScrollIndicator;
     BOOL showsHorizontalScrollIndicator = _scrollView.showsHorizontalScrollIndicator;
-    
+
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
-    
+
     CGFloat belowAdHeight = 0.0f;
     // update view below AD origin position
     for (UIView *childView in _scrollView.subviews) {
@@ -252,10 +249,10 @@
 
     _scrollView.showsVerticalScrollIndicator = showsVerticalScrollIndicator;
     _scrollView.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator;
-    
+
     // update content size
     CGSize contentSize = _scrollView.contentSize;
-    contentSize.height = _adHolder.scrollOffset + _wrapperView.bounds.size.height + belowAdHeight;
+    contentSize.height = _adHolder.wrapperView.frame.origin.y + _wrapperView.bounds.size.height + belowAdHeight;
     [_scrollView setContentSize:contentSize];
 }
 
@@ -275,7 +272,7 @@
 - (void)handleVisibleWithScrollViewBounds:(CGRect)scrollViewBounds
 {
     if (_adHolder) {
-        CGRect adBounds = CGRectMake(0, _adHolder.scrollOffset, _adHolder.containerView.bounds.size.width, _adHolder.containerView.bounds.size.height);
+        CGRect adBounds = CGRectMake(0, _adHolder.wrapperView.frame.origin.y, _adHolder.containerView.bounds.size.width, _adHolder.containerView.bounds.size.height);
         BOOL isVisible = CGRectIntersectsRect(adBounds, scrollViewBounds);
         if (isVisible == YES && _adHolder.isShowing == NO) {
             [_adHolder.adView onShow];
@@ -284,13 +281,13 @@
             [_adHolder.adView onHide];
             _adHolder.isShowing = NO;
         }
-        
+
         if (_adHolder.hadTracked == YES) {
             return;
         }
-       
+
         CGFloat viewOffset = scrollViewBounds.origin.y + scrollViewBounds.size.height;
-        if (viewOffset >= _adHolder.scrollOffset) {
+        if (viewOffset >= _adHolder.wrapperView.frame.origin.y) {
             [I2WAPI trackAdRequestWithPlacement:_placement adToken:_adHolder.adToken];
             _adHolder.hadTracked = YES;
         }
@@ -300,7 +297,7 @@
 - (void)handleStartAndStopWithScrollViewBounds:(CGRect)scrollViewBounds
 {
     if (_adHolder) {
-        CGRect adBounds = CGRectMake(0, _adHolder.scrollOffset, _adHolder.containerView.bounds.size.width, _adHolder.containerView.bounds.size.height);
+        CGRect adBounds = CGRectMake(0, _adHolder.wrapperView.frame.origin.y, _adHolder.containerView.bounds.size.width, _adHolder.containerView.bounds.size.height);
         BOOL isVisible = CGRectIntersectsRect(adBounds, scrollViewBounds);
         if (isVisible == YES && _adHolder.isPlaying == NO) {
             [_adHolder.adView onStart];
@@ -316,7 +313,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self handleVisibleWithScrollViewBounds:scrollView.bounds];
-    
+
     id<UIScrollViewDelegate> delegate = self.originalDelegate;
     if ([delegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
         return [delegate scrollViewDidScroll:scrollView];
@@ -352,7 +349,7 @@
     if (decelerate == NO) {
         [self handleStartAndStopWithScrollViewBounds:scrollView.bounds];
     }
-    
+
     id<UIScrollViewDelegate> delegate = self.originalDelegate;
     if ([delegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
         return [delegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
@@ -370,7 +367,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self handleStartAndStopWithScrollViewBounds:scrollView.bounds];
-    
+
     id<UIScrollViewDelegate> delegate = self.originalDelegate;
     if ([delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
         return [delegate scrollViewDidEndDecelerating:scrollView];

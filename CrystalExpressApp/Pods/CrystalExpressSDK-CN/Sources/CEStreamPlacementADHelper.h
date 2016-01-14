@@ -6,9 +6,9 @@
 //  Copyright © 2015年 intowow. All rights reserved.
 //
 
-#import "CEStreamADHelper.h"
+#import "CEStreamTagADHelper.h"
 
-@interface CEStreamPlacementADHelper : CEStreamADHelper
+@interface CEStreamPlacementADHelper : CEStreamTagADHelper
 
 - (instancetype)initWithPlacement:(NSString *)placement delegate:(id<CEStreamAdHelperDelegate>)delegate;
 @end

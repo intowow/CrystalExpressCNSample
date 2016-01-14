@@ -40,7 +40,6 @@
 @property (nonatomic, assign) int minPos;
 @property (nonatomic, assign) int maxPos;
 @property (nonatomic, assign) int servingFreq;
-@property (nonatomic, assign) int nextPos;
 
 - (instancetype)initWithPlacement:(NSString *)placement minPos:(int)minPos maxPos:(int)maxPos;
 - (instancetype)initWithTag:(NSString *)tag minPos:(int)minPos maxPos:(int)maxPos;
@@ -56,11 +55,11 @@
 @property (nonatomic, strong) NSArray *channelPlacements;
 @property (nonatomic, strong) NSString *key;
 @property (nonatomic, strong) NSMutableArray *desiredPositions;
-@property (nonatomic, assign) int lastAddedPosition;
-
-// state
-@property (nonatomic, assign) BOOL isProcessing;
-
+@property (nonatomic, assign) int lastViewedPosition;
+@property (nonatomic, assign) NSString *curPlacement;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSNumber *> *isPlacementProcessing;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSNumber *> *placementLastAddedPosition;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, ADView *> *placementAdViewRecycled;
 
 - (instancetype)initWithDelegate:(id<CEStreamAdHelperDelegate>)delegate;
 - (void)setAdWidth:(float)width;
@@ -95,5 +94,4 @@
 // override by children class
 - (UIView *)loadAdAtIndexPath:(NSIndexPath *)indexPath;
 - (void)requestAdWithPlacement:(NSString *)placement;
-- (BOOL)isInAcceptanceRangesWithTargetPositionIndex:(int)posIndex;
 @end
