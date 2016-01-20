@@ -1,3 +1,7 @@
+## [1.8.0]() (2016-01-20)
+
+* Change link lib (CrystalExpress SDK version 1.8.0) and pod update
+
 ## [1.7.2]() (2016-01-15)
 
 * Change link lib (CrystalExpress SDK version 1.7.2) and pod update
